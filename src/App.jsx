@@ -147,6 +147,10 @@ const App = () => {
                 รับทำเว็บไซต์
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
               </button>
+              <button onClick={() => scrollToSection('portfolio')} className="text-slate-600 hover:text-indigo-600 transition-colors font-medium relative group">
+                ผลงาน
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+              </button>
               <a
                 href={lineLink}
                 target="_blank"
@@ -180,7 +184,7 @@ const App = () => {
               className="md:hidden bg-white border-b border-slate-200 overflow-hidden"
             >
               <div className="px-4 pt-2 pb-6 space-y-2">
-                {[{ label: 'เกี่ยวกับเรา', id: 'about' }, { label: 'คอร์สเรียน', id: 'course' }, { label: 'ที่ปรึกษา', id: 'consult' }, { label: 'รับทำเว็บไซต์', id: 'development' }].map((item, i) => (
+                {[{ label: 'เกี่ยวกับเรา', id: 'about' }, { label: 'คอร์สเรียน', id: 'course' }, { label: 'ที่ปรึกษา', id: 'consult' }, { label: 'รับทำเว็บไซต์', id: 'development' }, { label: 'ผลงาน', id: 'portfolio' }].map((item, i) => (
                   <motion.button
                     key={item.id}
                     initial={{ opacity: 0, x: -20 }}
@@ -447,7 +451,7 @@ const App = () => {
                 <div className="text-center mb-8 mt-4">
                   <h3 className="text-2xl font-bold text-slate-800 mb-2">แพ็กเกจเรียนส่วนตัวออนไลน์</h3>
                   <div className="flex justify-center items-end gap-2 mb-2">
-                    <span className="text-5xl font-extrabold text-slate-900">5,900</span>
+                    <span className="text-5xl font-extrabold text-slate-900">4,900</span>
                     <span className="text-xl font-bold text-purple-600 mb-2">THB</span>
                   </div>
                   <p className="text-slate-400 text-sm line-through font-light">ราคาปกติ 9,900 บาท</p>
@@ -867,7 +871,58 @@ const App = () => {
         </div>
       </Section>
 
-      {/* Testimonials Section */}
+      {/* Portfolio Section */}
+      <Section id="portfolio" className="py-32 bg-white scroll-mt-16 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-sm font-bold mb-6 border border-indigo-200 tracking-wider">
+              PORTFOLIO
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black mb-6 text-slate-900 leading-tight">ผลงาน <span className="text-indigo-600">ตัวอย่าง</span></h2>
+            <p className="text-slate-600 text-xl font-light max-w-3xl mx-auto leading-relaxed">ตัวอย่างเว็บแอปพลิเคชันที่พัฒนาด้วย AI และเทคโนโลยีสมัยใหม่</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Project 1: RetroLens */}
+            <motion.div
+              whileHover={{ y: -10 }}
+              className="group bg-slate-50 border border-slate-200 rounded-[2.5rem] overflow-hidden hover:border-indigo-400 transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-indigo-100/50"
+            >
+              <div className="aspect-video relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity"></div>
+                <img
+                  src="https://retrolens-ai-app.web.app/og-image.png"
+                  alt="RetroLens AI App"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop'; }}
+                />
+                <div className="absolute bottom-6 left-6 z-20">
+                  <span className="px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full mb-3 inline-block">AI App VibeCoding</span>
+                  <h3 className="text-2xl font-bold text-white">RetroLens AI</h3>
+                </div>
+              </div>
+              <div className="p-8">
+                <p className="text-slate-600 font-light mb-8 leading-relaxed">
+                  เว็บแอปพลิเคชันสำหรับเปลี่ยนภาพถ่ายให้เป็นสไตล์กล้องฟิล์มย้อนยุคด้วยพลังของ AI พัฒนาด้วย React และ Cloud Integration เต็มรูปแบบ
+                </p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {['React', 'Vite', 'AI Model', 'Firebase'].map(tag => (
+                    <span key={tag} className="px-3 py-1 bg-white border border-slate-200 text-slate-500 text-xs rounded-full">#{tag}</span>
+                  ))}
+                </div>
+                <a
+                  href="https://retrolens-ai-app.web.app"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-indigo-600 font-bold hover:gap-4 transition-all"
+                >
+                  เข้าชมผลงาน <ArrowRight size={18} />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </Section>
       <Section className="py-32 bg-slate-50 relative overflow-hidden">
         <div className="absolute top-1/2 left-0 w-72 h-72 bg-indigo-200/20 rounded-full blur-3xl -z-10 animate-blob"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-200/20 rounded-full blur-3xl -z-10 animate-blob animation-delay-2000"></div>
