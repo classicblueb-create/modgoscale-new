@@ -6,6 +6,17 @@ export default {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                display: ['Satoshi', 'Kanit', 'sans-serif'],
+                body: ['Satoshi', 'Kanit', 'sans-serif'],
+                kanit: ['Kanit', 'sans-serif'],
+            },
+            colors: {
+                eggshell: '#F9F8F4',
+                'text-main': '#111111',
+                'text-muted': '#666666',
+                'border-color': '#E6E4DD',
+            },
             animation: {
                 'blob': 'blob 7s infinite',
             },
