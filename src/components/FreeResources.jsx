@@ -28,7 +28,7 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
   return (
     <div className="min-h-screen bg-[#F9F8F4] text-[#111] pt-28 pb-32 px-6 md:px-12 lg:px-16 animate-in fade-in duration-300">
       <div className="max-w-7xl mx-auto space-y-12">
-        
+
         {/* Back to Home Breadcrumb */}
         <div className="flex justify-between items-center border-b border-[#E6E4DD] pb-6">
           <button
@@ -47,13 +47,13 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
         {/* Subpage Header */}
         <div className="space-y-4 max-w-4xl">
           <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#FF6A2A] block">
-            EXCLUSIVE AI RESEARCH &amp; PROMPT LIBRARY
+            EXCLUSIVE AI WORKFLOW &amp; PROMPT LIBRARY
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-[#111] leading-tight">
             FREE RESOURCES<span className="text-[#FF6A2A]">.</span>
           </h1>
           <p className="text-lg md:text-2xl font-kanit font-light text-[#555] leading-relaxed">
-            รวม Prompt Template, AI Playbook และ Workflow ฉบับภาษาไทยพร้อมใช้งานจาก Modty.ai อ่านและคัดลอกคำสั่งไปใช้ได้ทันที
+            รวม Prompt Template, AI Playbook และ Workflow พร้อมใช้งานจาก Modty.ai อ่านและคัดลอกคำสั่งไปใช้ได้ทันที
           </p>
         </div>
 
@@ -65,11 +65,10 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap ${
-                  selectedCategory === cat
+                className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap ${selectedCategory === cat
                     ? 'bg-[#111] text-white shadow-md'
                     : 'bg-[#F9F8F4] text-[#666] hover:bg-[#FFE3D2]/50 hover:text-[#FF6A2A]'
-                }`}
+                  }`}
               >
                 {cat === 'All' ? 'ทั้งหมด (All)' : cat}
               </button>
@@ -107,6 +106,7 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
                   </span>
                 </div>
 
+                <div className="text-3xl mb-3">{item.icon}</div>
                 <h3 className="text-xl font-display font-bold text-[#111] group-hover:text-[#FF6A2A] transition-colors mb-2 leading-snug">
                   {item.title}
                 </h3>
@@ -148,7 +148,7 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
             <Home size={16} className="text-[#FF6A2A]" />
             <span>กลับสู่หน้าหลัก MODGOSCALE (Back to Main Landing Page)</span>
           </button>
-          
+
           <p className="text-xs text-[#888] font-light">
             © MODGOSCALE — Powered by Modty.ai Personal Brand
           </p>
@@ -158,7 +158,7 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
         {activeResource && (
           <div className="fixed inset-0 z-[120] bg-black/70 backdrop-blur-md flex justify-center items-center p-4 md:p-8 overflow-y-auto">
             <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#E6E4DD] shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
-              
+
               {/* Sticky Modal Header */}
               <div className="sticky top-0 bg-white/95 backdrop-blur-md px-6 md:px-10 py-5 border-b border-[#E6E4DD] flex justify-between items-center z-20">
                 <div className="flex items-center gap-3">
@@ -177,9 +177,10 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
 
               {/* Modal Body */}
               <div className="p-6 md:p-10 space-y-8">
-                
+
                 {/* Title & Subtitle */}
                 <div className="space-y-3 border-b border-[#E6E4DD] pb-6">
+                  <div className="text-4xl">{activeResource.icon}</div>
                   <h2 className="text-2xl md:text-4xl font-display font-bold text-[#111]">
                     {activeResource.title}
                   </h2>
@@ -215,7 +216,7 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <h4 className="font-display font-bold text-lg text-[#111] flex items-center gap-2">
-                      Prompt Template (พร้อมใช้ได้ทันที)
+                      📋 Prompt Template (พร้อมใช้ได้ทันที)
                     </h4>
                     <button
                       onClick={() => handleCopy(activeResource.content.promptCopyText, activeResource.id)}
