@@ -9,7 +9,6 @@ export const FREE_RESOURCES = [
     categoryBadge: "PROMPT TEMPLATE & SYSTEM",
     readTime: "5 นาที",
     date: "2025-08",
-    icon: "💻",
     tags: ["Vibe Coding", "React", "Prompt Template", "UI/UX", "Tailwind CSS"],
     summary: "ชุด Prompt และ Design System Foundation ที่ช่วยให้คุณสั่ง AI (Claude/ChatGPT/Gemini) สร้าง UI หน้าเว็บ Dashboard และ Web App มีมิติ ครบทั้ง Layout, Styling และ Responsive โดยไม่ต้องเขียนโค้ดเองตั้งแต่แรก",
     featured: true,
@@ -21,11 +20,11 @@ export const FREE_RESOURCES = [
         { step: "03. Ship", desc: "ให้ AI เขียน React App + Tailwind CSS พร้อมนำไป Deploy ใช้งานจริงได้ทันที" }
       ],
       styles: [
-        { name: "🟨 Neobrutalist", desc: "Heavy black borders, offset shadows, saturated colors (เหมาะกับ Portfolio, Creative Agency)" },
-        { name: "🪄 Flat Design", desc: "ไม่มี Shadow/Gradient, สีทึบ, Layout ชัด (เหมาะกับ Dashboard, Business Application)" },
-        { name: "🧊 Glassmorphism", desc: "backdrop-filter: blur(), transparent white layer, gradient (เหมาะกับ Media App, Premium SaaS)" },
-        { name: "🤍 Minimalist", desc: "Whitespace เยอะ, สีใช้น้อย, typography บาง (เหมาะกับ Content-first, Premium Brand)" },
-        { name: "⚡ Cyberpunk", desc: "Dark background, neon accent, glow effect (เหมาะกับ Tech Product, Gaming)" }
+        { name: "Neobrutalist", desc: "Heavy black borders, offset shadows, saturated colors (เหมาะกับ Portfolio, Creative Agency)" },
+        { name: "Flat Design", desc: "ไม่มี Shadow/Gradient, สีทึบ, Layout ชัด (เหมาะกับ Dashboard, Business Application)" },
+        { name: "Glassmorphism", desc: "backdrop-filter: blur(), transparent white layer, gradient (เหมาะกับ Media App, Premium SaaS)" },
+        { name: "Minimalist", desc: "Whitespace เยอะ, สีใช้น้อย, typography บาง (เหมาะกับ Content-first, Premium Brand)" },
+        { name: "Cyberpunk", desc: "Dark background, neon accent, glow effect (เหมาะกับ Tech Product, Gaming)" }
       ],
       promptCopyText: `คุณคือ Senior Frontend Architect และ UI Specialist
 โปรดสร้าง React + Tailwind CSS Component สำหรับ [ระบุประเภท UI เช่น SaaS Dashboard / Landing Page]
@@ -67,7 +66,6 @@ export const FREE_RESOURCES = [
     categoryBadge: "STRATEGY PLAYBOOK",
     readTime: "4 นาที",
     date: "2025-08",
-    icon: "🔍",
     tags: ["Reverse Engineering", "Prompt Engineering", "Strategy", "Business"],
     summary: "วิธีวิเคราะห์โครงสร้างเบื้องหลังของ Content, สินค้า หรือ Business Model ที่ประสบความสำเร็จ แล้วใช้ AI ถอดรหัสย้อนกลับมาเป็นสเต็ปการทำงานของคุณเอง",
     featured: true,
@@ -119,7 +117,6 @@ export const FREE_RESOURCES = [
     categoryBadge: "PRODUCTIVITY WORKFLOW",
     readTime: "6 นาที",
     date: "2025-08",
-    icon: "📅",
     tags: ["Automation", "ChatGPT Work", "Custom Skills", "Productivity"],
     summary: "สอนตั้งค่าผู้ช่วย AI ส่วนตัวสำหรับการบริหารเวลา จัดการนัดหมาย แจ้งเตือนงานสำคัญ และสรุป Briefing รายวันเพื่อเพิ่ม Productivity 3X",
     featured: false,
@@ -168,7 +165,6 @@ export const FREE_RESOURCES = [
     categoryBadge: "CONTENT SYSTEM",
     readTime: "5 นาที",
     date: "2025-08",
-    icon: "🖼️",
     tags: ["AI Visual", "Carousel", "ChatGPT", "Social Media", "Branding"],
     summary: "วิธีสร้างระบบผลิตภาพ Carousel บน Social Media ที่ล็อก Mood & Tone, โทนสี และตัวละคร ให้ตรงตาม Brand Identity โดยไม่ต้องพึ่งดีไซเนอร์ตลอดเวลา",
     featured: false,
@@ -215,7 +211,6 @@ Maintain exact visual tokens for subsequent slide prompts.`,
     categoryBadge: "CHET SHEET & GUIDE",
     readTime: "7 นาที",
     date: "2025-08",
-    icon: "🌐",
     tags: ["Hosting", "Vibe Coding", "Deployment", "Vercel", "Netlify", "Cloudflare"],
     summary: "คู่มือเลือกใช้แพลตฟอร์ม Cloud & Hosting ฟรีสำหรับผู้ที่สร้างเว็บด้วย Vibe Coding, AI หรือ React/Next.js ให้คุณมี Live Website เป็นของตัวเองได้ในไม่กี่คลิก",
     featured: false,

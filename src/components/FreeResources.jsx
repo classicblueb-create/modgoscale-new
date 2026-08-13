@@ -107,7 +107,6 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
                   </span>
                 </div>
 
-                <div className="text-3xl mb-3">{item.icon}</div>
                 <h3 className="text-xl font-display font-bold text-[#111] group-hover:text-[#FF6A2A] transition-colors mb-2 leading-snug">
                   {item.title}
                 </h3>
@@ -181,7 +180,6 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
                 
                 {/* Title & Subtitle */}
                 <div className="space-y-3 border-b border-[#E6E4DD] pb-6">
-                  <div className="text-4xl">{activeResource.icon}</div>
                   <h2 className="text-2xl md:text-4xl font-display font-bold text-[#111]">
                     {activeResource.title}
                   </h2>
@@ -217,7 +215,7 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <h4 className="font-display font-bold text-lg text-[#111] flex items-center gap-2">
-                      📋 Prompt Template (พร้อมใช้ได้ทันที)
+                      Prompt Template (พร้อมใช้ได้ทันที)
                     </h4>
                     <button
                       onClick={() => handleCopy(activeResource.content.promptCopyText, activeResource.id)}
