@@ -13,6 +13,9 @@ export default {
             },
             colors: {
                 eggshell: '#F9F8F4',
+                'brand-cream': '#FFF1E6',
+                'soft-orange': '#FFE3D2',
+                'brand-orange': '#FF6A2A',
                 'text-main': '#111111',
                 'text-muted': '#666666',
                 'border-color': '#E6E4DD',
