@@ -41,6 +41,9 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [lang, setLang] = useState('th');
+  const [currentPage, setCurrentPage] = useState(() => {
+    return window.location.hash === '#resources' ? 'resources' : 'home';
+  });
   const en = lang === 'en';
 
   const cursorDotRef = useRef(null);
@@ -49,12 +52,29 @@ const App = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const lineLink = "https://lin.ee/wWV3LYO";
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const navigateTo = (page, sectionId = null) => {
     setIsMenuOpen(false);
+    setCurrentPage(page);
+    if (page === 'resources') {
+      window.location.hash = 'resources';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      if (sectionId) {
+        window.location.hash = sectionId;
+        setTimeout(() => {
+          const el = document.getElementById(sectionId);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+          else window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 50);
+      } else {
+        window.location.hash = '';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
+
+  const scrollToSection = (id) => {
+    navigateTo('home', id);
   };
 
   useEffect(() => {
@@ -122,6 +142,65 @@ const App = () => {
     };
   }, []);
 
+  // If on Resources subpage, render it full-screen (still with navbar on top)
+  if (currentPage === 'resources') {
+    return (
+      <div className="antialiased selection:bg-[#111111] selection:text-[#F9F8F4] overflow-x-hidden w-full relative">
+        {/* Custom Cursor */}
+        <div className="cursor-dot hidden md:block" ref={cursorDotRef}></div>
+        <div className="cursor-outline hidden md:block" ref={cursorOutlineRef}></div>
+
+        {/* Navigation (same navbar, always visible) */}
+        <nav className={`fixed w-full z-50 top-0 py-6 px-6 md:px-12 lg:px-16 flex justify-between items-center nav-blur scrolled`}>
+          <div className="text-xl font-display font-bold tracking-widest uppercase hover-target cursor-pointer flex items-center" onClick={() => navigateTo('home')}>
+            modgoscale<span className="text-[#FF6A2A]">.</span>
+          </div>
+          <div className="hidden md:flex space-x-10 text-sm tracking-widest uppercase font-medium">
+            <button onClick={() => navigateTo('home', 'about')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Concept</button>
+            <button onClick={() => navigateTo('home', 'speaker')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Speaker</button>
+            <button onClick={() => navigateTo('home', 'services')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Expertise</button>
+            <button onClick={() => navigateTo('home', 'portfolio')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Portfolio</button>
+            <button className="text-[#FF6A2A] font-bold transition-colors duration-300">Free Resources</button>
+            <button onClick={() => navigateTo('home', 'contact')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Initiate</button>
+          </div>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setLang(l => l === 'th' ? 'en' : 'th')}
+              className="flex items-center gap-1.5 text-xs tracking-widest uppercase font-medium text-[#666] hover:text-[#111] transition-colors border border-[#E6E4DD] hover:border-[#FF6A2A] rounded-full px-3 py-1.5 bg-white/50"
+            >
+              <Globe size={12} className="text-[#FF6A2A]" />
+              {lang === 'th' ? 'TH' : 'EN'}
+            </button>
+            <button className="md:hidden text-[#111] hover-target focus:outline-none" onClick={toggleMenu}>
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile Menu on Resources Page */}
+        {isMenuOpen && (
+          <div className="fixed inset-0 z-40 bg-[#F9F8F4]/98 backdrop-blur-xl pt-24 px-6 pb-8 flex flex-col space-y-6 md:hidden">
+            <button onClick={() => navigateTo('home', 'about')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Concept</button>
+            <button onClick={() => navigateTo('home', 'speaker')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Speaker</button>
+            <button onClick={() => navigateTo('home', 'services')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Expertise</button>
+            <button onClick={() => navigateTo('home', 'portfolio')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Portfolio</button>
+            <button className="text-2xl font-display font-bold text-left uppercase text-[#FF6A2A]">Free Resources</button>
+            <button onClick={() => navigateTo('home', 'contact')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Initiate</button>
+            <a href={lineLink} className="mt-8 bg-[#FF6A2A] text-white rounded-full text-center w-full py-4 uppercase tracking-widest text-base font-medium hover:bg-[#e0591f] transition-colors shadow-lg shadow-[#FF6A2A]/20">Contact via LINE</a>
+          </div>
+        )}
+
+        {/* Floating LINE Button */}
+        <a href={lineLink} target="_blank" rel="noreferrer" className="fixed bottom-8 right-8 z-[100] bg-[#FF6A2A] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 hover-target border border-white/20 shadow-[#FF6A2A]/30">
+          <MessageCircle size={24} />
+        </a>
+
+        {/* FreeResources Full Subpage */}
+        <FreeResources lineLink={lineLink} en={en} onBackToHome={() => navigateTo('home')} />
+      </div>
+    );
+  }
+
   return (
     <div className="antialiased selection:bg-[#111111] selection:text-[#F9F8F4] overflow-x-hidden w-full relative">
       {/* Custom Cursor Elements */}
@@ -130,16 +209,16 @@ const App = () => {
 
       {/* Navigation */}
       <nav className={`fixed w-full z-50 top-0 py-6 px-6 md:px-12 lg:px-16 flex justify-between items-center nav-blur ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="text-xl font-display font-bold tracking-widest uppercase hover-target cursor-pointer flex items-center" onClick={() => window.scrollTo(0, 0)}>
+        <div className="text-xl font-display font-bold tracking-widest uppercase hover-target cursor-pointer flex items-center" onClick={() => navigateTo('home')}>
           modgoscale<span className="text-[#FF6A2A]">.</span>
         </div>
         <div className="hidden md:flex space-x-10 text-sm tracking-widest uppercase font-medium">
-          <button onClick={() => scrollToSection('about')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Concept</button>
-          <button onClick={() => scrollToSection('speaker')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Speaker</button>
-          <button onClick={() => scrollToSection('services')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Expertise</button>
-          <button onClick={() => scrollToSection('portfolio')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Portfolio</button>
-          <button onClick={() => scrollToSection('resources')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Free Resources</button>
-          <button onClick={() => scrollToSection('contact')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Initiate</button>
+          <button onClick={() => navigateTo('home', 'about')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Concept</button>
+          <button onClick={() => navigateTo('home', 'speaker')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Speaker</button>
+          <button onClick={() => navigateTo('home', 'services')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Expertise</button>
+          <button onClick={() => navigateTo('home', 'portfolio')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Portfolio</button>
+          <button onClick={() => navigateTo('resources')} className={`transition-colors duration-300 ${currentPage === 'resources' ? 'text-[#FF6A2A] font-bold' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Free Resources</button>
+          <button onClick={() => navigateTo('home', 'contact')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Initiate</button>
         </div>
         <div className="flex items-center gap-4">
           <button
@@ -158,12 +237,12 @@ const App = () => {
       {/* Mobile Menu Dropdown */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 bg-[#F9F8F4]/98 backdrop-blur-xl pt-24 px-6 pb-8 flex flex-col space-y-6 md:hidden">
-          <button onClick={() => scrollToSection('about')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Concept</button>
-          <button onClick={() => scrollToSection('speaker')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Speaker</button>
-          <button onClick={() => scrollToSection('services')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Expertise</button>
-          <button onClick={() => scrollToSection('portfolio')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Portfolio</button>
-          <button onClick={() => scrollToSection('resources')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Free Resources</button>
-          <button onClick={() => scrollToSection('contact')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Initiate</button>
+          <button onClick={() => navigateTo('home', 'about')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Concept</button>
+          <button onClick={() => navigateTo('home', 'speaker')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Speaker</button>
+          <button onClick={() => navigateTo('home', 'services')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Expertise</button>
+          <button onClick={() => navigateTo('home', 'portfolio')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Portfolio</button>
+          <button onClick={() => navigateTo('resources')} className={`text-2xl font-display font-bold text-left uppercase ${currentPage === 'resources' ? 'text-[#FF6A2A]' : 'text-[#111] hover:text-[#FF6A2A]'}`}>Free Resources</button>
+          <button onClick={() => navigateTo('home', 'contact')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Initiate</button>
           <a href={lineLink} className="mt-8 bg-[#FF6A2A] text-white rounded-full text-center w-full py-4 uppercase tracking-widest text-base font-medium hover:bg-[#e0591f] transition-colors shadow-lg shadow-[#FF6A2A]/20">Contact via LINE</a>
         </div>
       )}
@@ -1477,8 +1556,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* Free AI Resources & Prompt Library Section */}
-      <FreeResources lineLink={lineLink} en={en} />
 
       {/* Final CTA Section (Strong Visual Moment - #111111 Dark Theme with Signature Orange) */}
       <section id="contact" className="py-28 px-6 md:px-12 lg:px-16 bg-[#111111] text-white relative overflow-hidden">

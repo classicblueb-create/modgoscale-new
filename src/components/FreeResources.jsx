@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FREE_RESOURCES } from '../data/freeResources';
-import { Search, Copy, Check, ExternalLink, X, BookOpen, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Search, Copy, Check, ExternalLink, X, BookOpen, Sparkles, ArrowRight, ShieldCheck, ArrowLeft, Home } from 'lucide-react';
 
-export default function FreeResources({ lineLink, en }) {
+export default function FreeResources({ lineLink, en, onBackToHome }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeResource, setActiveResource] = useState(null);
@@ -26,30 +26,39 @@ export default function FreeResources({ lineLink, en }) {
   };
 
   return (
-    <section id="resources" className="py-28 md:py-36 px-6 md:px-12 lg:px-16 bg-[#F9F8F4] border-t border-[#E6E4DD]">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <div className="min-h-screen bg-[#F9F8F4] text-[#111] pt-28 pb-32 px-6 md:px-12 lg:px-16 animate-in fade-in duration-300">
+      <div className="max-w-7xl mx-auto space-y-12">
         
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 reveal">
-          <div className="space-y-3 max-w-3xl">
-            <span className="text-xs uppercase tracking-[0.3em] font-semibold text-[#FF6A2A] block">07 — FREE AI RESOURCES</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-[#111] leading-tight">
-              Modty AI Research Library<span className="text-[#FF6A2A]">.</span>
-            </h2>
-            <p className="text-lg md:text-xl font-kanit font-light text-[#555]">
-              รวม Prompt Template, AI Playbook และ Workflow ฉบับภาษาไทยพร้อมใช้งาน ถอดสูตรตรงจากประสบการณ์จริงของ Modty.ai
-            </p>
-          </div>
+        {/* Back to Home Breadcrumb */}
+        <div className="flex justify-between items-center border-b border-[#E6E4DD] pb-6">
+          <button
+            onClick={onBackToHome}
+            className="group flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#666] hover:text-[#FF6A2A] transition-colors bg-white px-5 py-2.5 rounded-full border border-[#E6E4DD] shadow-sm hover:border-[#FF6A2A]"
+          >
+            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+            <span>กลับสู่หน้าหลัก (Back to Home)</span>
+          </button>
 
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-semibold text-[#FF6A2A] uppercase tracking-widest bg-[#FFF1E6] px-4 py-2 rounded-full border border-[#FFE3D2]">
-              ✓ NO ORIGINAL LINKS — 100% EXCLUSIVE CONTENT
-            </span>
-          </div>
+          <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#FF6A2A] bg-[#FFF1E6] px-4 py-2 rounded-full border border-[#FFE3D2]">
+            MODGOSCALE SUBPAGE — FREE RESOURCES
+          </span>
+        </div>
+
+        {/* Subpage Header */}
+        <div className="space-y-4 max-w-4xl">
+          <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#FF6A2A] block">
+            EXCLUSIVE AI RESEARCH &amp; PROMPT LIBRARY
+          </span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-[#111] leading-tight">
+            FREE RESOURCES<span className="text-[#FF6A2A]">.</span>
+          </h1>
+          <p className="text-lg md:text-2xl font-kanit font-light text-[#555] leading-relaxed">
+            รวม Prompt Template, AI Playbook และ Workflow ฉบับภาษาไทยพร้อมใช้งานจาก Modty.ai อ่านและคัดลอกคำสั่งไปใช้ได้ทันที
+          </p>
         </div>
 
         {/* Search & Category Filter Controls */}
-        <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 bg-white p-4 rounded-3xl border border-[#E6E4DD] shadow-sm reveal">
+        <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 bg-white p-4 rounded-3xl border border-[#E6E4DD] shadow-sm">
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2 overflow-x-auto pb-2 md:pb-0">
             {categories.map((cat) => (
@@ -68,20 +77,20 @@ export default function FreeResources({ lineLink, en }) {
           </div>
 
           {/* Search Input Bar */}
-          <div className="relative w-full md:w-72 flex-shrink-0">
+          <div className="relative w-full md:w-80 flex-shrink-0">
             <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#888]" />
             <input
               type="text"
               placeholder="ค้นหา Prompt / หัวข้อ..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#F9F8F4] border border-[#E6E4DD] rounded-full pl-11 pr-4 py-2.5 text-xs text-[#111] focus:outline-none focus:border-[#FF6A2A] transition-colors placeholder:text-[#999]"
+              className="w-full bg-[#F9F8F4] border border-[#E6E4DD] rounded-full pl-11 pr-4 py-3 text-xs text-[#111] focus:outline-none focus:border-[#FF6A2A] transition-colors placeholder:text-[#999]"
             />
           </div>
         </div>
 
         {/* Resources Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredResources.map((item) => (
             <div
               key={item.id}
@@ -131,6 +140,21 @@ export default function FreeResources({ lineLink, en }) {
           ))}
         </div>
 
+        {/* Bottom Navigation Back to Home */}
+        <div className="pt-12 border-t border-[#E6E4DD] flex flex-col md:flex-row justify-between items-center gap-6">
+          <button
+            onClick={onBackToHome}
+            className="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#111] hover:text-[#FF6A2A] transition-colors bg-white px-8 py-4 rounded-full border border-[#E6E4DD] shadow-sm hover:border-[#FF6A2A]"
+          >
+            <Home size={16} className="text-[#FF6A2A]" />
+            <span>กลับสู่หน้าหลัก MODGOSCALE (Back to Main Landing Page)</span>
+          </button>
+          
+          <p className="text-xs text-[#888] font-light">
+            © MODGOSCALE — Powered by Modty.ai Personal Brand
+          </p>
+        </div>
+
         {/* Modal / Reader View */}
         {activeResource && (
           <div className="fixed inset-0 z-[120] bg-black/70 backdrop-blur-md flex justify-center items-center p-4 md:p-8 overflow-y-auto">
@@ -142,7 +166,7 @@ export default function FreeResources({ lineLink, en }) {
                   <span className="bg-[#FFF1E6] text-[#FF6A2A] border border-[#FFE3D2] px-3 py-1 text-[10px] uppercase font-bold tracking-wider rounded-full">
                     {activeResource.categoryBadge}
                   </span>
-                  <span className="text-xs text-[#888] font-light hidden sm:inline-block">Modty.ai Research Library</span>
+                  <span className="text-xs text-[#888] font-light hidden sm:inline-block">Modty.ai Research Library Subpage</span>
                 </div>
                 <button
                   onClick={() => setActiveResource(null)}
@@ -271,6 +295,6 @@ export default function FreeResources({ lineLink, en }) {
         )}
 
       </div>
-    </section>
+    </div>
   );
 }
