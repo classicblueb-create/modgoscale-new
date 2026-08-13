@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import FreeResources from './components/FreeResources';
 import {
   Code, Database, Zap, Users, MessageCircle, CheckCircle, ArrowRight, Menu, X,
   Layout, Server, Bot, Clapperboard, Sparkles, Sheet, Clock, Video, BookOpen, User, Palette, Monitor, Globe
@@ -137,6 +138,7 @@ const App = () => {
           <button onClick={() => scrollToSection('speaker')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Speaker</button>
           <button onClick={() => scrollToSection('services')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Expertise</button>
           <button onClick={() => scrollToSection('portfolio')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Portfolio</button>
+          <button onClick={() => scrollToSection('resources')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Free Resources</button>
           <button onClick={() => scrollToSection('contact')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Initiate</button>
         </div>
         <div className="flex items-center gap-4">
@@ -160,6 +162,7 @@ const App = () => {
           <button onClick={() => scrollToSection('speaker')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Speaker</button>
           <button onClick={() => scrollToSection('services')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Expertise</button>
           <button onClick={() => scrollToSection('portfolio')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Portfolio</button>
+          <button onClick={() => scrollToSection('resources')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Free Resources</button>
           <button onClick={() => scrollToSection('contact')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Initiate</button>
           <a href={lineLink} className="mt-8 bg-[#FF6A2A] text-white rounded-full text-center w-full py-4 uppercase tracking-widest text-base font-medium hover:bg-[#e0591f] transition-colors shadow-lg shadow-[#FF6A2A]/20">Contact via LINE</a>
         </div>
@@ -1473,6 +1476,9 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* Free AI Resources & Prompt Library Section */}
+      <FreeResources lineLink={lineLink} en={en} />
 
       {/* Final CTA Section (Strong Visual Moment - #111111 Dark Theme with Signature Orange) */}
       <section id="contact" className="py-28 px-6 md:px-12 lg:px-16 bg-[#111111] text-white relative overflow-hidden">
