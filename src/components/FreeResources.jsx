@@ -1,392 +1,331 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  ArrowLeft,
-  BookOpen,
-  Check,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Copy,
-  Download,
-  FileText,
-  Home,
-  Menu,
-  Search,
-  X,
-} from 'lucide-react';
-import fullTemplateHtml from '../data/freePromptTemplate.html?raw';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { ArrowLeft, BookOpen, Check, Copy, Layers3, Search, Sparkles, Tag, X } from 'lucide-react';
+import promptLibraryHtml from '../data/freePromptTemplate.html?raw';
 
-const SOURCE_STATS = [
-  { value: '34,063', label: 'คำจากต้นฉบับ' },
-  { value: '65', label: 'Prompt Block พร้อมคัดลอก' },
-  { value: 'ครบ 100%', label: 'ไม่ตัดเนื้อหา' },
+const CATEGORY_RULES = [
+  { name: 'AI Video', words: ['video', 'วีดีโอ', 'วิดีโอ', 'motion', 'vlog', 'veo', 'kling'] },
+  { name: 'AI Visual', words: ['ภาพ', 'visual', 'image', 'carousel', 'influencer', 'graphic', 'infographic'] },
+  { name: 'Vibe Coding', words: ['vibe', 'coding', 'เว็บไซต์', 'website', 'deploy', 'ui', 'ux', 'react'] },
+  { name: 'AI Agent & Skills', words: ['agent', 'skill', 'assistant', 'automation', 'calendar', 'workflow'] },
+  { name: 'Prompt & GEM', words: ['prompt', 'gem', 'gpt', 'chatgpt', 'claude', 'gemini', 'codex'] },
 ];
 
-export default function FreeResources({ onBackToHome }) {
-  const articleRef = useRef(null);
-  const readerRef = useRef(null);
-  const searchMatchesRef = useRef([]);
-  const activeMatchRef = useRef(-1);
+const TAG_RULES = [
+  ['ChatGPT', ['chatgpt', 'gpt']],
+  ['Claude', ['claude']],
+  ['Gemini', ['gemini']],
+  ['Codex', ['codex']],
+  ['AI Agent', ['agent', 'assistant']],
+  ['Custom Skills', ['skill']],
+  ['Vibe Coding', ['vibe', 'coding', 'เว็บไซต์', 'website', 'deploy', 'react']],
+  ['AI Video', ['video', 'วีดีโอ', 'วิดีโอ', 'motion', 'vlog']],
+  ['AI Visual', ['ภาพ', 'image', 'visual', 'carousel', 'infographic']],
+  ['Automation', ['automation', 'workflow', 'อัตโนมัติ']],
+  ['Strategy', ['strategy', 'วางแผน', 'แนวคิด', 'วิเคราะห์']],
+];
 
-  const [toc, setToc] = useState([]);
-  const [tocOpen, setTocOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchedQuery, setSearchedQuery] = useState('');
-  const [matchState, setMatchState] = useState({ current: 0, total: 0 });
-  const [copiedAll, setCopiedAll] = useState(false);
-  const [showBackToTop, setShowBackToTop] = useState(false);
+function cleanTitle(value) {
+  const cleaned = value
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return cleaned.length > 92 ? `${cleaned.slice(0, 89).trim()}…` : cleaned;
+}
+
+function getCategory(text) {
+  const normalized = text.toLowerCase();
+  return CATEGORY_RULES.find(({ words }) => words.some((word) => normalized.includes(word)))?.name || 'AI Productivity';
+}
+
+function getTags(text, category) {
+  const normalized = text.toLowerCase();
+  const matches = TAG_RULES.filter(([, words]) => words.some((word) => normalized.includes(word))).map(([name]) => name);
+  return [...new Set([category, ...matches])].slice(0, 4);
+}
+
+function buildTopicLibrary(rawHtml) {
+  if (typeof DOMParser === 'undefined') return [];
+
+  return rawHtml
+    .split(/(?=<div data-custom-style="Page Title">)/)
+    .filter((section) => section.startsWith('<div data-custom-style="Page Title">'))
+    .map((section, index) => {
+      const documentNode = new DOMParser().parseFromString(`<main>${section}</main>`, 'text/html');
+      const root = documentNode.querySelector('main');
+      const pageTitle = root?.querySelector('[data-custom-style="Page Title"]');
+      const titleNode = pageTitle?.querySelector('p, strong') || pageTitle;
+      const title = cleanTitle(titleNode?.textContent || `Topic ${index + 1}`);
+
+      root?.querySelectorAll('[data-custom-style="Source URL"], script, style').forEach((node) => node.remove());
+      titleNode?.remove();
+      if (pageTitle && !pageTitle.textContent.trim()) pageTitle.remove();
+      else pageTitle?.removeAttribute('data-custom-style');
+
+      const text = root?.textContent.replace(/\s+/g, ' ').trim() || '';
+      const summary = text.length > 165 ? `${text.slice(0, 162).trim()}…` : text;
+      const category = getCategory(`${title} ${text.slice(0, 1500)}`);
+      const promptCount = root?.querySelectorAll('pre, [data-custom-style="Code Block"]').length || 0;
+
+      return {
+        id: `topic-${index + 1}`,
+        title,
+        summary: summary || 'เปิดดูขั้นตอน แนวคิด และ Prompt ที่นำไปใช้งานต่อได้ทันที',
+        category,
+        tags: getTags(`${title} ${text.slice(0, 2000)}`, category),
+        promptCount,
+        html: root?.innerHTML || '',
+        copyText: `${title}\n\n${text}`,
+      };
+    })
+    .filter((topic) => topic.title && topic.title.toLowerCase() !== 'free prompt template');
+}
+
+async function copyText(text) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  textarea.remove();
+}
+
+export default function FreeResources({ onBackToHome }) {
+  const modalBodyRef = useRef(null);
+  const topics = useMemo(() => buildTopicLibrary(promptLibraryHtml), []);
+  const categories = useMemo(() => ['ทั้งหมด', ...new Set(topics.map((topic) => topic.category))], [topics]);
+  const totalPrompts = useMemo(() => topics.reduce((sum, topic) => sum + topic.promptCount, 0), [topics]);
+
+  const [activeCategory, setActiveCategory] = useState('ทั้งหมด');
+  const [query, setQuery] = useState('');
+  const [selectedTopic, setSelectedTopic] = useState(null);
+  const [copiedTopic, setCopiedTopic] = useState(false);
+
+  const visibleTopics = useMemo(() => {
+    const keyword = query.trim().toLowerCase();
+    return topics.filter((topic) => {
+      const inCategory = activeCategory === 'ทั้งหมด' || topic.category === activeCategory;
+      const searchable = `${topic.title} ${topic.summary} ${topic.tags.join(' ')}`.toLowerCase();
+      return inCategory && (!keyword || searchable.includes(keyword));
+    });
+  }, [activeCategory, query, topics]);
 
   useEffect(() => {
-    const article = articleRef.current;
-    if (!article) return undefined;
+    if (!selectedTopic) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const closeOnEscape = (event) => event.key === 'Escape' && setSelectedTopic(null);
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [selectedTopic]);
 
-    const headings = Array.from(article.querySelectorAll('[data-custom-style="Page Title"], h1, h2, h3'));
-    const generatedToc = headings.map((heading, index) => {
-      const id = heading.id || `free-prompt-section-${index + 1}`;
-      heading.id = id;
-      const isPageTitle = heading.dataset.customStyle === 'Page Title';
-      if (isPageTitle) {
-        heading.setAttribute('role', 'heading');
-        heading.setAttribute('aria-level', '1');
-      }
-      return {
-        id,
-        title: heading.textContent.trim(),
-        level: isPageTitle ? 1 : Number(heading.tagName.substring(1)),
-      };
-    });
-    setToc(generatedToc);
+  useEffect(() => {
+    const container = modalBodyRef.current;
+    if (!container || !selectedTopic) return undefined;
 
-    article.querySelectorAll('a').forEach((link) => {
+    container.querySelectorAll('a').forEach((link) => {
       link.target = '_blank';
       link.rel = 'noreferrer noopener';
     });
 
-    article.querySelectorAll('table').forEach((table) => {
-      if (table.parentElement?.classList.contains('resource-table-scroll')) return;
-      const wrapper = document.createElement('div');
-      wrapper.className = 'resource-table-scroll';
-      table.parentNode.insertBefore(wrapper, table);
-      wrapper.appendChild(table);
-    });
-
     const promptTextByButton = new WeakMap();
-    article.querySelectorAll('pre, [data-custom-style="Code Block"]').forEach((block, index) => {
+    container.querySelectorAll('pre, [data-custom-style="Code Block"]').forEach((block, index) => {
       block.classList.add('resource-prompt-block');
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'prompt-copy-button';
-      button.dataset.promptIndex = String(index);
       button.setAttribute('aria-label', `คัดลอก Prompt ชุดที่ ${index + 1}`);
-      button.textContent = 'คัดลอก';
-      promptTextByButton.set(button, block.innerText);
+      button.innerHTML = '<span>คัดลอก Prompt</span>';
+      promptTextByButton.set(button, block.innerText.trim());
       block.appendChild(button);
     });
 
     const handlePromptCopy = async (event) => {
       const button = event.target.closest('.prompt-copy-button');
       if (!button) return;
-      const text = promptTextByButton.get(button) || '';
-      await navigator.clipboard.writeText(text);
-      button.textContent = 'คัดลอกแล้ว';
+      await copyText(promptTextByButton.get(button) || '');
       button.classList.add('is-copied');
+      button.innerHTML = '<span>คัดลอกแล้ว</span>';
       window.setTimeout(() => {
-        button.textContent = 'คัดลอก';
         button.classList.remove('is-copied');
-      }, 2200);
+        button.innerHTML = '<span>คัดลอก Prompt</span>';
+      }, 1800);
     };
 
-    article.addEventListener('click', handlePromptCopy);
-    return () => article.removeEventListener('click', handlePromptCopy);
-  }, []);
+    container.addEventListener('click', handlePromptCopy);
+    return () => container.removeEventListener('click', handlePromptCopy);
+  }, [selectedTopic]);
 
-  useEffect(() => {
-    const handleScroll = () => setShowBackToTop(window.scrollY > 900);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const clearSearchHighlights = () => {
-    searchMatchesRef.current.forEach((element) => {
-      element.classList.remove('resource-search-hit', 'resource-search-hit-active');
-    });
-  };
-
-  const activateMatch = (index) => {
-    const matches = searchMatchesRef.current;
-    if (!matches.length) return;
-    const normalizedIndex = (index + matches.length) % matches.length;
-    matches.forEach((element) => element.classList.remove('resource-search-hit-active'));
-    const active = matches[normalizedIndex];
-    active.classList.add('resource-search-hit-active');
-    active.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    activeMatchRef.current = normalizedIndex;
-    setMatchState({ current: normalizedIndex + 1, total: matches.length });
-  };
-
-  const submitSearch = (event) => {
-    event?.preventDefault();
-    const query = searchQuery.trim().toLocaleLowerCase('th-TH');
-    if (!query) {
-      clearSearchHighlights();
-      searchMatchesRef.current = [];
-      activeMatchRef.current = -1;
-      setSearchedQuery('');
-      setMatchState({ current: 0, total: 0 });
-      return;
-    }
-
-    if (query === searchedQuery.toLocaleLowerCase('th-TH') && searchMatchesRef.current.length) {
-      activateMatch(activeMatchRef.current + 1);
-      return;
-    }
-
-    clearSearchHighlights();
-    const candidates = Array.from(
-      articleRef.current.querySelectorAll('h1, h2, h3, p, li, blockquote, td, th')
-    );
-    const matches = candidates.filter((element) =>
-      element.textContent.toLocaleLowerCase('th-TH').includes(query)
-    );
-    matches.forEach((element) => element.classList.add('resource-search-hit'));
-    searchMatchesRef.current = matches;
-    activeMatchRef.current = -1;
-    setSearchedQuery(searchQuery.trim());
-    setMatchState({ current: matches.length ? 1 : 0, total: matches.length });
-    if (matches.length) activateMatch(0);
-  };
-
-  const navigateMatch = (direction) => {
-    if (!searchMatchesRef.current.length) return;
-    activateMatch(activeMatchRef.current + direction);
-  };
-
-  const copyAllContent = async () => {
-    const clone = articleRef.current.cloneNode(true);
-    clone.querySelectorAll('.prompt-copy-button').forEach((button) => button.remove());
-    await navigator.clipboard.writeText(clone.innerText);
-    setCopiedAll(true);
-    window.setTimeout(() => setCopiedAll(false), 2500);
-  };
-
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setTocOpen(false);
+  const handleCopyTopic = async () => {
+    await copyText(selectedTopic.copyText);
+    setCopiedTopic(true);
+    window.setTimeout(() => setCopiedTopic(false), 1800);
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F8F4] text-[#111] pt-24 pb-28 px-4 sm:px-6 md:px-10 lg:px-14 animate-in fade-in duration-300">
-      <div className="max-w-[1480px] mx-auto">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E6E4DD] pb-5">
-          <button
-            onClick={onBackToHome}
-            className="group inline-flex w-fit items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#666] hover:text-[#FF6A2A] transition-colors bg-white px-5 py-2.5 rounded-full border border-[#E6E4DD] shadow-sm hover:border-[#FF6A2A]"
-          >
-            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-            กลับสู่หน้าหลัก
+    <div className="min-h-screen bg-[#F9F8F4] text-[#111]">
+      <header className="sticky top-0 z-40 border-b border-black/10 bg-[#F9F8F4]/95 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+          <button onClick={onBackToHome} className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors hover:text-[#FF5A1F]">
+            <ArrowLeft size={17} /> กลับหน้าหลัก
           </button>
-          <span className="w-fit text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-[#FF6A2A] bg-[#FFF1E6] px-4 py-2 rounded-full border border-[#FFE3D2]">
-            ORIGINAL COMPLETE EDITION
-          </span>
+          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em]">
+            <Sparkles size={16} className="text-[#FF5A1F]" /> MODTY FREE RESOURCES
+          </div>
         </div>
+      </header>
 
-        <header className="grid lg:grid-cols-[1fr_420px] gap-10 lg:gap-16 items-end py-12 lg:py-16">
-          <div className="max-w-4xl space-y-6">
-            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#FF6A2A] block">
-              MODTY.AI FREE KNOWLEDGE LIBRARY
-            </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-[#111] leading-[1.05]">
-              FREE PROMPT<br />TEMPLATE<span className="text-[#FF6A2A]">.</span>
+      <main className="mx-auto max-w-7xl px-5 pb-20 pt-12 sm:px-8 sm:pt-16">
+        <section className="grid gap-8 border-b border-black/10 pb-12 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+          <div>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#FF5A1F]/25 bg-[#FFF0E9] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#D9430D]">
+              <BookOpen size={14} /> Practical AI Knowledge Library
+            </div>
+            <h1 className="max-w-4xl font-display text-4xl font-bold leading-[1.12] sm:text-5xl lg:text-6xl">
+              เลือกเรื่องที่สนใจ<br />แล้วนำไปใช้ได้ทันที<span className="text-[#FF5A1F]">.</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl font-kanit font-light text-[#555] leading-relaxed max-w-3xl">
-              รวมเนื้อหาจากต้นฉบับและ Subpage ทั้งหมดไว้ในหน้าเดียว อ่าน ค้นหา และคัดลอก Prompt ไปใช้ได้ทันที โดยคงข้อความครบตามเอกสารต้นฉบับ
+            <p className="mt-5 max-w-2xl text-sm font-light leading-7 text-[#666] sm:text-base">
+              รวม Prompt เทคนิค และขั้นตอนใช้งาน AI แยกเป็นหัวข้อชัดเจน กดเปิดอ่านรายละเอียดและคัดลอกไปลองได้เลย
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 pt-1">
-              <button
-                onClick={() => readerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                className="inline-flex items-center justify-center gap-2 bg-[#111] text-white px-7 py-3.5 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-[#FF6A2A] transition-colors"
-              >
-                <BookOpen size={16} /> เริ่มอ่านฉบับเต็ม
-              </button>
-              <a
-                href="/Free-Prompt-Template-All-Subpages.docx"
-                download
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#111] px-7 py-3.5 rounded-full text-xs uppercase tracking-widest font-semibold border border-[#E6E4DD] hover:border-[#FF6A2A] hover:text-[#FF6A2A] transition-colors"
-              >
-                <Download size={16} /> ดาวน์โหลด Word ต้นฉบับ
-              </a>
-            </div>
           </div>
 
-          <div className="bg-white border border-[#E6E4DD] rounded-[28px] p-6 sm:p-8 shadow-sm">
-            <div className="flex items-center gap-3 pb-5 mb-5 border-b border-[#E6E4DD]">
-              <div className="w-11 h-11 rounded-2xl bg-[#FFF1E6] text-[#FF6A2A] flex items-center justify-center">
-                <FileText size={21} />
-              </div>
-              <div>
-                <p className="font-display font-bold text-base">Complete Source Archive</p>
-                <p className="text-xs text-[#777] mt-0.5">Free Prompt Template — All Subpages</p>
-              </div>
+          <div className="grid grid-cols-2 overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-sm">
+            <div className="border-r border-black/10 p-6">
+              <Layers3 size={20} className="mb-5 text-[#FF5A1F]" />
+              <strong className="block font-display text-4xl">{topics.length}</strong>
+              <span className="mt-1 block text-xs text-[#777]">หัวข้อพร้อมอ่าน</span>
             </div>
-            <div className="grid grid-cols-3 gap-3">
-              {SOURCE_STATS.map((stat) => (
-                <div key={stat.label} className="bg-[#F9F8F4] rounded-2xl p-3 sm:p-4 text-center border border-[#EEECE5]">
-                  <strong className="block text-base sm:text-xl font-display text-[#111]">{stat.value}</strong>
-                  <span className="block text-[10px] sm:text-[11px] text-[#777] leading-snug mt-1">{stat.label}</span>
-                </div>
-              ))}
+            <div className="p-6">
+              <Copy size={20} className="mb-5 text-[#FF5A1F]" />
+              <strong className="block font-display text-4xl">{totalPrompts}</strong>
+              <span className="mt-1 block text-xs text-[#777]">Prompt พร้อมคัดลอก</span>
             </div>
-          </div>
-        </header>
-
-        <section ref={readerRef} className="scroll-mt-24 border-t border-[#E6E4DD] pt-8">
-          <div className="sticky top-3 z-40 bg-white/95 backdrop-blur-xl border border-[#E6E4DD] shadow-lg shadow-black/5 rounded-3xl p-3 sm:p-4 mb-8">
-            <div className="flex flex-col lg:flex-row lg:items-center gap-3">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setTocOpen(true)}
-                  className="lg:hidden inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-[#111] text-white text-xs font-semibold"
-                >
-                  <Menu size={16} /> สารบัญ
-                </button>
-                <button
-                  onClick={copyAllContent}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-[#F9F8F4] border border-[#E6E4DD] text-xs font-semibold hover:border-[#FF6A2A] hover:text-[#FF6A2A] transition-colors whitespace-nowrap"
-                >
-                  {copiedAll ? <Check size={16} /> : <Copy size={16} />}
-                  {copiedAll ? 'คัดลอกแล้ว' : 'คัดลอกทั้งหมด'}
-                </button>
-              </div>
-
-              <form onSubmit={submitSearch} className="relative flex-1 flex items-center gap-2">
-                <Search size={17} className="absolute left-4 text-[#888] pointer-events-none" />
-                <input
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.target.value)}
-                  placeholder="ค้นหา Prompt, เครื่องมือ หรือหัวข้อในเอกสาร..."
-                  className="w-full bg-[#F9F8F4] border border-[#E6E4DD] rounded-2xl pl-11 pr-28 sm:pr-32 py-3 text-sm focus:outline-none focus:border-[#FF6A2A]"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-1.5 bg-[#FF6A2A] text-white px-4 sm:px-5 py-2 rounded-xl text-xs font-semibold hover:bg-[#E95B20] transition-colors"
-                >
-                  ค้นหา
-                </button>
-              </form>
-
-              {searchedQuery && (
-                <div className="flex items-center justify-between lg:justify-end gap-2 text-xs text-[#666] px-1">
-                  <span className="min-w-[72px] text-center">{matchState.current} / {matchState.total}</span>
-                  <button
-                    onClick={() => navigateMatch(-1)}
-                    disabled={!matchState.total}
-                    className="p-2 rounded-xl bg-[#F9F8F4] border border-[#E6E4DD] disabled:opacity-40"
-                    aria-label="ผลการค้นหาก่อนหน้า"
-                  >
-                    <ChevronLeft size={15} />
-                  </button>
-                  <button
-                    onClick={() => navigateMatch(1)}
-                    disabled={!matchState.total}
-                    className="p-2 rounded-xl bg-[#F9F8F4] border border-[#E6E4DD] disabled:opacity-40"
-                    aria-label="ผลการค้นหาถัดไป"
-                  >
-                    <ChevronRight size={15} />
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="grid lg:grid-cols-[280px_minmax(0,1fr)] xl:grid-cols-[320px_minmax(0,1fr)] gap-8 items-start">
-            <aside className="hidden lg:block sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto bg-white rounded-3xl border border-[#E6E4DD] p-5 shadow-sm resource-toc-scroll">
-              <div className="flex items-center gap-2 pb-4 mb-3 border-b border-[#E6E4DD]">
-                <BookOpen size={16} className="text-[#FF6A2A]" />
-                <h2 className="text-xs uppercase tracking-widest font-bold">สารบัญฉบับเต็ม</h2>
-              </div>
-              <nav className="space-y-1">
-                {toc.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`block w-full text-left rounded-xl py-2 px-3 text-[11px] leading-relaxed text-[#666] hover:bg-[#FFF1E6] hover:text-[#FF6A2A] transition-colors ${
-                      item.level === 1 ? 'font-bold text-[#111]' : item.level === 2 ? 'pl-5 font-medium' : 'pl-7'
-                    }`}
-                  >
-                    {item.title}
-                  </button>
-                ))}
-              </nav>
-            </aside>
-
-            <main className="min-w-0 bg-white rounded-[28px] sm:rounded-[36px] border border-[#E6E4DD] shadow-sm overflow-hidden">
-              <div className="px-5 sm:px-8 md:px-12 lg:px-14 py-6 border-b border-[#E6E4DD] bg-[#FFFDF9] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-[#FF6A2A]">SOURCE DOCUMENT</p>
-                  <h2 className="text-lg sm:text-xl font-display font-bold mt-1">Free Prompt Template — Complete Collection</h2>
-                </div>
-                <span className="text-[11px] text-[#777]">เรียงตามลำดับต้นฉบับ</span>
-              </div>
-              <article
-                ref={articleRef}
-                className="resource-document px-5 sm:px-8 md:px-12 lg:px-14 py-8 sm:py-12"
-                dangerouslySetInnerHTML={{ __html: fullTemplateHtml }}
-              />
-            </main>
           </div>
         </section>
 
-        <footer className="mt-14 pt-8 border-t border-[#E6E4DD] flex flex-col sm:flex-row justify-between items-center gap-5">
-          <button
-            onClick={onBackToHome}
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold bg-white px-7 py-3.5 rounded-full border border-[#E6E4DD] hover:border-[#FF6A2A] hover:text-[#FF6A2A] transition-colors"
-          >
-            <Home size={15} /> กลับสู่หน้าหลัก MODGOSCALE
-          </button>
-          <p className="text-xs text-[#888]">© MODGOSCALE — Powered by Modty.ai</p>
-        </footer>
-      </div>
+        <section className="py-9">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <label className="relative block w-full lg:max-w-md">
+              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777]" />
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="ค้นหา Prompt, เครื่องมือ หรือหัวข้อ..."
+                className="w-full rounded-2xl border border-black/10 bg-white py-3.5 pl-12 pr-4 text-sm outline-none transition focus:border-[#FF5A1F] focus:ring-4 focus:ring-[#FF5A1F]/10"
+              />
+            </label>
+            <p className="text-xs text-[#777]">พบ {visibleTopics.length} หัวข้อ</p>
+          </div>
 
-      {tocOpen && (
-        <div className="fixed inset-0 z-[150] bg-black/55 backdrop-blur-sm lg:hidden" onClick={() => setTocOpen(false)}>
-          <aside
-            className="absolute inset-y-0 left-0 w-[88%] max-w-sm bg-white p-5 overflow-y-auto shadow-2xl"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="sticky top-0 bg-white flex items-center justify-between pb-4 mb-3 border-b border-[#E6E4DD] z-10">
-              <div className="flex items-center gap-2">
-                <BookOpen size={17} className="text-[#FF6A2A]" />
-                <strong className="text-sm">สารบัญฉบับเต็ม</strong>
-              </div>
-              <button onClick={() => setTocOpen(false)} className="p-2 rounded-full bg-[#F9F8F4]" aria-label="ปิดสารบัญ">
-                <X size={18} />
+          <div className="resource-category-scroll mt-5 flex gap-2 overflow-x-auto pb-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold transition ${
+                  activeCategory === category
+                    ? 'border-[#111] bg-[#111] text-white'
+                    : 'border-black/10 bg-white text-[#555] hover:border-[#FF5A1F] hover:text-[#D9430D]'
+                }`}
+              >
+                {category}
               </button>
-            </div>
-            <nav className="space-y-1 pb-10">
-              {toc.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`block w-full text-left rounded-xl py-2.5 px-3 text-xs leading-relaxed text-[#666] hover:bg-[#FFF1E6] hover:text-[#FF6A2A] ${
-                    item.level === 1 ? 'font-bold text-[#111]' : item.level === 2 ? 'pl-5 font-medium' : 'pl-7'
-                  }`}
-                >
-                  {item.title}
-                </button>
-              ))}
-            </nav>
-          </aside>
-        </div>
-      )}
+            ))}
+          </div>
+        </section>
 
-      {showBackToTop && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-[#111] text-white shadow-xl flex items-center justify-center hover:bg-[#FF6A2A] transition-colors"
-          aria-label="กลับขึ้นด้านบน"
-        >
-          <ChevronDown size={19} className="rotate-180" />
-        </button>
+        {visibleTopics.length ? (
+          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {visibleTopics.map((topic, index) => (
+              <article
+                key={topic.id}
+                role="button"
+                tabIndex={0}
+                onClick={() => setSelectedTopic(topic)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    setSelectedTopic(topic);
+                  }
+                }}
+                className="group flex min-h-[300px] cursor-pointer flex-col rounded-[28px] border border-black/10 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#FF5A1F]/60 hover:shadow-xl hover:shadow-black/5 focus:outline-none focus:ring-4 focus:ring-[#FF5A1F]/15"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <span className="font-display text-xs font-bold text-[#AAA]">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="rounded-full bg-[#FFF0E9] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#D9430D]">{topic.category}</span>
+                </div>
+                <h2 className="mt-8 font-display text-xl font-bold leading-snug transition-colors group-hover:text-[#E74912]">{topic.title}</h2>
+                <p className="mt-3 line-clamp-3 text-sm font-light leading-6 text-[#777]">{topic.summary}</p>
+                <div className="mt-auto pt-6">
+                  <div className="flex flex-wrap gap-1.5">
+                    {topic.tags.slice(0, 3).map((tag) => (
+                      <span key={tag} className="inline-flex items-center gap-1 rounded-lg border border-black/10 px-2 py-1 text-[10px] text-[#666]">
+                        <Tag size={10} /> {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-5 flex items-center justify-between border-t border-black/10 pt-4 text-xs font-semibold">
+                    <span>{topic.promptCount ? `${topic.promptCount} Prompt` : 'Guide & Ideas'}</span>
+                    <span className="text-[#E74912]">ดูรายละเอียด →</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </section>
+        ) : (
+          <div className="rounded-[28px] border border-dashed border-black/15 bg-white px-6 py-20 text-center">
+            <Search className="mx-auto text-[#AAA]" />
+            <h2 className="mt-4 font-display text-xl font-bold">ยังไม่พบหัวข้อที่ค้นหา</h2>
+            <button onClick={() => { setQuery(''); setActiveCategory('ทั้งหมด'); }} className="mt-3 text-sm font-semibold text-[#E74912]">ล้างการค้นหา</button>
+          </div>
+        )}
+      </main>
+
+      {selectedTopic && (
+        <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 p-0 backdrop-blur-sm sm:items-center sm:p-5" onMouseDown={() => setSelectedTopic(null)}>
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="resource-modal-title"
+            className="flex max-h-[94vh] w-full max-w-4xl flex-col overflow-hidden rounded-t-[30px] bg-white shadow-2xl sm:max-h-[90vh] sm:rounded-[32px]"
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <header className="border-b border-black/10 bg-[#FFFDF9] px-5 py-5 sm:px-8">
+              <div className="flex items-start justify-between gap-5">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#E74912]">{selectedTopic.category}</span>
+                  <h2 id="resource-modal-title" className="mt-2 max-w-3xl font-display text-2xl font-bold leading-snug sm:text-3xl">{selectedTopic.title}</h2>
+                </div>
+                <button onClick={() => setSelectedTopic(null)} className="shrink-0 rounded-full border border-black/10 bg-white p-2.5 transition hover:border-[#FF5A1F] hover:text-[#E74912]" aria-label="ปิดรายละเอียด">
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {selectedTopic.tags.map((tag) => <span key={tag} className="rounded-full bg-[#F3F1EB] px-3 py-1 text-[10px] text-[#666]">#{tag}</span>)}
+              </div>
+            </header>
+
+            <div className="overflow-y-auto px-5 py-7 sm:px-8 sm:py-9">
+              <p className="mb-7 rounded-2xl bg-[#FFF0E9] px-5 py-4 text-sm font-light leading-6 text-[#5E3A2D]">{selectedTopic.summary}</p>
+              <article ref={modalBodyRef} className="resource-topic-body" dangerouslySetInnerHTML={{ __html: selectedTopic.html }} />
+            </div>
+
+            <footer className="border-t border-black/10 bg-white px-5 py-4 sm:px-8">
+              <button onClick={handleCopyTopic} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#111] px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-[#FF5A1F]">
+                {copiedTopic ? <Check size={17} /> : <Copy size={17} />}
+                {copiedTopic ? 'คัดลอกหัวข้อนี้แล้ว' : 'คัดลอกเนื้อหาหัวข้อนี้ทั้งหมด'}
+              </button>
+            </footer>
+          </section>
+        </div>
       )}
     </div>
   );
