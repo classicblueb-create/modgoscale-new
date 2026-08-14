@@ -43,6 +43,65 @@ function getTags(text, category) {
   return [...new Set([category, ...matches])].slice(0, 4);
 }
 
+function polishTopicContent(root, documentNode) {
+  if (!root) return;
+
+  const textWalker = documentNode.createTreeWalker(
+    root,
+    documentNode.defaultView?.NodeFilter?.SHOW_TEXT || 4,
+  );
+  const textNodes = [];
+  while (textWalker.nextNode()) textNodes.push(textWalker.currentNode);
+
+  textNodes.forEach((textNode) => {
+    if (textNode.parentElement?.closest('pre, code, [data-custom-style="Code Block"]')) return;
+    textNode.nodeValue = textNode.nodeValue
+      .replace(/<\/?span(?:\s+[^>]*)?>/gi, '')
+      .replace(/^\s*<\/?span\s*$/gi, '')
+      .replace(/\s{2,}/g, ' ');
+  });
+
+  const calloutTargets = new Set();
+  root.querySelectorAll('a[href*="modtyai-insiderclub.netlify.app"]').forEach((link) => {
+    const target = link.closest('h1, h2, h3, p, blockquote');
+    if (target) calloutTargets.add(target);
+  });
+
+  calloutTargets.forEach((target) => {
+    if (!target.isConnected) return;
+
+    const callout = documentNode.createElement('aside');
+    callout.className = 'resource-insider-cta';
+
+    const label = documentNode.createElement('span');
+    label.className = 'resource-insider-label';
+    label.textContent = 'เรียนรู้ต่อแบบเจาะลึก';
+
+    const title = documentNode.createElement('strong');
+    title.className = 'resource-insider-title';
+    title.textContent = 'Modty AI Insider Club';
+
+    const description = documentNode.createElement('p');
+    description.textContent = 'อัปเดตเทคนิค AI ทุกสัปดาห์ พร้อมขั้นตอนใช้งานจริง และปรึกษาได้เดือนละ 1 ครั้ง';
+
+    const actions = documentNode.createElement('div');
+    actions.className = 'resource-insider-actions';
+
+    const price = documentNode.createElement('span');
+    price.className = 'resource-insider-price';
+    price.innerHTML = '<strong>99 บาท</strong><small>/ เดือน</small>';
+
+    const button = documentNode.createElement('a');
+    button.className = 'resource-insider-button';
+    button.href = 'https://modtyai-insiderclub.netlify.app/';
+    button.textContent = 'ดูรายละเอียดและสมัครสมาชิก';
+
+    actions.append(price, button);
+    callout.append(label, title, description, actions);
+    target.replaceWith(callout);
+  });
+}
+
 function buildTopicLibrary(rawHtml) {
   if (typeof DOMParser === 'undefined') return [];
 
@@ -60,6 +119,8 @@ function buildTopicLibrary(rawHtml) {
       titleNode?.remove();
       if (pageTitle && !pageTitle.textContent.trim()) pageTitle.remove();
       else pageTitle?.removeAttribute('data-custom-style');
+
+      polishTopicContent(root, documentNode);
 
       const text = root?.textContent.replace(/\s+/g, ' ').trim() || '';
       const summary = text.length > 165 ? `${text.slice(0, 162).trim()}…` : text;
