@@ -720,7 +720,6 @@ After generating, I will ask you to fine-tune specific elements.`,
       primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
       secondaryBtnText: "ดูคอร์ส 2,990.- ที่ mastervibecode"
     }
-  }
   },
   {
     id: "50-plus-claude-skills-directory",
