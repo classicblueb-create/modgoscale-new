@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { FREE_RESOURCES } from '../data/freeResources';
-import { Search, Copy, Check, ExternalLink, X, BookOpen, Sparkles, ArrowRight, ShieldCheck, ArrowLeft, Home } from 'lucide-react';
+import { Search, Copy, Check, ExternalLink, X, BookOpen, Sparkles, ArrowRight, ShieldCheck, ArrowLeft, Home, Download, ChevronDown } from 'lucide-react';
 
 export default function FreeResources({ lineLink, en, onBackToHome }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeResource, setActiveResource] = useState(null);
   const [copiedId, setCopiedId] = useState(null);
+  const [activeTag, setActiveTag] = useState(null);
 
   const categories = ['All', 'Vibe Coding', 'Prompt Engineering', 'Automation', 'AI Visual'];
 
@@ -16,8 +17,14 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
+    const matchesTag = !activeTag || item.tags.some((t) => t.toLowerCase() === activeTag.toLowerCase());
+    return matchesCategory && matchesSearch && matchesTag;
   });
+
+  const handleTagClick = (e, tag) => {
+    e.stopPropagation();
+    setActiveTag((prev) => (prev === tag ? null : tag));
+  };
 
   const handleCopy = (text, id) => {
     navigator.clipboard.writeText(text);
@@ -75,16 +82,26 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
             ))}
           </div>
 
-          {/* Search Input Bar */}
-          <div className="relative w-full md:w-80 flex-shrink-0">
-            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#888]" />
-            <input
-              type="text"
-              placeholder="ค้นหา Prompt / หัวข้อ..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#F9F8F4] border border-[#E6E4DD] rounded-full pl-11 pr-4 py-3 text-xs text-[#111] focus:outline-none focus:border-[#FF6A2A] transition-colors placeholder:text-[#999]"
-            />
+          {/* Search Input Bar + Active Tag Indicator */}
+          <div className="flex items-center gap-2 w-full md:w-auto flex-shrink-0">
+            {activeTag && (
+              <button
+                onClick={() => setActiveTag(null)}
+                className="flex items-center gap-1.5 bg-[#FF6A2A] text-white px-3 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap shadow-sm hover:bg-[#e0591f] transition-colors"
+              >
+                #{activeTag} <X size={11} />
+              </button>
+            )}
+            <div className="relative w-full md:w-72">
+              <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#888]" />
+              <input
+                type="text"
+                placeholder="ค้นหา Prompt / หัวข้อ..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-[#F9F8F4] border border-[#E6E4DD] rounded-full pl-11 pr-4 py-3 text-xs text-[#111] focus:outline-none focus:border-[#FF6A2A] transition-colors placeholder:text-[#999]"
+              />
+            </div>
           </div>
         </div>
 
@@ -116,14 +133,47 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
               </div>
 
               <div>
-                {/* Tags */}
+                {/* Tags — คลิกเพื่อ Filter */}
                 <div className="flex flex-wrap gap-1.5 mb-6">
                   {item.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="text-[10px] bg-[#F9F8F4] text-[#666] px-2.5 py-1 rounded-md border border-[#E6E4DD]">
+                    <button
+                      key={tag}
+                      onClick={(e) => handleTagClick(e, tag)}
+                      className={`text-[10px] px-2.5 py-1 rounded-md border transition-all font-medium ${
+                        activeTag === tag
+                          ? 'bg-[#FF6A2A] text-white border-[#FF6A2A] shadow-sm'
+                          : 'bg-[#F9F8F4] text-[#666] border-[#E6E4DD] hover:bg-[#FFE3D2] hover:text-[#FF6A2A] hover:border-[#FF6A2A]'
+                      }`}
+                    >
                       #{tag}
-                    </span>
+                    </button>
                   ))}
                 </div>
+
+                {/* Demo Button (แสดงเฉพาะ resource ที่มี Demo) */}
+                {item.demoLink && (
+                  <a
+                    href={item.demoLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="w-full mb-2.5 flex items-center justify-center gap-2 bg-[#EFF6FF] text-[#2563eb] border border-[#93c5fd] py-3 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-[#2563eb] hover:text-white hover:border-[#2563eb] transition-all"
+                  >
+                    <ExternalLink size={13} /> {item.demoLabel || 'ลอง Demo'}
+                  </a>
+                )}
+
+                {/* Download Button (แสดงเฉพาะ resource ที่มีไฟล์แนบ) */}
+                {item.downloadFile && (
+                  <a
+                    href={item.downloadFile}
+                    download
+                    onClick={(e) => e.stopPropagation()}
+                    className="w-full mb-2.5 flex items-center justify-center gap-2 bg-[#F0FFF4] text-[#16a34a] border border-[#86efac] py-3 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-[#16a34a] hover:text-white hover:border-[#16a34a] transition-all"
+                  >
+                    <Download size={13} /> {item.downloadLabel || 'โหลดไฟล์'}
+                  </a>
+                )}
 
                 <button
                   onClick={(e) => {
@@ -212,6 +262,46 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
                   </div>
                 </div>
 
+                {/* SKILL DIRECTORY — แสดงเฉพาะ resource ที่มี skillCategories */}
+                {activeResource.skillCategories && (
+                  <div className="space-y-4">
+                    <h4 className="font-display font-bold text-lg text-[#111] flex items-center gap-2">
+                      ⚙️ Skills Directory — {activeResource.skillCategories.reduce((a, c) => a + c.skills.length, 0)} Skills ใน {activeResource.skillCategories.length} หมวด
+                    </h4>
+                    <div className="space-y-3">
+                      {activeResource.skillCategories.map((cat, ci) => (
+                        <details key={ci} className="group border border-[#E6E4DD] rounded-2xl overflow-hidden">
+                          <summary className="flex items-center justify-between px-5 py-4 cursor-pointer bg-[#F9F8F4] hover:bg-[#F0EFE9] transition-colors list-none">
+                            <span className="font-semibold text-sm text-[#111]">
+                              {cat.icon} {cat.name}
+                              <span className="ml-2 text-xs text-[#888] font-normal">({cat.skills.length} skills)</span>
+                            </span>
+                            <ChevronDown size={16} className="text-[#888] group-open:rotate-180 transition-transform" />
+                          </summary>
+                          <div className="divide-y divide-[#F0EFE9]">
+                            {cat.skills.map((sk, si) => (
+                              <div key={si} className="px-5 py-3 bg-white flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                                <div>
+                                  <p className="text-sm font-semibold text-[#111]">{sk.name}</p>
+                                  <p className="text-xs text-[#666] font-light">{sk.desc}</p>
+                                </div>
+                                <a
+                                  href={`https://${sk.link.replace(/^https?:\/\//, '')}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="flex-shrink-0 text-[10px] text-[#FF6A2A] border border-[#FF6A2A]/30 hover:bg-[#FF6A2A] hover:text-white px-3 py-1 rounded-full transition-all"
+                                >
+                                  GitHub →
+                                </a>
+                              </div>
+                            ))}
+                          </div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* PROMPT COPY BLOCK (1-Click Copy) */}
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -253,6 +343,51 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
                     ))}
                   </div>
                 </div>
+
+                {/* Demo Block — แสดงเฉพาะ resource ที่มี Demo Link */}
+                {activeResource.demoLink && (
+                  <div className="border-2 border-dashed border-[#93c5fd] bg-[#EFF6FF] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#2563eb]/10 flex items-center justify-center flex-shrink-0">
+                        <ExternalLink size={18} className="text-[#2563eb]" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-[#2563eb]">ลองเล่นได้เลยทีนี่!</p>
+                        <p className="text-xs text-[#555] font-light">{activeResource.demoLink}</p>
+                      </div>
+                    </div>
+                    <a
+                      href={activeResource.demoLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex-shrink-0 flex items-center gap-2 bg-[#2563eb] text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-[#1d4ed8] transition-all shadow-md shadow-blue-500/20"
+                    >
+                      <ExternalLink size={13} /> {activeResource.demoLabel || 'เปิด Demo'}
+                    </a>
+                  </div>
+                )}
+
+                {/* Download Block — แสดงเฉพาะ resource ที่มีไฟล์แนบ */}
+                {activeResource.downloadFile && (
+                  <div className="border-2 border-dashed border-[#86efac] bg-[#F0FFF4] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#16a34a]/10 flex items-center justify-center flex-shrink-0">
+                        <Download size={18} className="text-[#16a34a]" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-[#16a34a]">ไฟล์พร้อมโหลด</p>
+                        <p className="text-xs text-[#555] font-light">{activeResource.downloadLabel || 'คลิกเพื่อดาวน์โหลดไฟล์ที่แนบมากับ Resource นี้'}</p>
+                      </div>
+                    </div>
+                    <a
+                      href={activeResource.downloadFile}
+                      download
+                      className="flex-shrink-0 flex items-center gap-2 bg-[#16a34a] text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-[#15803d] transition-all shadow-md shadow-green-500/20"
+                    >
+                      <Download size={13} /> ดาวน์โหลดเลย
+                    </a>
+                  </div>
+                )}
 
                 {/* MANDATORY HIGH-CONVERTING CTA BOX */}
                 <div className="bg-[#111] text-white rounded-3xl p-8 md:p-10 border border-[#333] shadow-xl space-y-6 relative overflow-hidden">
