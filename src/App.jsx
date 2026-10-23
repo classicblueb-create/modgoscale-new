@@ -42,7 +42,7 @@ const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [lang, setLang] = useState('th');
   const [currentPage, setCurrentPage] = useState(() => {
-    return window.location.hash === '#resources' ? 'resources' : 'home';
+    return window.location.hash.startsWith('#resources') ? 'resources' : 'home';
   });
   const en = lang === 'en';
 
@@ -157,10 +157,10 @@ const App = () => {
           </div>
           <div className="hidden md:flex space-x-10 text-sm tracking-widest uppercase font-medium">
             <button onClick={() => navigateTo('home', 'about')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Concept</button>
-            <button onClick={() => navigateTo('home', 'speaker')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Speaker</button>
             <button onClick={() => navigateTo('home', 'services')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Expertise</button>
             <button onClick={() => navigateTo('home', 'portfolio')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Portfolio</button>
-            <button className="text-[#FF6A2A] font-bold transition-colors duration-300">Free Resources</button>
+            <button onClick={() => navigateTo('home', 'speaker')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Speaker</button>
+            <button onClick={() => navigateTo('resources')} className="text-[#FF6A2A] font-bold transition-colors duration-300">Free Resources</button>
             <button onClick={() => navigateTo('home', 'contact')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Initiate</button>
           </div>
           <div className="flex items-center gap-4">
@@ -181,10 +181,10 @@ const App = () => {
         {isMenuOpen && (
           <div className="fixed inset-0 z-40 bg-[#F9F8F4]/98 backdrop-blur-xl pt-24 px-6 pb-8 flex flex-col space-y-6 md:hidden">
             <button onClick={() => navigateTo('home', 'about')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Concept</button>
-            <button onClick={() => navigateTo('home', 'speaker')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Speaker</button>
             <button onClick={() => navigateTo('home', 'services')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Expertise</button>
             <button onClick={() => navigateTo('home', 'portfolio')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Portfolio</button>
-            <button className="text-2xl font-display font-bold text-left uppercase text-[#FF6A2A]">Free Resources</button>
+            <button onClick={() => navigateTo('home', 'speaker')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Speaker</button>
+            <button onClick={() => navigateTo('resources')} className="text-2xl font-display font-bold text-left uppercase text-[#FF6A2A]">Free Resources</button>
             <button onClick={() => navigateTo('home', 'contact')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Initiate</button>
             <a href={lineLink} className="mt-8 bg-[#FF6A2A] text-white rounded-full text-center w-full py-4 uppercase tracking-widest text-base font-medium hover:bg-[#e0591f] transition-colors shadow-lg shadow-[#FF6A2A]/20">Contact via LINE</a>
           </div>
@@ -214,9 +214,9 @@ const App = () => {
         </div>
         <div className="hidden md:flex space-x-10 text-sm tracking-widest uppercase font-medium">
           <button onClick={() => navigateTo('home', 'about')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Concept</button>
-          <button onClick={() => navigateTo('home', 'speaker')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Speaker</button>
           <button onClick={() => navigateTo('home', 'services')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Expertise</button>
           <button onClick={() => navigateTo('home', 'portfolio')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Portfolio</button>
+          <button onClick={() => navigateTo('home', 'speaker')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Speaker</button>
           <button onClick={() => navigateTo('resources')} className={`transition-colors duration-300 ${currentPage === 'resources' ? 'text-[#FF6A2A] font-bold' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Free Resources</button>
           <button onClick={() => navigateTo('home', 'contact')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Initiate</button>
         </div>
@@ -238,9 +238,9 @@ const App = () => {
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 bg-[#F9F8F4]/98 backdrop-blur-xl pt-24 px-6 pb-8 flex flex-col space-y-6 md:hidden">
           <button onClick={() => navigateTo('home', 'about')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Concept</button>
-          <button onClick={() => navigateTo('home', 'speaker')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Speaker</button>
           <button onClick={() => navigateTo('home', 'services')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Expertise</button>
           <button onClick={() => navigateTo('home', 'portfolio')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Portfolio</button>
+          <button onClick={() => navigateTo('home', 'speaker')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Speaker</button>
           <button onClick={() => navigateTo('resources')} className={`text-2xl font-display font-bold text-left uppercase ${currentPage === 'resources' ? 'text-[#FF6A2A]' : 'text-[#111] hover:text-[#FF6A2A]'}`}>Free Resources</button>
           <button onClick={() => navigateTo('home', 'contact')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Initiate</button>
           <a href={lineLink} className="mt-8 bg-[#FF6A2A] text-white rounded-full text-center w-full py-4 uppercase tracking-widest text-base font-medium hover:bg-[#e0591f] transition-colors shadow-lg shadow-[#FF6A2A]/20">Contact via LINE</a>
@@ -326,210 +326,6 @@ const App = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Speaker & Corporate Trainer Section */}
-      <section id="speaker" className="py-28 md:py-36 px-6 md:px-12 lg:px-16 bg-[#F9F8F4] border-t border-[#E6E4DD]">
-        <div className="max-w-7xl mx-auto space-y-20">
-          
-          {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 reveal">
-            <div className="space-y-3 max-w-3xl">
-              <span className="text-xs uppercase tracking-[0.3em] font-semibold text-[#FF6A2A] block">02 — SPEAKER &amp; TRAINER</span>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-[#111] leading-tight">
-                AI Knowledge That<br />
-                <span className="text-[#FF6A2A]">Turns Into Action.</span>
-              </h2>
-              <p className="text-xl md:text-2xl font-kanit font-medium text-[#333] pt-2">
-                เปลี่ยนเรื่อง AI ที่ดูซับซ้อน ให้กลายเป็นสิ่งที่ทุกคนเข้าใจและนำไปใช้ได้จริง
-              </p>
-            </div>
-            
-            <div className="flex flex-wrap items-center gap-3">
-              <a href={lineLink} target="_blank" rel="noreferrer" className="bg-[#FF6A2A] text-white px-8 py-4 rounded-full hover:bg-[#e0591f] transition-all text-sm font-semibold uppercase tracking-widest shadow-lg shadow-[#FF6A2A]/20">
-                เชิญ Modty เป็นวิทยากร
-              </a>
-              <a href={lineLink} target="_blank" rel="noreferrer" className="border border-[#111] text-[#111] hover:bg-[#111] hover:text-white px-8 py-4 rounded-full transition-all text-sm font-medium uppercase tracking-widest">
-                ออกแบบ Workshop สำหรับทีม
-              </a>
-            </div>
-          </div>
-
-          {/* Core Methodology Banner */}
-          <div className="bg-white border border-[#E6E4DD] rounded-3xl p-8 md:p-12 reveal shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-[#E6E4DD]">
-              <div className="py-4 md:py-0 px-2">
-                <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-1">STEP 01</span>
-                <h4 className="font-display font-bold text-2xl text-[#111]">Understand</h4>
-                <p className="text-xs text-[#666] mt-1">เข้าใจแก่นและหลักการ AI</p>
-              </div>
-              <div className="py-4 md:py-0 px-2">
-                <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-1">STEP 02</span>
-                <h4 className="font-display font-bold text-2xl text-[#111]">Practice</h4>
-                <p className="text-xs text-[#666] mt-1">ทดลองใช้เครื่องมือจริง</p>
-              </div>
-              <div className="py-4 md:py-0 px-2">
-                <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-1">STEP 03</span>
-                <h4 className="font-display font-bold text-2xl text-[#111]">Build</h4>
-                <p className="text-xs text-[#666] mt-1">สร้างระบบ &amp; Workflow</p>
-              </div>
-              <div className="py-4 md:py-0 px-2">
-                <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-1">STEP 04</span>
-                <h4 className="font-display font-bold text-2xl text-[#111]">Apply</h4>
-                <p className="text-xs text-[#666] mt-1">นำกลับไปใช้กับงานจริง</p>
-              </div>
-            </div>
-            <div className="mt-8 pt-6 border-t border-[#E6E4DD] text-center">
-              <p className="text-sm font-light text-[#555] max-w-3xl mx-auto leading-relaxed">
-                Modty รับบรรยายและออกแบบ Workshop ด้าน AI, Business AI, Content Creation, Automation และ Vibe Coding สำหรับองค์กร ทีมงาน Community และ Event โดยเนื้อหาสามารถปรับให้เหมาะกับระดับผู้เรียน อุตสาหกรรม และโจทย์การทำงานจริงของแต่ละทีมได้ — <strong className="text-[#111] font-medium">ผู้เรียนไม่ได้เพียงรู้ว่า AI ทำอะไรได้ แต่ได้ทดลองสร้าง Workflow หรือผลงานที่สามารถนำกลับไปใช้กับงานจริงได้ทันที</strong>
-              </p>
-            </div>
-          </div>
-
-          {/* Featured Event: Girl in ICT by DCT */}
-          <div className="space-y-8 reveal">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#E6E4DD] pb-6">
-              <div>
-                <span className="bg-[#FFF1E6] text-[#FF6A2A] border border-[#FFE3D2] px-3.5 py-1 text-[11px] uppercase tracking-wider font-bold rounded-full inline-block mb-3">FEATURED SPEAKING EXPERIENCE</span>
-                <h3 className="text-3xl md:text-4xl font-display font-bold text-[#111]">Girl in ICT by DCT — สภาดิจิทัลเพื่อเศรษฐกิจและสังคมแห่งประเทศไทย</h3>
-              </div>
-              <p className="text-xs tracking-widest text-[#888] uppercase font-medium">Official Keynote &amp; Workshop Speaker</p>
-            </div>
-
-            <p className="text-[#555] font-light leading-relaxed text-base max-w-4xl">
-              หนึ่งในประสบการณ์ด้านการเป็นวิทยากรของ Modty กับกิจกรรม <strong>Girl in ICT by DCT</strong> งานที่ส่งเสริมการเรียนรู้และโอกาสด้านเทคโนโลยีและดิจิทัล โดย Modty ได้ร่วมถ่ายทอดมุมมองและประสบการณ์เกี่ยวกับการนำ AI มาใช้ในการทำงาน การสร้างผลงาน และการต่อยอดทักษะให้เกิดผลลัพธ์จริง เนื้อหาการบรรยายเน้นทำให้เรื่อง AI ที่ดูซับซ้อนกลายเป็นเรื่องที่เข้าใจง่าย พร้อมแสดงให้เห็นว่าผู้เรียนสามารถเริ่มต้นใช้ AI เพื่อเพิ่ม Productivity สร้าง Content สร้าง Digital Product หรือพัฒนาต่อยอดไปสู่ทักษะใหม่ได้อย่างไร
-            </p>
-
-            {/* Editorial Speaker Image Gallery */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-4">
-              {/* Hero Image (Large Left/Top) */}
-              <div className="lg:col-span-7 group relative rounded-3xl overflow-hidden border border-[#E6E4DD] shadow-md bg-white">
-                <img
-                  src="/speaker-girlinict-1.jpg"
-                  alt="Girl in ICT by DCT — AI Speaker Modty"
-                  className="w-full h-[380px] md:h-[480px] object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                />
-                <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border border-white/10">
-                  <div className="font-display font-bold text-base">Girl in ICT by DCT</div>
-                  <div className="text-xs text-[#FF6A2A] font-semibold uppercase tracking-wider">AI Speaker &amp; Educator</div>
-                </div>
-              </div>
-
-              {/* Supporting Images (Right Grid) */}
-              <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-                <div className="group relative rounded-2xl overflow-hidden border border-[#E6E4DD] shadow-sm bg-white h-[150px] md:h-[148px]">
-                  <img
-                    src="/speaker-girlinict-2.jpg"
-                    alt="Modty presenting AI Consultant slide"
-                    className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute bottom-2 left-3 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[10px] uppercase tracking-wider">
-                    จาก Business สู่ AI Consultant
-                  </div>
-                </div>
-                <div className="group relative rounded-2xl overflow-hidden border border-[#E6E4DD] shadow-sm bg-white h-[150px] md:h-[148px]">
-                  <img
-                    src="/speaker-girlinict-3.jpg"
-                    alt="Receiving DCT honor award"
-                    className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute bottom-2 left-3 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[10px] uppercase tracking-wider">
-                    Token of Appreciation — DCT
-                  </div>
-                </div>
-                <div className="group relative rounded-2xl overflow-hidden border border-[#E6E4DD] shadow-sm bg-white h-[150px] md:h-[148px] sm:col-span-2 lg:col-span-1">
-                  <img
-                    src="/speaker-girlinict-4.jpg"
-                    alt="Group photo with DCT executives"
-                    className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute bottom-2 left-3 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[10px] uppercase tracking-wider">
-                    Official Group Photo with Digital Council Executives
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Speaking & Workshop Topics Grid */}
-          <div className="space-y-10 reveal pt-6">
-            <div className="flex justify-between items-end border-b border-[#E6E4DD] pb-6">
-              <div>
-                <span className="text-xs uppercase tracking-[0.3em] font-semibold text-[#FF6A2A] block mb-1">TAILORED CURRICULUMS</span>
-                <h3 className="text-3xl md:text-4xl font-display font-bold text-[#111]">Speaking &amp; Workshop Topics</h3>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Topic 1 */}
-              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
-                <div>
-                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 01</span>
-                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">AI for Business &amp; Productivity</h4>
-                  <p className="text-xs text-[#666] font-light leading-relaxed">
-                    วิธีเปลี่ยน AI จากเครื่องมือถามตอบให้กลายเป็นผู้ช่วยสำหรับการทำงาน วิเคราะห์ข้อมูล ลดงานซ้ำ และเพิ่ม Productivity ให้ทีม
-                  </p>
-                </div>
-              </div>
-
-              {/* Topic 2 */}
-              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
-                <div>
-                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 02</span>
-                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">ChatGPT Work &amp; AI Operating System</h4>
-                  <p className="text-xs text-[#666] font-light leading-relaxed">
-                    ออกแบบระบบการทำงานบน ChatGPT ตั้งแต่ Knowledge, Project, Workflow, Scheduled Task ไปจนถึงการสร้าง AI Team
-                  </p>
-                </div>
-              </div>
-
-              {/* Topic 3 */}
-              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
-                <div>
-                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 03</span>
-                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">AI Content &amp; Marketing System</h4>
-                  <p className="text-xs text-[#666] font-light leading-relaxed">
-                    สร้างระบบคิดและผลิต Content ตั้งแต่ Research, Hook, Script, Visual, Carousel ไปจนถึง Video
-                  </p>
-                </div>
-              </div>
-
-              {/* Topic 4 */}
-              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
-                <div>
-                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 04</span>
-                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">AI Visual &amp; Video Creation</h4>
-                  <p className="text-xs text-[#666] font-light leading-relaxed">
-                    สร้างภาพ วิดีโอสินค้า AI Presenter, UGC และ Visual Content สำหรับ Marketing และ Social Media
-                  </p>
-                </div>
-              </div>
-
-              {/* Topic 5 */}
-              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
-                <div>
-                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 05</span>
-                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">Vibe Coding &amp; AI Tool Building</h4>
-                  <p className="text-xs text-[#666] font-light leading-relaxed">
-                    เปลี่ยนไอเดียให้กลายเป็น Website, Web App, Dashboard หรือ AI Tool โดยไม่จำเป็นต้องเริ่มจากการเป็น Developer
-                  </p>
-                </div>
-              </div>
-
-              {/* Topic 6 */}
-              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
-                <div>
-                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 06</span>
-                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">AI Automation &amp; AI Agent</h4>
-                  <p className="text-xs text-[#666] font-light leading-relaxed">
-                    ออกแบบ Workflow และ AI Agent เพื่อช่วยลดงาน Manual เชื่อมข้อมูล และสร้างระบบหลังบ้านสำหรับธุรกิจ
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
 
@@ -1485,7 +1281,211 @@ const App = () => {
         </div>
       </section>
 
-      {/* Decorative Signature Motion Typography Marquee */}
+{/* Speaker & Corporate Trainer Section */}
+      <section id="speaker" className="py-28 md:py-36 px-6 md:px-12 lg:px-16 bg-[#F9F8F4] border-t border-[#E6E4DD]">
+        <div className="max-w-7xl mx-auto space-y-20">
+          
+          {/* Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 reveal">
+            <div className="space-y-3 max-w-3xl">
+              <span className="text-xs uppercase tracking-[0.3em] font-semibold text-[#FF6A2A] block">02 — SPEAKER &amp; TRAINER</span>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-[#111] leading-tight">
+                AI Knowledge That<br />
+                <span className="text-[#FF6A2A]">Turns Into Action.</span>
+              </h2>
+              <p className="text-xl md:text-2xl font-kanit font-medium text-[#333] pt-2">
+                เปลี่ยนเรื่อง AI ที่ดูซับซ้อน ให้กลายเป็นสิ่งที่ทุกคนเข้าใจและนำไปใช้ได้จริง
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-3">
+              <a href={lineLink} target="_blank" rel="noreferrer" className="bg-[#FF6A2A] text-white px-8 py-4 rounded-full hover:bg-[#e0591f] transition-all text-sm font-semibold uppercase tracking-widest shadow-lg shadow-[#FF6A2A]/20">
+                เชิญ Modty เป็นวิทยากร
+              </a>
+              <a href={lineLink} target="_blank" rel="noreferrer" className="border border-[#111] text-[#111] hover:bg-[#111] hover:text-white px-8 py-4 rounded-full transition-all text-sm font-medium uppercase tracking-widest">
+                ออกแบบ Workshop สำหรับทีม
+              </a>
+            </div>
+          </div>
+
+          {/* Core Methodology Banner */}
+          <div className="bg-white border border-[#E6E4DD] rounded-3xl p-8 md:p-12 reveal shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-[#E6E4DD]">
+              <div className="py-4 md:py-0 px-2">
+                <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-1">STEP 01</span>
+                <h4 className="font-display font-bold text-2xl text-[#111]">Understand</h4>
+                <p className="text-xs text-[#666] mt-1">เข้าใจแก่นและหลักการ AI</p>
+              </div>
+              <div className="py-4 md:py-0 px-2">
+                <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-1">STEP 02</span>
+                <h4 className="font-display font-bold text-2xl text-[#111]">Practice</h4>
+                <p className="text-xs text-[#666] mt-1">ทดลองใช้เครื่องมือจริง</p>
+              </div>
+              <div className="py-4 md:py-0 px-2">
+                <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-1">STEP 03</span>
+                <h4 className="font-display font-bold text-2xl text-[#111]">Build</h4>
+                <p className="text-xs text-[#666] mt-1">สร้างระบบ &amp; Workflow</p>
+              </div>
+              <div className="py-4 md:py-0 px-2">
+                <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-1">STEP 04</span>
+                <h4 className="font-display font-bold text-2xl text-[#111]">Apply</h4>
+                <p className="text-xs text-[#666] mt-1">นำกลับไปใช้กับงานจริง</p>
+              </div>
+            </div>
+            <div className="mt-8 pt-6 border-t border-[#E6E4DD] text-center">
+              <p className="text-sm font-light text-[#555] max-w-3xl mx-auto leading-relaxed">
+                Modty รับบรรยายและออกแบบ Workshop ด้าน AI, Business AI, Content Creation, Automation และ Vibe Coding สำหรับองค์กร ทีมงาน Community และ Event โดยเนื้อหาสามารถปรับให้เหมาะกับระดับผู้เรียน อุตสาหกรรม และโจทย์การทำงานจริงของแต่ละทีมได้ — <strong className="text-[#111] font-medium">ผู้เรียนไม่ได้เพียงรู้ว่า AI ทำอะไรได้ แต่ได้ทดลองสร้าง Workflow หรือผลงานที่สามารถนำกลับไปใช้กับงานจริงได้ทันที</strong>
+              </p>
+            </div>
+          </div>
+
+          {/* Speaking & Workshop Topics Grid */}
+          <div className="space-y-10 reveal pt-6">
+            <div className="flex justify-between items-end border-b border-[#E6E4DD] pb-6">
+              <div>
+                <span className="text-xs uppercase tracking-[0.3em] font-semibold text-[#FF6A2A] block mb-1">TAILORED CURRICULUMS</span>
+                <h3 className="text-3xl md:text-4xl font-display font-bold text-[#111]">Speaking &amp; Workshop Topics</h3>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Topic 1 */}
+              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
+                <div>
+                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 01</span>
+                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">AI for Business &amp; Productivity</h4>
+                  <p className="text-xs text-[#666] font-light leading-relaxed">
+                    วิธีเปลี่ยน AI จากเครื่องมือถามตอบให้กลายเป็นผู้ช่วยสำหรับการทำงาน วิเคราะห์ข้อมูล ลดงานซ้ำ และเพิ่ม Productivity ให้ทีม
+                  </p>
+                </div>
+              </div>
+
+              {/* Topic 2 */}
+              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
+                <div>
+                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 02</span>
+                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">ChatGPT Work &amp; AI Operating System</h4>
+                  <p className="text-xs text-[#666] font-light leading-relaxed">
+                    ออกแบบระบบการทำงานบน ChatGPT ตั้งแต่ Knowledge, Project, Workflow, Scheduled Task ไปจนถึงการสร้าง AI Team
+                  </p>
+                </div>
+              </div>
+
+              {/* Topic 3 */}
+              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
+                <div>
+                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 03</span>
+                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">AI Content &amp; Marketing System</h4>
+                  <p className="text-xs text-[#666] font-light leading-relaxed">
+                    สร้างระบบคิดและผลิต Content ตั้งแต่ Research, Hook, Script, Visual, Carousel ไปจนถึง Video
+                  </p>
+                </div>
+              </div>
+
+              {/* Topic 4 */}
+              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
+                <div>
+                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 04</span>
+                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">AI Visual &amp; Video Creation</h4>
+                  <p className="text-xs text-[#666] font-light leading-relaxed">
+                    สร้างภาพ วิดีโอสินค้า AI Presenter, UGC และ Visual Content สำหรับ Marketing และ Social Media
+                  </p>
+                </div>
+              </div>
+
+              {/* Topic 5 */}
+              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
+                <div>
+                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 05</span>
+                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">Vibe Coding &amp; AI Tool Building</h4>
+                  <p className="text-xs text-[#666] font-light leading-relaxed">
+                    เปลี่ยนไอเดียให้กลายเป็น Website, Web App, Dashboard หรือ AI Tool โดยไม่จำเป็นต้องเริ่มจากการเป็น Developer
+                  </p>
+                </div>
+              </div>
+
+              {/* Topic 6 */}
+              <div className="p-8 bg-white border border-[#E6E4DD] rounded-3xl hover:border-[#FF6A2A] transition-all shadow-sm flex flex-col justify-between">
+                <div>
+                  <span className="text-xs uppercase tracking-widest text-[#FF6A2A] font-bold block mb-2">TOPIC 06</span>
+                  <h4 className="font-display font-bold text-xl text-[#111] mb-3">AI Automation &amp; AI Agent</h4>
+                  <p className="text-xs text-[#666] font-light leading-relaxed">
+                    ออกแบบ Workflow และ AI Agent เพื่อช่วยลดงาน Manual เชื่อมข้อมูล และสร้างระบบหลังบ้านสำหรับธุรกิจ
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Featured Event: Girl in ICT by DCT */}
+          <div className="space-y-8 reveal">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#E6E4DD] pb-6">
+              <div>
+                <span className="bg-[#FFF1E6] text-[#FF6A2A] border border-[#FFE3D2] px-3.5 py-1 text-[11px] uppercase tracking-wider font-bold rounded-full inline-block mb-3">FEATURED SPEAKING EXPERIENCE</span>
+                <h3 className="text-3xl md:text-4xl font-display font-bold text-[#111]">Girl in ICT by DCT — สภาดิจิทัลเพื่อเศรษฐกิจและสังคมแห่งประเทศไทย</h3>
+              </div>
+              <p className="text-xs tracking-widest text-[#888] uppercase font-medium">Official Keynote &amp; Workshop Speaker</p>
+            </div>
+
+            <p className="text-[#555] font-light leading-relaxed text-base max-w-4xl">
+              หนึ่งในประสบการณ์ด้านการเป็นวิทยากรของ Modty กับกิจกรรม <strong>Girl in ICT by DCT</strong> งานที่ส่งเสริมการเรียนรู้และโอกาสด้านเทคโนโลยีและดิจิทัล โดย Modty ได้ร่วมถ่ายทอดมุมมองและประสบการณ์เกี่ยวกับการนำ AI มาใช้ในการทำงาน การสร้างผลงาน และการต่อยอดทักษะให้เกิดผลลัพธ์จริง เนื้อหาการบรรยายเน้นทำให้เรื่อง AI ที่ดูซับซ้อนกลายเป็นเรื่องที่เข้าใจง่าย พร้อมแสดงให้เห็นว่าผู้เรียนสามารถเริ่มต้นใช้ AI เพื่อเพิ่ม Productivity สร้าง Content สร้าง Digital Product หรือพัฒนาต่อยอดไปสู่ทักษะใหม่ได้อย่างไร
+            </p>
+
+            {/* Editorial Speaker Image Gallery */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-4">
+              {/* Hero Image (Large Left/Top) */}
+              <div className="lg:col-span-7 group relative rounded-3xl overflow-hidden border border-[#E6E4DD] shadow-md bg-white">
+                <img
+                  src="/speaker-girlinict-1.jpg"
+                  alt="Girl in ICT by DCT — AI Speaker Modty"
+                  className="w-full h-[380px] md:h-[480px] object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                />
+                <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border border-white/10">
+                  <div className="font-display font-bold text-base">Girl in ICT by DCT</div>
+                  <div className="text-xs text-[#FF6A2A] font-semibold uppercase tracking-wider">AI Speaker &amp; Educator</div>
+                </div>
+              </div>
+
+              {/* Supporting Images (Right Grid) */}
+              <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                <div className="group relative rounded-2xl overflow-hidden border border-[#E6E4DD] shadow-sm bg-white h-[150px] md:h-[148px]">
+                  <img
+                    src="/speaker-girlinict-2.jpg"
+                    alt="Modty presenting AI Consultant slide"
+                    className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute bottom-2 left-3 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[10px] uppercase tracking-wider">
+                    จาก Business สู่ AI Consultant
+                  </div>
+                </div>
+                <div className="group relative rounded-2xl overflow-hidden border border-[#E6E4DD] shadow-sm bg-white h-[150px] md:h-[148px]">
+                  <img
+                    src="/speaker-girlinict-3.jpg"
+                    alt="Receiving DCT honor award"
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute bottom-2 left-3 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[10px] uppercase tracking-wider">
+                    Token of Appreciation — DCT
+                  </div>
+                </div>
+                <div className="group relative rounded-2xl overflow-hidden border border-[#E6E4DD] shadow-sm bg-white h-[150px] md:h-[148px] sm:col-span-2 lg:col-span-1">
+                  <img
+                    src="/speaker-girlinict-4.jpg"
+                    alt="Group photo with DCT executives"
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute bottom-2 left-3 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[10px] uppercase tracking-wider">
+                    Official Group Photo with Digital Council Executives
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+            {/* Decorative Signature Motion Typography Marquee */}
       <section className="relative h-[45vh] min-h-[320px] flex items-center justify-center overflow-hidden bg-[#111] text-white">
         <div className="absolute inset-0 z-0">
           <img
