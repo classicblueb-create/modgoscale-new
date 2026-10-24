@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="AI Video & Motion Resource Hub">
+  <rect width="1200" height="630" fill="#F9F8F4"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(80 90)"><path d="M0 40q0-30 30-30h130l40 40h300q30 0 30 30v200q0 30-30 30H30q-30 0-30-30z" fill="#FF6A2A"/><rect x="40" y="110" width="440" height="150" rx="20" fill="#fff"/><circle cx="260" cy="185" r="38" fill="#111"/><path d="M250 167l30 18-30 18z" fill="#fff"/></g>
+    <g transform="translate(700 110)" fill="#111"><rect width="400" height="22" rx="11"/><rect y="52" width="320" height="22" rx="11" opacity=".6"/><rect y="104" width="360" height="22" rx="11" opacity=".4"/><rect y="156" width="260" height="22" rx="11" opacity=".25"/></g>
+    <text x="80" y="470" font-size="104" font-weight="800" fill="#111">MOTION STUDIO</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">BUILD YOUR OWN RECIPE LIBRARY</text>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="สร้าง Gem Humanizer ให้ข้อความไม่มีภาษา AI">
+  <rect width="1200" height="630" fill="#F9F8F4"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(80 90)"><rect width="440" height="300" rx="28" fill="#fff" stroke="#E6E4DD" stroke-width="3"/><g fill="#999"><rect x="40" y="50" width="340" height="14" rx="7"/><rect x="40" y="86" width="280" height="14" rx="7"/><rect x="40" y="122" width="320" height="14" rx="7"/></g><path d="M40 180h360" stroke="#E6E4DD" stroke-width="3"/><g fill="#FF6A2A"><rect x="40" y="214" width="300" height="16" rx="8"/><rect x="40" y="250" width="220" height="16" rx="8"/></g></g><path d="M550 240h120" stroke="#111" stroke-width="8" stroke-linecap="round"/><path d="M650 214l30 26-30 26" fill="none" stroke="#111" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(720 100)"><circle cx="120" cy="120" r="110" fill="#FF6A2A"/><path d="M70 140c20 30 80 30 100 0" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/><circle cx="85" cy="100" r="10" fill="#fff"/><circle cx="155" cy="100" r="10" fill="#fff"/></g>
+    <text x="80" y="470" font-size="104" font-weight="800" fill="#111">HUMANIZER</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">NO AI VOICE · YOUR TONE</text>
+  </g>
+</svg>

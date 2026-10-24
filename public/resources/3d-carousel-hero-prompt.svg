@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Prompt ทำสไลด์และหน้าเว็บ Hero แบบ 3D Carousel">
+  <rect width="1200" height="630" fill="#FFB68E"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(80 70)"><rect x="170" y="0" width="240" height="340" rx="30" fill="#FF6A2A"/><rect x="0" y="60" width="150" height="220" rx="24" fill="#fff" opacity=".8"/><rect x="430" y="60" width="150" height="220" rx="24" fill="#fff" opacity=".8"/><circle cx="290" cy="150" r="56" fill="#111"/><rect x="230" y="240" width="120" height="16" rx="8" fill="#fff"/></g><g transform="translate(760 150)"><circle cx="40" cy="40" r="36" fill="none" stroke="#111" stroke-width="6"/><path d="M26 40h28M42 28l12 12-12 12" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="80" y="470" font-size="104" font-weight="800" fill="#111">3D HERO</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">CAROUSEL · SLIDES · REACT</text>
+  </g>
+</svg>

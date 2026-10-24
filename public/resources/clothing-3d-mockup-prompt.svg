@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Prompt ทำภาพ Mockup 3 มิติเสื้อผ้าให้ดูสวย">
+  <rect width="1200" height="630" fill="#E6F4FF"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(120 40)"><path d="M130 40l-90 50 30 70 40-20v200h230V140l40 20 30-70-90-50q-30 40-100 40t-100-40z" fill="#FF6A2A" stroke="#111" stroke-width="6" stroke-linejoin="round"/><path d="M150 90q80 60 160 0" fill="none" stroke="#111" stroke-width="6" opacity=".4"/></g><ellipse cx="320" cy="420" rx="170" ry="16" fill="#111" opacity=".15"/><g transform="translate(640 120)" fill="#fff" stroke="#111" stroke-width="4"><rect width="300" height="90" rx="22"/><rect y="110" width="300" height="90" rx="22"/><rect y="220" width="300" height="90" rx="22"/></g>
+    <text x="80" y="470" font-size="104" font-weight="800" fill="#111">3D MOCKUP</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">FLOATING · SOFT LIGHT · 4:5</text>
+  </g>
+</svg>

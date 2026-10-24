@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="28 เครื่องมือทำ Motion Graphics แบ่ง 5 กลุ่ม">
+  <rect width="1200" height="630" fill="#111"/>
+  <circle cx="160" cy="580" r="260" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="80" y="250" font-size="260" font-weight="800" fill="#FF6A2A">28</text>
+    <text x="86" y="330" font-size="34" font-weight="600" fill="#F9F8F4" letter-spacing="8">MOTION TOOLS</text>
+    <text x="86" y="378" font-size="26" font-weight="400" fill="#999" letter-spacing="3">5 GROUPS · START WITH 5</text>
+    <g transform="translate(560 70)">
+      <g fill="#FF6A2A"><rect x="0" y="0" width="80" height="80" rx="20"/><rect x="96" y="0" width="80" height="80" rx="20"/><rect x="192" y="0" width="80" height="80" rx="20"/><rect x="288" y="0" width="80" height="80" rx="20"/><rect x="384" y="0" width="80" height="80" rx="20"/><rect x="480" y="0" width="80" height="80" rx="20"/></g>
+      <g fill="#F9F8F4"><rect x="0" y="112" width="80" height="80" rx="20"/><rect x="96" y="112" width="80" height="80" rx="20"/><rect x="192" y="112" width="80" height="80" rx="20"/><rect x="288" y="112" width="80" height="80" rx="20"/><rect x="384" y="112" width="80" height="80" rx="20"/><rect x="480" y="112" width="80" height="80" rx="20"/></g>
+      <g fill="#FFB68E"><rect x="0" y="224" width="80" height="80" rx="20"/><rect x="96" y="224" width="80" height="80" rx="20"/><rect x="192" y="224" width="80" height="80" rx="20"/><rect x="288" y="224" width="80" height="80" rx="20"/><rect x="384" y="224" width="80" height="80" rx="20"/></g>
+      <g fill="#555"><rect x="0" y="336" width="80" height="80" rx="20"/><rect x="96" y="336" width="80" height="80" rx="20"/><rect x="192" y="336" width="80" height="80" rx="20"/><rect x="288" y="336" width="80" height="80" rx="20"/></g>
+      <g fill="#2A2A2A" stroke="#FF6A2A" stroke-width="3"><rect x="0" y="448" width="80" height="80" rx="20"/><rect x="96" y="448" width="80" height="80" rx="20"/><rect x="192" y="448" width="80" height="80" rx="20"/><rect x="288" y="448" width="80" height="80" rx="20"/><rect x="384" y="448" width="80" height="80" rx="20"/><rect x="480" y="448" width="80" height="80" rx="20"/></g>
+    </g>
+  </g>
+</svg>

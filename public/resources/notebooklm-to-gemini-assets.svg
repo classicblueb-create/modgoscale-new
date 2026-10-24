@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Pipeline NotebookLM ไป Gemini เปลี่ยน Insight เป็นแผนและเอกสารธุรกิจ">
+  <rect width="1200" height="630" fill="#F9F8F4"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(80 100)"><rect width="260" height="260" rx="30" fill="#fff" stroke="#111" stroke-width="6"/><g fill="#E6E4DD"><rect x="30" y="40" width="190" height="16" rx="8"/><rect x="30" y="80" width="150" height="16" rx="8"/><rect x="30" y="120" width="170" height="16" rx="8"/></g><circle cx="130" cy="200" r="30" fill="#FF6A2A"/></g><path d="M370 230h120" stroke="#FF6A2A" stroke-width="8" stroke-linecap="round"/><path d="M468 204l30 26-30 26" fill="none" stroke="#FF6A2A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(540 70)"><rect width="200" height="140" rx="22" fill="#FF6A2A"/><rect x="220" width="200" height="140" rx="22" fill="#FFB68E"/><rect x="440" width="200" height="140" rx="22" fill="#111"/><rect y="160" width="200" height="140" rx="22" fill="#111"/><rect x="220" y="160" width="200" height="140" rx="22" fill="#FF6A2A"/><rect x="440" y="160" width="200" height="140" rx="22" fill="#FFB68E"/></g>
+    <text x="80" y="470" font-size="84" font-weight="800" fill="#111">INSIGHT → ACTION</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">NOTEBOOKLM · GEMINI</text>
+  </g>
+</svg>

@@ -9,7 +9,7 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
   const [copiedId, setCopiedId] = useState(null);
   const [activeTag, setActiveTag] = useState(null);
 
-  const categories = ['All', 'Vibe Coding', 'Prompt Engineering', 'Automation', 'AI Visual'];
+  const categories = ['All', 'Vibe Coding', 'Prompt Engineering', 'Automation', 'AI Visual', 'Claude Skills'];
 
   const filteredResources = FREE_RESOURCES.filter((item) => {
     const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory;
@@ -123,6 +123,14 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
                   </span>
                 </div>
 
+                {item.coverImage && (
+                  <img
+                    src={item.coverImage}
+                    alt={item.title}
+                    loading="lazy"
+                    className="w-full aspect-[1200/630] object-cover rounded-2xl border border-[#E6E4DD] mb-4"
+                  />
+                )}
                 <div className="text-3xl mb-3">{item.icon}</div>
                 <h3 className="text-xl font-display font-bold text-[#111] group-hover:text-[#FF6A2A] transition-colors mb-2 leading-snug">
                   {item.title}
@@ -230,6 +238,13 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
 
                 {/* Title & Subtitle */}
                 <div className="space-y-3 border-b border-[#E6E4DD] pb-6">
+                  {activeResource.coverImage && (
+                    <img
+                      src={activeResource.coverImage}
+                      alt={activeResource.title}
+                      className="w-full aspect-[1200/630] object-cover rounded-2xl border border-[#E6E4DD] mb-2"
+                    />
+                  )}
                   <div className="text-4xl">{activeResource.icon}</div>
                   <h2 className="text-2xl md:text-4xl font-display font-bold text-[#111]">
                     {activeResource.title}
@@ -266,7 +281,7 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
                 {activeResource.skillCategories && (
                   <div className="space-y-4">
                     <h4 className="font-display font-bold text-lg text-[#111] flex items-center gap-2">
-                      ⚙️ Skills Directory — {activeResource.skillCategories.reduce((a, c) => a + c.skills.length, 0)} Skills ใน {activeResource.skillCategories.length} หมวด
+                      ⚙️ {activeResource.directoryLabel || 'Skills'} Directory — {activeResource.skillCategories.reduce((a, c) => a + c.skills.length, 0)} {activeResource.directoryLabel || 'Skills'} ใน {activeResource.skillCategories.length} หมวด
                     </h4>
                     <div className="space-y-3">
                       {activeResource.skillCategories.map((cat, ci) => (
@@ -291,7 +306,7 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
                                   rel="noreferrer"
                                   className="flex-shrink-0 text-[10px] text-[#FF6A2A] border border-[#FF6A2A]/30 hover:bg-[#FF6A2A] hover:text-white px-3 py-1 rounded-full transition-all"
                                 >
-                                  GitHub →
+                                  {sk.label || 'GitHub'} →
                                 </a>
                               </div>
                             ))}

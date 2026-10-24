@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="GPT และ Gem สร้างสิ่งของพูดได้สไตล์ Pixar">
+  <rect width="1200" height="630" fill="#FFF1E6"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(120 60)"><rect x="60" y="40" width="240" height="300" rx="70" fill="#FF6A2A"/><circle cx="130" cy="150" r="30" fill="#fff"/><circle cx="230" cy="150" r="30" fill="#fff"/><circle cx="136" cy="156" r="14" fill="#111"/><circle cx="224" cy="156" r="14" fill="#111"/><path d="M110 105l50 14M250 105l-50 14" stroke="#111" stroke-width="10" stroke-linecap="round"/><path d="M130 250q50-34 100 0" fill="none" stroke="#111" stroke-width="10" stroke-linecap="round"/><path d="M60 220l-50 30M300 220l50 30" stroke="#111" stroke-width="16" stroke-linecap="round"/></g><g transform="translate(560 90)"><rect width="440" height="150" rx="40" fill="#fff" stroke="#111" stroke-width="5"/><rect x="40" y="46" width="320" height="16" rx="8" fill="#111"/><rect x="40" y="86" width="230" height="16" rx="8" fill="#999"/></g>
+    <text x="80" y="470" font-size="84" font-weight="800" fill="#111">TALKING OBJECTS</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">PIXAR STYLE · 10s SCRIPT</text>
+  </g>
+</svg>
