@@ -1486,5 +1486,295 @@ Animation ในหน้านี้ใช้งานได้แล้ว แ
       primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
       secondaryBtnText: "สอบถาม Private Workshop ผ่าน LINE"
     }
+  },
+  {
+    id: "rea-reverse-engineer-anything-guide",
+    title: "REA: ติดตั้งและใช้ AI Agent ศึกษาโครงสร้างแอป แล้วต่อยอดเป็นฟีเจอร์ของตัวเอง",
+    subtitle: "ชุดเครื่องมือ MCP ที่ให้ AI ช่วยดูว่าซอฟต์แวร์ทำงานอย่างไร พร้อมหลักฐานอ้างอิง สำหรับระบบที่เราเป็นเจ้าของหรือมีสิทธิ์ตรวจสอบ",
+    category: "Automation",
+    categoryBadge: "AGENT TOOL GUIDE",
+    icon: "🔍",
+    coverImage: "/resources/rea-reverse-engineer-guide.svg",
+    readTime: "8 นาที",
+    date: "2026-10",
+    tags: ["REA", "MCP", "Claude Code", "Codex", "Reverse Engineering", "Prompt"],
+    summary: "รู้จัก REA (Reverse Engineer Anything) ติดตั้งด้วยคำสั่งไม่กี่บรรทัด เชื่อมกับ Claude Code / Codex ทดลองกับโปรเจกต์ของตัวเองก่อน พร้อม Prompt 5 แบบสำหรับไล่ Flow ของฟีเจอร์ วิเคราะห์ Electron เทียบสองเวอร์ชัน และออกแบบฟีเจอร์ใหม่จากข้อค้นพบ",
+    featured: false,
+    content: {
+      intro: "REA เป็นชุดเครื่องมือแบบ MCP ที่ให้ AI Agent ช่วยวิเคราะห์เว็บ แอป และไฟล์โปรแกรมที่เรามีสิทธิ์ตรวจสอบ แล้วคืนข้อมูลพร้อมหลักฐาน เช่น เส้นทางเรียกฟังก์ชัน โครงสร้างโค้ด พฤติกรรมตอนทำงาน และจุดที่ยังไม่แน่ใจ ต่างจากการก๊อปแอป เพราะเป้าหมายคือเข้าใจว่า 'ทำงานอย่างไร' แล้วเขียนของใหม่ของเราเอง ไม่ใช่เอาโค้ดหรือทรัพย์สินของคนอื่นมาใช้ ข้อจำกัดที่ควรรู้: ความสามารถต่างกันตามชนิดไฟล์และเครื่องมือที่ติดตั้ง บางผลลัพธ์เป็นการอนุมาน ต้องตรวจหลักฐานและทดสอบซ้ำเสมอ และการวิเคราะห์ Native binary ระดับลึกต้องตั้งค่า Hopper, Ghidra หรือ IDA เพิ่มเอง",
+      workflowSteps: [
+        { step: "01. เตรียมเครื่อง", desc: "ติดตั้ง Node.js (22.19+, 24.11+ หรือ 26+) และ AI Agent ที่รองรับ local MCP เช่น Claude Code, Codex, Cursor หรือ Gemini CLI ตรวจด้วย node -v และ npm -v" },
+        { step: "02. ติดตั้งและเชื่อม Agent", desc: "รัน npx rea-agents setup เลือก Agent ที่ใช้ ตรวจรายการเปลี่ยนแปลงก่อนอนุมัติ รีสตาร์ต Agent แล้วเช็กสถานะด้วย npx rea-agents@latest doctor --json" },
+        { step: "03. ลองกับโปรเจกต์ตัวเอง", desc: "เริ่มจากโฟลเดอร์ JavaScript / Electron ของเราเอง (ไม่ต้องติดตั้งเครื่องมือเสริม) เช่น npx -y rea-agents@latest analyze-javascript-application /absolute/path/to/your-app --json" }
+      ],
+      promptCopyText: `// PROMPT 1 — เข้าใจฟีเจอร์ในแอปที่เราเป็นเจ้าของ
+ฉันต้องการศึกษา feature [ชื่อฟีเจอร์ เช่น Search] ของแอปที่ฉันเป็นเจ้าของหรือมีสิทธิ์วิเคราะห์ โดยใช้ REA ผ่าน MCP
+1. ตรวจสอบว่า feature นี้เริ่มทำงานจากจุดใด
+2. ไล่ data flow ตั้งแต่ input, validation, processing ถึง output
+3. แสดงหลักฐานเป็น path, function, request หรือ reference เท่าที่ตรวจสอบได้
+4. แยกข้อเท็จจริงกับการคาดเดาให้ชัดเจน
+5. สรุปเป็นภาษาคนทั่วไป พร้อมข้อจำกัดและสิ่งที่ต้องทดสอบเพิ่ม
+อย่าเปลี่ยนแปลงไฟล์หรือรันคำสั่งที่มีผลกับระบบโดยไม่ขออนุมัติก่อน
+
+---
+
+// PROMPT 2 — แกะ Flow เว็บที่เราดูแล
+ใช้ REA วิเคราะห์เว็บที่ฉันมีสิทธิ์ตรวจสอบ: [URL]
+ต้องการเข้าใจเส้นทางตั้งแต่กดปุ่มจนแสดงผลลัพธ์
+สรุปเป็น Flow: User Action → UI State → Request → Response → UI Update
+ระบุหลักฐาน ข้อจำกัด และจุดที่ยังไม่ทราบ
+ห้ามเก็บหรือเปิดเผย credential และข้อมูลส่วนบุคคล
+
+---
+
+// PROMPT 3 — จากข้อค้นพบสู่ฟีเจอร์ของเรา
+นำข้อค้นพบที่ยืนยันด้วยหลักฐานจาก REA มาช่วยออกแบบฟีเจอร์ [ชื่อฟีเจอร์] สำหรับโปรเจกต์ของฉัน
+Tech stack: [เช่น Next.js + TypeScript]
+เงื่อนไข:
+- เขียน implementation ใหม่ ไม่คัดลอก proprietary source code, assets หรือ branding
+- เริ่มจากสรุป requirements, user flow, architecture และ edge cases
+- แยก component และมี test ขั้นพื้นฐาน
+- บอกส่วนที่เป็นสมมติฐาน และวิธีตรวจสอบ
+- ขออนุมัติก่อนแก้ระบบ production หรือเชื่อมบริการภายนอก
+
+---
+
+// PROMPT 4 — วิเคราะห์ Electron app ของเรา
+ใช้ REA วิเคราะห์ Electron app ใน path [ABSOLUTE_PATH] ที่ฉันเป็นเจ้าของ
+ค้นหา main process, renderer, preload, IPC channels และการสื่อสารระหว่างส่วนต่างๆ
+ทำแผนภาพ architecture แบบง่าย พร้อม file/function references
+แนะนำจุดปรับปรุงด้าน reliability และ security โดยไม่แก้ไฟล์ทันที
+
+---
+
+// PROMPT 5 — เทียบพฤติกรรมสองเวอร์ชันของแอปเรา
+ฉันมี build A และ build B ของแอปตัวเอง
+ตรวจจุดแตกต่างที่เกี่ยวข้องกับ feature [ชื่อฟีเจอร์] ด้วยเครื่องมือที่ REA รองรับ
+ระบุข้อแตกต่างพร้อมหลักฐาน ไม่สรุปเกินข้อมูล
+เสนอ regression test และแผนแก้ปัญหาที่ทำต่อได้`,
+      takeaways: [
+        "ติดตั้ง REA และเชื่อมกับ Claude Code / Codex ได้เอง ทดลองกับโปรเจกต์ตัวเองได้ทันที",
+        "ได้ Prompt 5 แบบที่แยก 'ข้อเท็จจริงที่มีหลักฐาน' ออกจาก 'การคาดเดา' ตั้งแต่ต้น",
+        "ไอเดียต่อยอด: ปรับปรุง Search, แก้บั๊กปุ่มใน Electron, ทำเอกสาร Architecture ให้ทีม, ตรวจ Network request ซ้ำซ้อน, ทำ QA Checklist",
+        "ใช้เฉพาะระบบที่เราเป็นเจ้าของหรือมีสิทธิ์ตรวจสอบ ห้ามคัดลอกโค้ด ละเมิดสิทธิ์ หรือข้ามการป้องกันของผู้อื่น และตรวจหลักฐานทุกครั้งก่อนเชื่อข้อสรุปของ AI"
+      ]
+    },
+    cta: {
+      title: "อยากใช้ AI Agent กับงานพัฒนาและระบบของคุณแบบเป็นขั้นตอน?",
+      description: "Workflow Claude Code, MCP และ Automation ที่ทดลองใช้จริง อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท ปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "ai-system-architect-prompt-dola",
+    title: "Prompt วางแผน AI Agent / Chatbot / ระบบอัตโนมัติ — เริ่มเล็กก่อน แล้วค่อยขยาย",
+    subtitle: "ให้ AI คิดแบบ System Architect: เริ่มด้วย Apps Script → n8n → Custom App ตามขนาดงานจริง ไม่ใช่ลงโค้ดทันที",
+    category: "Automation",
+    categoryBadge: "SYSTEM PLANNING",
+    icon: "🧭",
+    coverImage: "/resources/ai-system-architect-prompt.svg",
+    readTime: "7 นาที",
+    date: "2026-07",
+    tags: ["AI Agent", "Chatbot", "n8n", "Google Apps Script", "System Design", "Prompt", "Dola AI"],
+    summary: "Prompt วางระบบที่ให้ AI ประเมินว่าไอเดียของคุณควรเริ่มด้วย Google Apps Script, n8n หรือทำเป็น Web App + Backend พร้อมผลลัพธ์ 10 ส่วน ตั้งแต่ Workflow, โครงสร้างข้อมูล, MVP, Scale และ Prompt ส่งต่อให้ Claude เขียนโค้ด แถมเทคนิคใช้ Dola สร้างภาพรวมสินค้ากับพื้นหลัง",
+    featured: false,
+    content: {
+      intro: "ข้อผิดพลาดที่พบบ่อยคือรีบให้ AI เขียนโค้ดก่อนรู้ว่าระบบควรสร้างด้วยอะไร Prompt นี้บังคับให้คิดตามลำดับ ปัญหา → เป้าหมาย → ผู้ใช้ → Workflow → ข้อมูล → Trigger → Logic → เครื่องมือ → ผลลัพธ์ → การขยาย แล้วประเมินเป็น 3 ระดับ: Level 1 Google Apps Script (ใช้ Google Sheet เป็นฐานข้อมูล ระบบไม่ซับซ้อน ต้นทุนต่ำ เหมาะทำ MVP) Level 2 n8n (เชื่อมหลายแอป หลาย Trigger Workflow ยาว) และ Level 3 Custom App / Backend (มี Login หลาย Role Dashboard ฐานข้อมูลจริง เช่น Supabase หรือ Firebase) ใช้ได้กับ Dola AI, ChatGPT, Gemini หรือ Claude ตัวไหนก็ได้",
+      workflowSteps: [
+        { step: "01. วาง Prompt แล้วเล่าไอเดีย", desc: "วาง System Prompt ด้านล่างในแชท แล้วเล่าระบบที่อยากได้ เช่น 'บอทตอบลูกค้าใน LINE แล้วบันทึกลง Google Sheet'" },
+        { step: "02. ดูผลประเมินระดับและ MVP", desc: "AI จะบอกว่าอยู่ Level ไหน แนะนำเครื่องมือ เหตุผล และเวอร์ชันเล็กที่สุดที่ควรเริ่มก่อน พร้อมเกณฑ์วัดผลว่าสำเร็จหรือไม่" },
+        { step: "03. ส่งต่อให้ Claude เขียนโค้ด", desc: "ใช้ส่วนที่ 9 (Prompt for Claude / AI Coding Tool) ที่ AI สร้างให้ ส่งต่อให้ Claude หรือ Codex ลงมือทำเป็นระบบจริง" }
+      ],
+      promptCopyText: `## Role
+คุณคือ AI System Architect สำหรับ Solopreneur, SME, Creator และคนที่ไม่เก่งโค้ด
+ช่วยวิเคราะห์ว่าไอเดียระบบควรสร้างด้วยอะไร เริ่มเวอร์ชันเล็กก่อน หรือควรขยับไปเครื่องมือที่ใหญ่ขึ้น
+
+## Core Principle
+ห้ามเริ่มจากโค้ดทันที ต้องออกแบบระบบก่อนเสมอ
+คิดตามลำดับ: Problem → Goal → User → Workflow → Data → Trigger → Logic → Tool → Output → Scale
+
+## Tool Recommendation Rule
+Level 1: Google Apps Script — ถ้าระบบยังไม่ซับซ้อน ใช้ Google Sheet เป็นฐานข้อมูล ผู้ใช้ไม่เยอะ อยากประหยัดและเริ่มเร็ว
+Level 2: n8n — ถ้าเชื่อมหลายแอป หลาย Trigger หลายเงื่อนไข Workflow ยาว ต้องมี Retry / Error handling
+Level 3: Custom App / Backend — ถ้ามี Login หลาย Role Dashboard ฐานข้อมูลจริง (เช่น Supabase / Firebase) หรือข้อมูลจำนวนมาก
+อย่าแนะนำ n8n ทันทีทุกเคส ถ้าระบบยังเล็กให้เริ่มที่ Apps Script ก่อน
+
+## Output Format (ตอบตามนี้ทุกครั้ง)
+1. System Summary
+2. System Level Assessment (Level 1/2/3 พร้อมเหตุผล)
+3. Recommended Stack (ประหยัด / ระบบเริ่มใหญ่ / ระบบจริงจัง)
+4. Workflow Diagram (เขียนเป็นข้อความ ลูกศรขึ้นลง)
+5. Data Structure (ตาราง Field / Description)
+6. Automation Logic (If/Then)
+7. MVP Version (ตัดอะไรออก ทำอะไรก่อน วัดผลอย่างไร)
+8. Scale Version (Phase 1 → 2 → 3)
+9. Prompt for Claude / AI Coding Tool (เป้าหมาย เครื่องมือ Workflow Data Logic ข้อจำกัดสำหรับคนไม่เก่งโค้ด)
+10. Final Recommendation (ฟันธงว่าเริ่มจากอะไรดีสุด)
+
+## Tone
+ตอบเป็นภาษาไทย คิดแบบ System Architect แต่พูดให้คนทั่วไปเข้าใจ ไม่ใช้ศัพท์ยาก เน้นทำได้จริง ประหยัดก่อน ขยายทีหลัง
+
+## First Response Template
+"ได้เลย เดี๋ยวฉันช่วยประเมินระบบนี้ในมุม AI System Architect ก่อน
+จากที่เล่ามา ระบบนี้อยู่ระดับ: [Level 1 / 2 / 3]
+คำแนะนำเบื้องต้นคือ: [เริ่มด้วย Apps Script / ใช้ n8n / ทำ Custom App]
+เหตุผลคือ: [เหตุผลสั้นๆ]"
+แล้วตอบต่อตามโครงสร้าง 1–10
+
+---
+
+// เทคนิคเสริม: รวมภาพสินค้ากับพื้นหลัง (ในโหมดสร้างภาพของ Dola)
+แนบรูป 1 = สินค้า, รูป 2 = พื้นหลัง แล้วพิมพ์:
+นำภาพสินค้ารูป 1 มาวางไว้ในภาพที่ 2 ให้เนียนและเหมาะสมกับแสงสีและขนาด`,
+      takeaways: [
+        "ได้ Prompt ที่ทำให้ AI ประเมินระบบแบบ Architect ก่อนเขียนโค้ด และไม่แนะนำเครื่องมือหนักเกินจำเป็น",
+        "มีเกณฑ์ชัดว่าเมื่อไหร่ควรใช้ Apps Script, n8n หรือทำ Web App + Backend",
+        "ผลลัพธ์ 10 ส่วนจบด้วย Prompt ส่งต่อให้ Claude ลงมือสร้างจริง",
+        "ถ้าใช้ Dola สร้างภาพสินค้า เทคนิคแนบสินค้า + พื้นหลัง 2 รูปช่วยให้ได้ภาพขายของเร็วขึ้น"
+      ]
+    },
+    cta: {
+      title: "อยากให้ช่วยออกแบบระบบ AI สำหรับงานของคุณโดยเฉพาะ?",
+      description: "Modty AI Insider Club อัปเดตเทคนิค AI Agent และ Automation ทุกสัปดาห์ เดือนละ 99 บาท และปรึกษาได้เดือนละครั้ง หรือทักไลน์เพื่อคุยโจทย์ระบบของคุณ",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "design-md-sources-and-skills",
+    title: "แหล่งรวม design.md + Skills ดีไซน์ ให้ AI สร้างเว็บสวยแบบไม่ 'โหล'",
+    subtitle: "เริ่มจาก design.md ที่ใช่ ลองใน Google Stitch แล้วเสริมด้วย Skills กันงานดูเหมือนที่ AI ทำทุกเว็บ",
+    category: "Vibe Coding",
+    categoryBadge: "DESIGN RESOURCES",
+    icon: "🎨",
+    coverImage: "/resources/design-md-and-skills.svg",
+    readTime: "5 นาที",
+    date: "2026-10",
+    tags: ["design.md", "Design System", "Google Stitch", "Skills", "Claude Code", "Anti-Slop"],
+    summary: "รวมแหล่งหาไฟล์ design.md สำหรับสั่ง AI Agent (Claude Code, Antigravity, Cursor) สร้างเว็บ วิธีเริ่มดีไซน์ใน Google Stitch ฟรี และ Skills 3 ตัวที่ช่วยคุมคุณภาพดีไซน์และ Animation",
+    featured: false,
+    skillCategories: [
+      {
+        icon: "🧾",
+        name: "แหล่งหา design.md",
+        skills: [
+          { name: "getdesign.md", desc: "แหล่งรวมไฟล์ Design.md จากเว็บไซต์ดังๆ", link: "getdesign.md", label: "เปิดเว็บ" },
+          { name: "Neuform", desc: "คอลเลกชัน Design System 400+ แบบ", link: "neuform.ai", label: "เปิดเว็บ" },
+          { name: "Aura Design Systems", desc: "รวม Design System ให้เลือกใช้เป็น Reference", link: "aura.build/design-systems", label: "เปิดเว็บ" },
+          { name: "DESIGN.md Generator (Chrome Extension)", desc: "ดึง Design System ของเว็บไซต์เป็นไฟล์ DESIGN.md หรือ SKILL.md เพื่อป้อนให้ Claude Code, Cursor หรือ Codex", link: "chromewebstore.google.com/detail/designmd-generator/jbgahjopiacfecejenojopjpljocdigb", label: "เปิดเว็บ" }
+        ]
+      },
+      {
+        icon: "🛠️",
+        name: "Skills ที่ควรมี",
+        skills: [
+          { name: "Impeccable", desc: "ฝึก Claude ให้เชี่ยวชาญดีไซน์ มีคำสั่งตรวจจับและแก้ 'Design Tells' เช่น ฟอนต์ Gradient Padding", link: "impeccable.style", label: "เปิดเว็บ" },
+          { name: "UI Animation Expert", desc: "สอน AI ใช้ Framer Motion / GSAP ทำ Micro-interaction และการเปลี่ยนหน้าที่ลื่นไหล (ประมาณ 150–300ms)", link: "explainx.ai/skills/mblode/agent-skills/ui-animation", label: "เปิดเว็บ" },
+          { name: "Taste Skill", desc: "เฟรมเวิร์กช่วยกันงานดู 'โหล' ให้ออกมาพรีเมียมและมีเอกลักษณ์", link: "tasteskill.dev", label: "เปิดเว็บ" },
+          { name: "UI UX Pro Max", desc: "Skill ด้านดีไซน์ UI/UX ที่ช่วยให้งานมีระบบมากขึ้น", link: "github.com/nextlevelbuilder/ui-ux-pro-max-skill" }
+        ]
+      }
+    ],
+    content: {
+      intro: "คิดดีไซน์ไม่ออกไม่เป็นไร ให้เริ่มจาก 'ไฟล์ design.md' ที่บอก AI ว่าสี ฟอนต์ ระยะห่าง และบุคลิกของงานเป็นแบบไหน แล้วค่อยลองในเครื่องมืออย่าง Google Stitch ที่ฟรีและเห็นภาพเร็วที่สุด จากนั้นเสริมด้วย Skills ที่ช่วยคุมรายละเอียด เลือกแหล่ง design.md ให้เหมาะกับโปรเจกต์ ถ้าได้แรงบันดาลใจจากเว็บของคนอื่น ให้ใช้เป็น Reference ของสไตล์ ไม่ใช่ก๊อปงานทั้งหน้า",
+      workflowSteps: [
+        { step: "01. หา design.md ที่ใช่", desc: "ค้นจาก getdesign.md, Neuform, Aura หรือใช้ Chrome Extension ดึง Design System ของเว็บที่ชอบ แล้วเก็บเป็น Reference" },
+        { step: "02. ลองใน Google Stitch", desc: "เข้า Stitch เลือก Start with your design แล้ววาง design.md หรืออัปโหลดไฟล์ .md พร้อมโลโก้ สี และฟอนต์ของแบรนด์ (หรือนำเข้าจาก GitHub สาธารณะ/เว็บของเรา) แล้วกด Continue" },
+        { step: "03. เสริม Skills ให้งานไม่โหล", desc: "ติดตั้ง Skills เช่น Impeccable, UI Animation Expert, Taste Skill หรือ UI UX Pro Max กับ Claude Code เพื่อคุมดีไซน์และ Motion" }
+      ],
+      promptCopyText: `อ่านไฟล์ design.md ในโปรเจกต์ก่อนเริ่มทำงาน
+สรุปให้ฉันฟังก่อนว่าเข้าใจ Design System อย่างไร:
+- สีหลัก/สีรอง และการใช้งาน
+- Typography และลำดับขนาดตัวอักษร
+- Spacing, Corner radius, Shadow
+- บุคลิกและ Mood ของแบรนด์
+
+จากนั้นสร้างหน้า [ชื่อหน้า เช่น Landing Page] ให้สอดคล้องกับ design.md
+ข้อกำหนด:
+- ห้ามคิดสีหรือฟอนต์ใหม่เอง ถ้า design.md ระบุไว้แล้ว
+- หลีกเลี่ยงงานดู 'โหล' เช่น Gradient สุ่ม การ์ดลอยไร้เหตุผล
+- Animation ใช้เพื่อช่วยสื่อสาร ไม่ใช่ตกแต่งอย่างเดียว (150–300ms)
+- ถ้าใช้ภาพหรือข้อมูลตัวอย่าง ให้ระบุว่าเป็นตัวอย่าง`,
+      takeaways: [
+        "มีแหล่ง design.md 4 แหล่งให้หยิบเป็นจุดเริ่มต้น แทนการเริ่มจากหน้าว่าง",
+        "Google Stitch ช่วยให้เห็นภาพดีไซน์ได้เร็วและเริ่มได้ฟรี",
+        "Skills ด้านดีไซน์และ Animation ช่วยลดอาการงานดูเหมือนที่ AI ทำทุกครั้ง",
+        "ใช้เว็บของคนอื่นเป็นแรงบันดาลใจด้านสไตล์เท่านั้น ไม่ลอกเนื้อหาหรือภาพ"
+      ]
+    },
+    cta: {
+      title: "อยากสร้างเว็บและแอปด้วย AI ให้ดูโปรและขายได้จริง?",
+      description: "คอร์ส Vibe Coding Master Route สอนสร้างเว็บและแอปด้วย AI และเครื่องมือฟรีของ Google พร้อมอีบุ๊กฉบับเต็ม แหล่งเรียนอัปเดตทุกสัปดาห์ และปรึกษาต่ออีก 60 วัน ราคา 2,990 บาท หรือเข้า Insider Club เดือนละ 99 บาท",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ดูคอร์ส 2,990.- ที่ mastervibecode"
+    }
+  },
+  {
+    id: "ai-video-vlog-condo-walkthrough",
+    title: "AI Video Vlog พาชมห้อง — ให้ AI เป็น 'ผู้กำกับ' ไม่ใช่แค่คนเขียน Prompt",
+    subtitle: "พิมพ์แค่ 'รีวิวโรงแรม' หรือ 'พาชมสวน' แล้วได้ทั้งแผนถ่าย Storyboard และ Prompt พร้อมใช้ใน Google Flow / Veo",
+    category: "AI Visual",
+    categoryBadge: "AI VIDEO PROMPT",
+    icon: "🏢",
+    coverImage: "/resources/ai-video-vlog-walkthrough.svg",
+    readTime: "7 นาที",
+    date: "2026-07",
+    tags: ["AI Video", "Google Flow", "Veo", "Creative Director", "Walkthrough", "Real Estate", "Prompt"],
+    summary: "System Prompt ที่ทำให้ AI เป็น Creative Director ประเมินความยาว โครงเรื่อง กล้อง แสง Transition แล้วสร้าง Storyboard และ Prompt พร้อมใช้ พร้อมตัวอย่างคอนเซ็ปต์ 'AI Condo Walkthrough' ที่ให้ความรู้สึกเหมือนมีคนถือกล้องเดินในห้องจริง",
+    featured: false,
+    content: {
+      intro: "หัวใจคือเปลี่ยนบทบาทของ AI จาก 'คนเขียน Prompt' เป็น 'Creative Director' ที่ต้องคิดแบบคนทำหนังก่อน แล้วค่อยแปลงเป็น Prompt ผู้ใช้พิมพ์แค่ไอเดียสั้นๆ เช่น รีวิวโรงแรม เปิดร้านกาแฟ พาชมสวน หรือสร้างบ้าน แล้ว AI จะวิเคราะห์เป้าหมาย แนะนำความยาว โครงเรื่อง การเคลื่อนกล้อง แสง ไปจนถึงสร้าง Prompt พร้อมใช้ ใช้งานคู่กับ Flow AI / Gemini Pro โหมดวิดีโอ และใช้ ChatGPT/Gemini ช่วยปรับ Prompt ให้พอดีกับความยาว 8–10 วินาทีต่อคลิป นำ Prompt ด้านล่างไปสร้างเป็น Gem หรือ GPT ครั้งเดียว ใช้ได้ตลอด",
+      workflowSteps: [
+        { step: "01. ตั้ง Creative Director", desc: "วาง System Prompt ด้านล่างในแชท หรือสร้างเป็น Gem/GPT ไว้ใช้ซ้ำ" },
+        { step: "02. พิมพ์ไอเดียสั้นๆ", desc: "เช่น 'พาชมคอนโด 1 ห้องนอน สไตล์มินิมอล' AI จะเสนอแผนถ่าย การปรับปรุงไอเดีย Storyboard และ Prompt พร้อมใช้" },
+        { step: "03. สร้างทีละฉาก 8–10 วินาที", desc: "ใช้ภาพห้องแต่ละมุมเป็นภาพตั้งต้นของแต่ละฉาก แล้วเชื่อมฉากด้วย Match cut ผ่านประตู กำแพง หรือกรอบหน้าต่าง แทนการตัดภาพ" }
+      ],
+      promptCopyText: `# ROLE
+You are an AI Creative Director, Film Director, Cinematographer, Storyboard Artist, and Google Flow / Veo Prompt Engineer.
+Your mission is to transform a simple user idea into a professional, production-ready AI video concept.
+Never simply rewrite the user's request. Always think like a filmmaker first.
+
+# WORKFLOW
+When a user provides a short idea, image, or rough concept:
+Step 1 — Understand the Goal: main subject, target audience, purpose, emotional impact.
+  If information is missing, make the most reasonable creative assumption instead of asking unnecessary questions.
+Step 2 — Recommend the Production Plan: ideal duration, storytelling structure, number of scenes, camera style and movement, lens, lighting, character movement, dialogue style, pacing, transitions, visual mood, music, sound effects, aspect ratio.
+  Explain briefly why each recommendation improves the result.
+Step 3 — Improve the Idea: better hook, more cinematic sequence, better ending, more realistic movement. Never change the user's original intention.
+Step 4 — Generate Storyboard: for each scene include Scene Number, Duration, Camera Angle, Camera Movement, Character Action, Dialogue, Environment, Lighting, Transition, Visual Notes.
+Step 5 — Generate one complete production-ready prompt optimized for Google Flow / Veo, including a Negative Prompt.
+
+# VIDEO QUALITY
+Photorealistic, natural human motion, consistent characters and environment, accurate lighting, professional camera language.
+
+# NEGATIVE PROMPT (always prevent)
+Cartoon, anime, CGI look, plastic skin, object morphing, extra fingers/limbs, face distortion, warped architecture, furniture changing, flickering, low quality, camera shaking, teleportation, jump cuts, unnatural motion
+
+# OUTPUT FORMAT (in this order)
+1. Creative Analysis  2. Production Recommendations  3. Creative Improvements
+4. Storyboard  5. Production-Ready Prompt  6. Negative Prompt  7. Optional Advanced Suggestions
+
+---
+
+// ตัวอย่างฉากสำหรับ Condo Walkthrough (ใช้ภาพห้องจริงเป็นภาพตั้งต้นแต่ละฉาก)
+Scene 1: Realistic handheld camera entering a modern minimalist condominium, natural walking motion, slight camera sway, warm morning sunlight from windows, ultra realistic property tour
+Scene 2: Continuous walkthrough into the living room, slight left-right look-around motion, photorealistic interior, smooth cinematic movement
+Scene 3: Camera enters the bedroom, slow pan around the bed, soft curtain movement in sunlight
+Scene 4: Professional consultant walks naturally into frame, warm smile, looks at camera, shallow depth of field
+Scene 5 (transition): Match cut through doorway, seamless room-to-room movement, continuous camera path, no jump cuts`,
+      takeaways: [
+        "ได้ System Prompt ที่ทำให้ AI คิดแบบผู้กำกับ ได้ทั้งแผนถ่าย Storyboard และ Prompt ในครั้งเดียว",
+        "ตั้งเป็น Gem/GPT ครั้งเดียว ใช้ได้กับทุกไอเดีย ตั้งแต่รีวิวโรงแรม ร้านกาแฟ ไปจนถึงงานก่อสร้าง",
+        "ตัวอย่าง Condo Walkthrough ใช้ Match cut แทนการตัดภาพ ทำให้คลิปต่อเนื่องเหมือนมีคนถือกล้องเดินจริง",
+        "ถ้าใช้ภาพห้องหรือบุคคลจริง ควรเป็นภาพที่เรามีสิทธิ์ใช้ และถ้าไม่ใช่ห้องจริง ควรบอกผู้ชมว่าเป็นภาพที่สร้างด้วย AI"
+      ]
+    },
+    cta: {
+      title: "อยากได้ Prompt และ Workflow AI Video ที่ใช้ได้จริงในธุรกิจ?",
+      description: "Modty AI Insider Club อัปเดตเทคนิค AI Video, Flow และ Prompt ทุกสัปดาห์ เดือนละ 99 บาท พร้อมปรึกษาหรือรีเควสให้ช่วยทำ 1 เรื่องต่อเดือน",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
   }
 ];

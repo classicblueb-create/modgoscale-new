@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="แหล่ง design.md และ Skills สำหรับดีไซน์เว็บ">
+  <rect width="1200" height="630" fill="#F9F8F4"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(80 90)"><rect width="300" height="300" rx="28" fill="#fff" stroke="#E6E4DD" stroke-width="3"/><text x="40" y="150" font-size="120" font-weight="800" fill="#111">Aa</text><rect x="40" y="190" width="200" height="14" rx="7" fill="#E6E4DD"/><rect x="40" y="220" width="150" height="14" rx="7" fill="#E6E4DD"/></g>
+    <g transform="translate(430 90)"><circle cx="70" cy="70" r="70" fill="#FF6A2A"/><circle cx="230" cy="70" r="70" fill="#111"/><circle cx="390" cy="70" r="70" fill="#FFB68E"/><circle cx="550" cy="70" r="70" fill="#E6E4DD"/><rect y="180" width="620" height="120" rx="28" fill="#111"/><rect x="40" y="226" width="300" height="18" rx="9" fill="#FF6A2A"/><rect x="40" y="260" width="220" height="14" rx="7" fill="#555"/></g>
+    <text x="80" y="470" font-size="104" font-weight="800" fill="#111">DESIGN.MD</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">SOURCES · STITCH · SKILLS</text>
+  </g>
+</svg>
