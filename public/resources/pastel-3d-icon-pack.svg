@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Prompt ไอคอน 3 มิติโทนพาสเทล 120 กว่าแบบ">
+  <rect width="1200" height="630" fill="#FFF1E6"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(80 70)"><g><circle cx="90" cy="90" r="76" fill="#FFB6C8"/><circle cx="270" cy="90" r="76" fill="#B6E8D0"/><circle cx="450" cy="90" r="76" fill="#FFE9A8"/><circle cx="630" cy="90" r="76" fill="#B8D8FF"/><circle cx="90" cy="270" r="76" fill="#D8C8FF"/><circle cx="270" cy="270" r="76" fill="#FFD0A8"/><circle cx="450" cy="270" r="76" fill="#B6E8D0"/><circle cx="630" cy="270" r="76" fill="#FFB6C8"/></g><g fill="#fff" opacity=".7"><ellipse cx="66" cy="62" rx="22" ry="12"/><ellipse cx="246" cy="62" rx="22" ry="12"/><ellipse cx="426" cy="62" rx="22" ry="12"/><ellipse cx="606" cy="62" rx="22" ry="12"/><ellipse cx="66" cy="242" rx="22" ry="12"/><ellipse cx="246" cy="242" rx="22" ry="12"/><ellipse cx="426" cy="242" rx="22" ry="12"/><ellipse cx="606" cy="242" rx="22" ry="12"/></g></g>
+    <text x="80" y="470" font-size="84" font-weight="800" fill="#111">PASTEL 3D ICONS</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">120+ PROMPTS · 4 PACKS</text>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Workflow สร้างและ Rebuild แอป Flutter ด้วย AI">
+  <rect width="1200" height="630" fill="#E6F4FF"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(80 70)"><rect width="260" height="330" rx="26" fill="#fff" stroke="#111" stroke-width="6"/><rect x="24" y="30" width="212" height="40" rx="12" fill="#6EB5FF"/><rect x="24" y="90" width="100" height="100" rx="14" fill="#E6E4DD"/><rect x="136" y="90" width="100" height="100" rx="14" fill="#E6E4DD"/><rect x="24" y="210" width="212" height="22" rx="11" fill="#E6E4DD"/><rect x="24" y="250" width="150" height="22" rx="11" fill="#E6E4DD"/></g><path d="M370 235h110" stroke="#FF6A2A" stroke-width="8" stroke-linecap="round"/><path d="M458 209l30 26-30 26" fill="none" stroke="#FF6A2A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(540 50)"><rect width="230" height="370" rx="40" fill="#111"/><rect x="14" y="14" width="202" height="342" rx="28" fill="#fff"/><rect x="34" y="50" width="162" height="34" rx="12" fill="#6EB5FF"/><rect x="34" y="104" width="76" height="76" rx="12" fill="#FF6A2A"/><rect x="120" y="104" width="76" height="76" rx="12" fill="#FFB68E"/><rect x="34" y="204" width="162" height="18" rx="9" fill="#E6E4DD"/><rect x="34" y="236" width="110" height="18" rx="9" fill="#E6E4DD"/></g>
+    <text x="80" y="470" font-size="104" font-weight="800" fill="#111">FLUTTER × AI</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">IMAGE → APP → EMULATOR</text>
+  </g>
+</svg>

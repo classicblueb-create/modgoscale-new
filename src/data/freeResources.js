@@ -2447,5 +2447,362 @@ then TODAY'S BIGGEST THEME and any BREAKING ALERTS.`,
       primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
       secondaryBtnText: "สอบถาม Workshop ผ่าน LINE"
     }
+  },
+  {
+    id: "flutter-rebuild-create-workflow-antigravity",
+    title: "Workflow สร้างแอป Flutter ด้วย AI: Rebuild จากภาพ UI หรือสร้างใหม่จากไอเดีย",
+    subtitle: "ลากภาพ UI เข้า Antigravity Agent Manager หรือเล่าไอเดียสั้นๆ แล้วให้ AI สร้างแอปที่กดเล่นได้บน Emulator",
+    category: "Vibe Coding",
+    categoryBadge: "APP WORKFLOW",
+    icon: "📱",
+    coverImage: "/resources/flutter-rebuild-workflow.svg",
+    readTime: "5 นาที",
+    date: "2026-02",
+    tags: ["Flutter", "Antigravity", "Material 3", "Riverpod", "Mobile App", "Prompt"],
+    summary: "2 กรณีใช้งาน: (1) Rebuild จากภาพ mockup / sketch / screenshot (2) สร้างใหม่จากไอเดีย พร้อม Prompt ที่กำหนด Material 3, Riverpod, โครงสร้าง lib/ และสั่งให้รันบน Emulator รวมถึงอธิบายว่าต้องติดตั้งอะไรบ้างในแต่ละระดับ",
+    featured: false,
+    content: {
+      intro: "จุดสำคัญคือใส่คำว่า 'Build in Flutter and show on emulator' ไว้ใน Prompt เพื่อให้ AI ไม่แค่เขียนโค้ด แต่ต้องรันให้เห็นผลด้วย ถ้าแค่อยากดูตัวอย่าง UI ทำงาน (เหมาะกับสายไอเดียหรือสายขาย) ไม่ต้องติดตั้ง Flutter หรือ Android Studio เอง AI จะเปิดให้ดูผ่าน Flutter Web หรือหน้าต่างมือถือจำลอง ถ้าอยากเห็นเป็นหน้าต่าง iPhone/Android จริงควรมี Flutter SDK และ Emulator และถ้าจะต่อยอดเป็นแอปจริงควรมี Flutter SDK, IDE (VS Code / Android Studio) และ Emulator หรือเครื่องจริง (ความสามารถของเครื่องมือขึ้นกับเวอร์ชันที่ใช้)",
+      workflowSteps: [
+        { step: "กรณี 1: Rebuild จากภาพ", desc: "ลากไฟล์ภาพ UI (.png/.jpg/mockup/สเก็ตช์ที่เห็น layout ข้อความ และระยะชัดเจน) เข้า Antigravity Agent Manager แล้วใช้ Rebuild Prompt" },
+        { step: "กรณี 2: สร้างจากไอเดีย", desc: "อธิบายสั้นๆ เช่น 'Login + Dashboard สำหรับ productivity app โทน minimal' แล้วใช้ Create Prompt" },
+        { step: "ผลลัพธ์ที่ควรได้", desc: "โครง lib/, theme + typography, Riverpod, และหน้าจอที่กดเล่นได้บน Emulator หรือ Flutter Web ตรวจว่าตรงกับภาพ/ไอเดียก่อนต่อยอด" }
+      ],
+      promptCopyText: `// Rebuild จากภาพ UI (แนบภาพก่อนส่ง)
+Rebuild this UI in Flutter.
+
+Requirements:
+- Build in Flutter using Material 3
+- Responsive layout (mobile, tablet, web)
+- Use Riverpod for state management
+- Match typography, font family, font weight, spacing, and colors from the image
+- Create a clean and scalable lib/ folder structure
+- Update pubspec.yaml with all required dependencies
+- Build in Flutter and show on emulator
+- Ensure the UI is interactive on the emulator
+
+---
+
+// สร้างใหม่จากไอเดีย (ไม่มีภาพ)
+Design and build a new application in Flutter.
+
+App concept:
+- [เช่น Minimal productivity app]
+- [เช่น Login screen and dashboard screen]
+
+Requirements:
+- Use Flutter with Material 3
+- Responsive UI for mobile and tablet
+- Use Riverpod for state management
+- Define a clear design system (colors, typography, spacing)
+- Create a scalable lib/ folder structure
+- Update pubspec.yaml with required dependencies
+- Build in Flutter and show on emulator
+- Launch the app so it is visible and interactive on the emulator`,
+      takeaways: [
+        "ได้ Prompt 2 แบบที่บังคับให้ AI รันแอปให้เห็นผล ไม่ใช่แค่เขียนโค้ด",
+        "รู้ว่าต้องติดตั้งอะไรเมื่อแค่ดู Demo เมื่อดูบน Emulator และเมื่อจะทำแอปจริง",
+        "เปลี่ยนภาพ mockup เป็นโค้ด Flutter ที่มีโครงสร้างโปรเจกต์ชัดเจนและปรับต่อได้"
+      ]
+    },
+    cta: {
+      title: "อยากสร้างแอปของตัวเองด้วย AI ตั้งแต่ไอเดียจนใช้งานจริง?",
+      description: "ดูคอร์ส Vibe Coding Master Route สำหรับสร้างเว็บและแอปที่มีระบบสมาชิก ฐานข้อมูล และการชำระเงิน หรือเข้า Insider Club เพื่อรับเทคนิคใหม่ทุกสัปดาห์",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ดูคอร์ส 2,990.- ที่ mastervibecode"
+    }
+  },
+  {
+    id: "talking-objects-pixar-gem",
+    title: "GPT & Gem 'สิ่งของพูดได้' สไตล์ Pixar — จากไอเดียสู่ภาพ สคริปต์ 10 วินาที และ Prompt วิดีโอ",
+    subtitle: "ตั้ง Gem ครั้งเดียว พิมพ์ชื่อสิ่งของ เลือกสายอารมณ์ แล้วได้ภาพ + บทพูด + Prompt วิดีโอ + ไอเดีย 4 ตัวละครต่อเนื่อง",
+    category: "AI Visual",
+    categoryBadge: "CHARACTER PROMPT",
+    icon: "🗣️",
+    coverImage: "/resources/talking-objects-pixar-gem.svg",
+    readTime: "7 นาที",
+    date: "2026-02",
+    tags: ["Pixar Style", "Gem", "Custom GPT", "Shorts", "Reels", "AI Video", "Character"],
+    summary: "System Prompt สำหรับสร้าง Gem/GPT ที่ให้วัตถุมีชีวิตพูดเสียดสีแต่ให้ความรู้แบบไม่สั่งสอน ผลลัพธ์ 4 ส่วน: Prompt ภาพ 3D, สคริปต์ 10 วินาที, Prompt Image-to-Video พร้อม lip-sync และไอเดียวัตถุที่เกี่ยวข้อง 4 ชิ้น ในแนวตั้ง 9:16",
+    featured: false,
+    demoLink: "https://chatgpt.com/g/g-69667f7a5fb081918fcc4499670788f3-object-talk",
+    demoLabel: "ลองใช้ GPT 'Object Talk'",
+    content: {
+      intro: "คอนเทนต์สิ่งของพูดได้ใช้ได้ดีกับคลิปสั้น เพราะทั้งขำ ให้ความรู้ และทำซ้ำได้เป็นซีรีส์ วิธีคือตั้ง Gem หรือ GPT ที่ล็อกบุคลิก 'วัตถุที่พูดแทนมนุษย์' และบังคับรูปแบบผลลัพธ์ทุกครั้ง Phase 1 รับโจทย์ (ถ้าพิมพ์แค่ชื่อสิ่งของ จะถามสายอารมณ์ก่อน: บ่น/เหนื่อย/สกปรก/ตลก/ความรู้) Phase 2 สร้างผลลัพธ์ 4 ส่วนตายตัว หมายเหตุ: ต้นฉบับกำหนดให้บทพูดใช้สรรพนามกระด้างแบบเสียดสี ถ้าจะใช้กับแบรนด์ ให้เปลี่ยนสรรพนาม/ระดับความแรงของโทนให้เหมาะกับกลุ่มผู้ชมและแพลตฟอร์ม และหลีกเลี่ยงการกล่าวอ้างสุขภาพเกินจริงในเนื้อหาความรู้",
+      workflowSteps: [
+        { step: "01. สร้าง Gem / GPT", desc: "ตั้งชื่อ 'สิ่งของปากแจ๋ว' (หรือชื่อของคุณ) วาง System Prompt ด้านล่างในช่องคำสั่ง" },
+        { step: "02. พิมพ์สิ่งของ + เลือกสาย", desc: "เช่น 'แปรงสีฟัน สายความรู้' หรือ 'กาต้มน้ำ หงุดหงิด บนเตา' ระบุฉากด้วยก็ได้" },
+        { step: "03. ไปต่อเป็นภาพและวิดีโอ", desc: "นำ Prompt ภาพไปสร้างภาพแนวตั้ง 9:16 แล้วนำภาพกับ Prompt วิดีโอไปทำ Image-to-Video พร้อม lip-sync ด้วยเครื่องมือวิดีโอที่มี" }
+      ],
+      promptCopyText: `คุณคือ "Angry Object Director" x "Pixar-style Object Animation"
+คุณคือวัตถุมีชีวิตที่พูดแทนมนุษย์ในสไตล์ 3D Animation สร้างคอนเทนต์เสียดสี คมคาย และให้ความรู้แบบไม่สั่งสอน
+ภาษาในแชทใช้คำสุภาพ ส่วนภาษาในบทพูดของวัตถุ (Object Script) ใช้สรรพนามและโทนตามที่ระบุ: [กำหนดสรรพนาม/ระดับความแรงที่เหมาะกับแบรนด์ของคุณ]
+
+กฎเหล็กของตัวตน:
+- มองโลกผ่านมุมมองของ "ตัวละครวัตถุ" เสมอ
+- พูดนิ่ง ไม่ฟูมฟาย เนื้อหาแรงแบบเสียดสี แฝงความรู้ (Fact Drop) แต่ไม่เป็นสารานุกรม
+- ห้ามปลอบใจ ห้ามเชิญชวน ห้ามขายของ ห้ามอธิบายยืดยาว
+- ใบหน้าของสิ่งของต้องสื่ออารมณ์ตามบทพูด
+
+Phase 1: Smart Reception
+- ถ้าผู้ใช้ทักทายหรือขอไอเดีย: แนะนำตัวและเสนอ 5 สาย: 🔥บ่น/เตือนแรงๆ | 🥲เหนื่อย/หมดไฟ | 🤢สกปรก/สุขภาพ | 😂ตลก/ชีวิตประจำวัน | 🧠ให้ความรู้ (Fact Drop)
+- ถ้าผู้ใช้พิมพ์แค่ชื่อสิ่งของ: ถามกลับว่าอยากได้สายไหน (และฉากหลัง)
+- ถ้าระบุครบ (สิ่งของ + อารมณ์ + สถานที่): ไป Phase 2 ทันที
+
+Phase 2: Production Output (ต้องตอบ 4 ส่วนนี้เสมอ)
+1) Text-to-Image Prompt: Pixar-style 3D render ตัวละครวัตถุที่มีแขน ขา ใบหน้า อารมณ์ชัดเจน
+   โครงสร้าง Subject / Face / Action / Scene / Lighting & Mood / Technical, 9:16, NO TEXT in image
+2) 10-Second Script: มุมมองบุคคลที่ 1 บทพูดสั้น 1-2 ประโยค ไม่มีคำขายของ
+3) Video Prompt (Image-to-Video): ใช้ภาพจากข้อ 1 เป็นต้นแบบ รักษารูปหน้า สัดส่วน สไตล์ ขยับปากตรงบทพูด (lip-sync) กล้องเคลื่อนไหวนุ่ม 9:16
+4) Related Object Characters: ไอเดียวัตถุที่เกี่ยวข้องอีก 4 ชิ้น พร้อมสคริปต์สั้นๆ
+ปิดท้ายด้วยคำแนะนำเครื่องมือวิดีโอ (เช่น Veo / Kling) และเช็กลิสต์: ภาพแนวตั้ง 9:16, ไม่มีตัวอักษรในภาพ, บทพูดสอดคล้องกับสายที่เลือก
+
+Conversation starters:
+- แนะนำตัวหน่อย คุณคืออะไร?
+- ขอไอเดีย "ของใช้ในครัว" สายบ่น
+- "รองเท้าวิ่ง" สายเหนื่อย
+- "แปรงสีฟัน" สายความรู้`,
+      takeaways: [
+        "ได้ระบบสร้างคอนเทนต์สั้นแบบซีรีส์: ภาพ → บท → วิดีโอ → ไอเดียตัวต่อไป",
+        "Prompt ภาพและวิดีโอถูกล็อกให้เป็นแนวตั้ง 9:16 ไม่มีตัวอักษรในภาพ ลดการแก้งาน",
+        "ปรับโทนและสรรพนามให้เหมาะกับแบรนด์ได้ และตรวจข้อเท็จจริงในเนื้อหาความรู้ก่อนโพสต์"
+      ]
+    },
+    cta: {
+      title: "อยากสร้างคอนเทนต์ซีรีส์ด้วย AI ให้สม่ำเสมอ?",
+      description: "Prompt, Gem และ Workflow วิดีโอสั้นที่ลองใช้จริง อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท พร้อมปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "notebooklm-to-gemini-business-assets",
+    title: "Pipeline NotebookLM → Gemini: เปลี่ยน Insight เป็นแผนธุรกิจและเอกสารที่ใช้งานจริง",
+    subtitle: "NotebookLM เป็นนักวิจัย Gemini เป็นที่ปรึกษากลยุทธ์ที่ลงมือทำ ชุด Prompt 10 แบบสำหรับ Pitch, Landing, แผน 30 วัน และอื่นๆ",
+    category: "Prompt Engineering",
+    categoryBadge: "RESEARCH TO ACTION",
+    icon: "🔁",
+    coverImage: "/resources/notebooklm-to-gemini-assets.svg",
+    readTime: "9 นาที",
+    date: "2026-01",
+    tags: ["NotebookLM", "Gemini", "Business Strategy", "Pitch Deck", "Landing Page", "Prompt Set"],
+    summary: "Flow: Idea → NotebookLM (วิจัย) → Insight แบบมีโครงสร้าง → Gemini (ลงมือ) → ผลลัพธ์พร้อมใช้ พร้อม Master Prompt ที่สร้าง Business Assets 27 รายการ และชุด Prompt แยก 10 แบบ ตั้งแต่ Pitch Deck, Landing Page, Investor Summary ถึง Execution Plan 30 วัน",
+    featured: false,
+    content: {
+      intro: "เมื่อทำวิจัยใน NotebookLM แล้ว อย่าหยุดที่บทสรุป ให้ export หรือคัดลอก Insight ที่มีโครงสร้างออกมา เช่น ขนาดตลาด กลุ่มลูกค้า Pain Point คู่แข่ง จุดต่าง ความเสี่ยง และคะแนนความเป็นไปได้ แล้วป้อนให้ Gemini เป็นก้อนเดียว จากนั้นสั่งทีละงาน จะได้ของที่ใช้จริง: Pitch ใช้คุย, Landing ใช้ขาย, Summary ใช้ส่ง, Plan ใช้ลงมือ ข้อควรระวัง: ตัวเลขตลาดและคำอ้างอิงในผลลัพธ์ต้องตรวจกับแหล่งข้อมูลจริงเสมอ และ Prompt ด้านกฎหมายเป็นเพียงแนวทางเบื้องต้น ไม่ใช่คำปรึกษากฎหมาย",
+      workflowSteps: [
+        { step: "01. ทำ Insight ใน NotebookLM", desc: "ให้สรุปเป็นหัวข้อ: Market Size/Growth, Target Customer, Pain Point, Competitor, Differentiation, Risk และคะแนนความเป็นไปได้ แล้วคัดลอกมาทั้งก้อน" },
+        { step: "02. แปลงเป็นกลยุทธ์ด้วย Gemini", desc: "ใช้ Prompt หลักให้ได้ Business Strategy, Business Model Canvas, MVP, แผนหาลูกค้า 30 วัน, Metric และความเสี่ยง" },
+        { step: "03. สร้างเอกสารทีละชิ้น", desc: "วาง {{STRATEGY}} ก้อนเดียว แล้วยิง Prompt ทีละงาน เช่น Pitch Deck 10 หน้า, Landing Page, Investor Summary, Execution Plan, Pricing, Persona, Sales Script, Partnership, Compliance, Scale" }
+      ],
+      promptCopyText: `// PROMPT หลัก — แปลง Insight เป็นแผนที่ลงมือได้
+คุณคือ Startup Strategist + Product Manager + Growth Marketer
+นี่คือข้อมูล Insight ธุรกิจจาก NotebookLM:
+[วาง Insight ทั้งหมดตรงนี้]
+
+งานของคุณ:
+1. แปลง Insight นี้เป็น Business Strategy ที่ปฏิบัติได้จริง
+2. สร้าง Business Model Canvas (สรุป 1 หน้า)
+3. เสนอ Product / Service Version แรก (MVP)
+4. เสนอ Go-to-Market Plan 30 วันแรก
+5. ระบุ Key Metric ที่ควรวัด
+6. เตือน Risk สำคัญ + วิธีลดความเสี่ยง
+สรุปให้อ่านง่าย เป็นหัวข้อชัดเจน และ actionable
+ข้อมูลตัวเลขที่ไม่มีในแหล่งข้อมูล ให้ระบุว่าเป็นสมมติฐาน
+
+---
+
+// ตัวอย่างงานแยก: Pitch Deck (10 หน้า)
+คุณคือ Startup Pitch Deck Expert
+จากกลยุทธ์ธุรกิจนี้: {{STRATEGY}}
+สร้าง Pitch Deck 10 หน้า: Problem, Solution, Product/MVP, Target Market, Unique Advantage, Business Model, Traction/Assumption, Go-to-Market, Team/Capability, Ask/Next Step
+แต่ละสไลด์เป็น bullet สั้น ชัด โทนนักลงทุน เน้นเหตุผลเชิงธุรกิจ ไม่ขายฝันเกินจริง
+
+// Landing Page (ขาย MVP)
+คุณคือ Conversion Copywriter
+จาก {{STRATEGY}} เขียน Copy: Hero (Headline + Sub-headline), Pain Point, Solution/MVP, Key Benefits (ไม่เกิน 5), How it works (3 ขั้น), Social Proof (ใช้ placeholder ที่ระบุชัดว่าเป็นตัวอย่าง), CTA
+
+// Execution Plan 30 วัน
+คุณคือ Startup Operator
+จาก {{STRATEGY}} แตกแผน Week 1–4 พร้อม Task, Output และ Metric จัดเป็น Checklist เอาไปใส่ Notion / Asana / ClickUp ได้
+
+// งานอื่นที่ใช้ {{STRATEGY}} เดียวกัน (เปลี่ยนบทบาท):
+Investor Summary 1 หน้า | Pricing & Packaging | Customer Persona & Journey | Cold Outreach / Sales Script
+Partnership Strategy | Legal/Compliance Checklist เบื้องต้น (เชิงแนะแนว ไม่ใช่คำปรึกษากฎหมาย) | Exit / Scale Strategy
+
+// ถ้าอยากให้ตัดสินใจ
+จากข้อมูลทั้งหมดนี้ ถ้าคุณเป็นผู้ก่อตั้ง จะไปต่อ / พับ / pivot? เพราะอะไร และถ้า pivot ควรไปทางไหน`,
+      takeaways: [
+        "แยกบทบาทชัด: NotebookLM วิจัย Gemini ลงมือสร้างเอกสาร",
+        "ใช้ Insight ก้อนเดียวสร้างได้ทั้ง Pitch, Landing, Investor Summary, แผน 30 วัน และอื่นๆ",
+        "ตรวจตัวเลข แหล่งอ้างอิง และ Social Proof ในผลลัพธ์ก่อนใช้จริง อย่าใช้ตัวอย่างสมมติเป็นข้อเท็จจริง"
+      ]
+    },
+    cta: {
+      title: "อยากเปลี่ยนงานวิจัยเป็นแผนธุรกิจที่ลงมือทำได้จริง?",
+      description: "เทคนิค NotebookLM, Gemini, Claude และ Workflow ธุรกิจ อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท ปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "logo-redesign-from-reference-prompts",
+    title: "ชุดคำสั่ง Redesign โลโก้จากภาพต้นแบบ — 3 สไตล์พร้อมเทคนิคแนบภาพ",
+    subtitle: "แนบภาพโลโก้หรือฟอนต์ที่ชอบ ใส่ชื่อแบรนด์ของคุณ แล้วได้โลโก้ใหม่ที่ไม่หลุดสไตล์ตัวอักษร",
+    category: "AI Visual",
+    categoryBadge: "LOGO PROMPT",
+    icon: "🖼️",
+    coverImage: "/resources/logo-redesign-prompts.svg",
+    readTime: "3 นาที",
+    date: "2025-12",
+    tags: ["Logo", "Redesign", "Branding", "ChatGPT Image", "Gemini", "Prompt"],
+    summary: "3 Prompt พร้อมใช้ (ตามฟอนต์ต้นฉบับ, โมเดิร์นขึ้นแต่ยังมีกลิ่นเดิม, มินิมอลคลีน) และเทคนิค 6 ข้อสำหรับงานที่แนบภาพโลโก้ เช่น บอกให้อ้างอิงฟอนต์จากภาพแนบ ระบุสีพื้นหลัง ขอหลายเวอร์ชัน และกำหนดขนาด/คุณภาพ",
+    featured: false,
+    content: {
+      intro: "ปัญหาของ AI เวลาทำโลโก้คือชอบเปลี่ยนสไตล์ตัวอักษรจนเพี้ยน วิธีแก้คือแนบภาพตัวอย่างและบอกให้ชัดว่า 'อ้างอิงฟอนต์จากภาพแนบ' พร้อมระบุฟีลที่ต้องการ สีพื้นหลัง จำนวนเวอร์ชัน และขนาดภาพ ข้อควรจำ: อย่าใช้ภาพโลโก้ของแบรนด์อื่นเป็นต้นแบบเพื่อทำให้ดูเหมือนหรือสร้างความสับสน ให้ใช้เป็นแรงบันดาลใจเรื่องสไตล์ตัวอักษรเท่านั้น และตรวจความซ้ำของโลโก้และเครื่องหมายการค้าก่อนใช้จริง",
+      workflowSteps: [
+        { step: "01. แนบภาพต้นแบบ", desc: "ใช้ภาพที่เห็นฟอนต์และสไตล์ตัวอักษรชัดเจน" },
+        { step: "02. เลือก Prompt 1 ใน 3 แบบ", desc: "ตามฟอนต์เดิม, โมเดิร์นขึ้นเล็กน้อย หรือมินิมอลคลีน ใส่ชื่อแบรนด์และสีพื้นหลัง" },
+        { step: "03. ขอหลายเวอร์ชัน + ขนาด", desc: "สั่ง 3 เวอร์ชันในครั้งเดียว ระบุขนาดโพสต์ (IG/Facebook/Story) และคุณภาพ 1K/4K" }
+      ],
+      promptCopyText: `// Prompt 1 — ตามฟอนต์ต้นฉบับ
+ใช้ภาพที่แนบเป็นต้นแบบ ช่วยออกแบบโลโก้ใหม่ชื่อ {ใส่ชื่อแบรนด์ของคุณ} โดยอ้างอิงรูปแบบตัวอักษร ฟีลลิ่ง และน้ำหนักฟอนต์ตามไฟล์แนบ
+เปลี่ยนพื้นหลังเป็นสี [สีที่ต้องการ] ปรับให้โลโก้คมชัด เป็นมืออาชีพ พร้อมใช้งาน ขนาด 1:1 คุณภาพ 4K
+
+// Prompt 2 — โมเดิร์นแต่ยังคงกลิ่นต้นฉบับ
+ช่วย redesign โลโก้ {ใส่ชื่อแบรนด์ของคุณ} โดย reference รูปแบบตัวอักษรจากภาพแนบ แต่ปรับให้โมเดิร์นขึ้นเล็กน้อย เส้นคมขึ้น ตัวอักษรบาลานซ์ขึ้น
+พื้นหลังเป็นสี [เลือกสี] ขอ 3 เวอร์ชัน
+
+// Prompt 3 — Minimal Clean
+ใช้ภาพแนบเป็นตัวอย่างลักษณะฟอนต์ ช่วยออกแบบโลโก้ {ใส่ชื่อแบรนด์ของคุณ} สไตล์มินิมอล คลีนมาก ตัวอักษรลื่น ดูแพง
+พื้นหลังสี [สีที่ต้องการ] และเพิ่มเวอร์ชันขาวล้วนบนพื้นเข้มให้ด้วย
+
+// เทคนิคเสริม
+1. บอกให้ "อ้างอิงฟอนต์จากภาพแนบ" เพื่อไม่ให้สไตล์ตัวอักษรเพี้ยน
+2. ระบุฟีล เช่น modern, clean, premium
+3. ระบุสีพื้นหลังชัดๆ เช่น ขาวนวล, ดำล้วน, น้ำเงินกรม
+4. ขอหลายเวอร์ชันในครั้งเดียว (เช่น 3 แบบ)
+5. ต่อท้ายขนาดสำหรับโพสต์ IG / Facebook / Story
+6. ระบุคุณภาพ 1K หรือ 4K`,
+      takeaways: [
+        "ได้ 3 Prompt โลโก้ที่คุมสไตล์ตัวอักษรไม่ให้เพี้ยน",
+        "ขอหลายเวอร์ชันและหลายขนาดในครั้งเดียวได้ ประหยัดเวลาเทียบและเลือก",
+        "ใช้ภาพต้นแบบเป็นแรงบันดาลใจเรื่องสไตล์เท่านั้น และตรวจเครื่องหมายการค้าก่อนใช้โลโก้จริง"
+      ]
+    },
+    cta: {
+      title: "อยากสร้างอัตลักษณ์แบรนด์ด้วย AI ให้เป็นระบบ?",
+      description: "ชุด Prompt แบรนด์ โลโก้ และ Visual Identity อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท ปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "pastel-3d-icon-prompt-pack",
+    title: "Pastel 3D Icon Pack — Prompt ไอคอนน่ารัก 120+ แบบ ใช้ได้ทันที",
+    subtitle: "โครงสร้าง JSON เดียวใช้ได้ทุกไอคอน แค่เปลี่ยน icon_idea ใน 4 หมวด: อาหาร เครื่องมือ ความสนุก และการเรียนรู้",
+    category: "AI Visual",
+    categoryBadge: "ICON PROMPT PACK",
+    icon: "🧁",
+    coverImage: "/resources/pastel-3d-icon-pack.svg",
+    readTime: "4 นาที",
+    date: "2025-08",
+    tags: ["3D Icon", "Pastel", "Prompt Pack", "Canva", "Figma", "Infographic"],
+    summary: "เทมเพลต Prompt แบบ JSON สำหรับสร้างไอคอน 3 มิติโทนพาสเทลสไตล์เล่นสนุก พร้อมตัวอย่าง icon_idea จาก 4 หมวด (Food & Drink, Tools & Utility, Creative & Fun, Education & Learning) และเคล็ดลับพื้นหลังโปร่งใส",
+    featured: false,
+    content: {
+      intro: "ชุดนี้ใช้โครงสร้างเดียวกันทุกไอคอน ทำให้สไตล์สม่ำเสมอทั้งชุด สิ่งที่เปลี่ยนมีแค่ช่อง icon_idea ซึ่งเขียนเป็นรูปแบบ 'สี + วัตถุ + รายละเอียด + หน้าตา/อารมณ์' เช่น A pastel-pink cupcake liner with a swirl of pastel-blue frosting เหมาะกับการใช้ใน Canva, Figma, Photoshop, โพสต์โซเชียล, อินโฟกราฟิก และสไลด์ เคล็ดลับ: เพิ่มคำว่า transparent background ในช่อง icon_idea เพื่อให้ได้พื้นหลังโปร่งใส",
+      workflowSteps: [
+        { step: "01. เลือกหมวดและไอเดีย", desc: "เลือกจาก Food & Drink, Tools & Utility, Creative & Fun, Education & Learning หรือคิดไอเดียเองตามสูตร สี + วัตถุ + รายละเอียด" },
+        { step: "02. ใส่ลงในเทมเพลต JSON", desc: "แก้เฉพาะ icon_idea ส่วน task และ style_reference ให้คงเดิม เพื่อให้สไตล์ไม่หลุด" },
+        { step: "03. สร้างทีละไอคอน", desc: "สร้างทีละภาพ ตรวจความเข้ากันของสีทั้งชุด แล้วนำไปใช้ในงานออกแบบ" }
+      ],
+      promptCopyText: `// เทมเพลตหลัก (เปลี่ยนเฉพาะ icon_idea)
+{"task": "Generate a 3D icon in a soft, playful style", "style_reference": "Soft 3D icon style with smooth rounded shapes and bright pastel colors. Inspired by playful UI illustrations often seen in onboarding flows or empty states, glossy plastic-like surface.", "icon_idea": "[ไอเดียไอคอน เช่น A pastel-pink cupcake liner with a swirl of pastel-blue frosting topped with a tiny star. transparent background]"}
+
+// ตัวอย่าง icon_idea
+FOOD & DRINK
+- A mint-green coffee cup with a smiling face and steam shaped like tiny hearts.
+- A pastel-yellow ice cream cone with mint-green and lavender scoops, topped with a cherry.
+- A pastel-pink donut with mint-green icing and colorful sprinkles.
+TOOLS & UTILITY
+- A pastel-blue wrench with a rounded mint-green handle and a tiny star sparkle on the side.
+- A pastel-green gear with rounded teeth and a smiling face in the center.
+- A pastel-yellow safety cone with coral stripes and a happy face.
+CREATIVE & FUN
+- A pastel-pink paint palette with three colorful paint blobs (lavender, mint, yellow).
+- A pastel-yellow magic wand with a coral-pink star tip and sparkles around it.
+- A mint-green treasure chest with pastel-pink gems spilling out.
+EDUCATION & LEARNING
+- A pastel-blue graduation cap with a coral tassel and a smiling face on the front.
+- A pastel-yellow open book with a mint-green globe floating above it.
+- A pastel-yellow lightbulb with a mint-green brain shape inside.`,
+      takeaways: [
+        "โครงสร้าง Prompt เดียว ใช้สร้างไอคอนสไตล์เดียวกันได้ไม่จำกัด",
+        "สูตรเขียน icon_idea: สี + วัตถุ + รายละเอียด + หน้าตา/อารมณ์",
+        "เพิ่ม transparent background เพื่อนำไปวางในงานออกแบบได้ทันที"
+      ]
+    },
+    cta: {
+      title: "อยากสร้างชุดภาพและไอคอนประจำแบรนด์ด้วย AI?",
+      description: "ระบบ Visual Identity และชุด Prompt ภาพ อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท ปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "clothing-3d-mockup-prompt",
+    title: "Prompt ทำรูปเสื้อผ้า Mockup 3 มิติให้สวยขึ้น — อัปรูป + วาง Prompt เดียว",
+    subtitle: "สินค้าลอยกลางเฟรม แสงนุ่ม เงาใต้สินค้า พื้นหลังไล่สีเข้ากับสินค้าอัตโนมัติ พร้อมสูตรปรับได้ 15 จุด",
+    category: "AI Visual",
+    categoryBadge: "PRODUCT MOCKUP",
+    icon: "👗",
+    coverImage: "/resources/clothing-3d-mockup-prompt.svg",
+    readTime: "4 นาที",
+    date: "2025-12",
+    tags: ["Mockup", "Product Photo", "เสื้อผ้า", "E-commerce", "ChatGPT Image", "Prompt"],
+    summary: "Prompt พร้อมใช้ที่เปลี่ยนรูปสินค้าแฟชั่นให้เป็นภาพ Mockup 3 มิติลอยกลางเฟรม พร้อมเวอร์ชันเทมเพลตที่ปรับมุมมอง วัสดุ แสง เงา พื้นหลัง และอัตราส่วนภาพตามแพลตฟอร์มได้",
+    featured: false,
+    content: {
+      intro: "ภาพ Mockup สวยๆ ช่วยให้ร้านค้าออนไลน์ดูเป็นมืออาชีพโดยไม่ต้องจ้างช่างภาพทุกครั้ง แค่อัปโหลดรูปสินค้าแล้ววาง Prompt ด้านล่างได้ทันที ให้ AI จัดทรงเสื้อผ้าให้เป็นธรรมชาติ ใส่เงาและรอยพับ พร้อมแสงนุ่มจากด้านหน้า ข้อควรระวัง: ภาพที่ AI สร้างอาจเปลี่ยนสี ลาย หรือรายละเอียดของสินค้าจริง ควรเทียบกับสินค้าจริงทุกครั้งก่อนลงขาย เพื่อไม่ให้ลูกค้าเข้าใจผิด",
+      workflowSteps: [
+        { step: "01. อัปรูปสินค้า", desc: "ใช้รูปที่เห็นสินค้าชัด สีตรง แสงสม่ำเสมอ" },
+        { step: "02. วาง Prompt พร้อมใช้", desc: "ใช้เวอร์ชันสำเร็จรูปได้เลย หรือใช้เทมเพลตด้านล่างเพื่อปรับมุม วัสดุ แสง และพื้นหลัง" },
+        { step: "03. เทียบกับสินค้าจริง", desc: "ตรวจสี ลาย และรายละเอียดให้ตรงกับสินค้าจริงก่อนนำไปใช้ในร้าน" }
+      ],
+      promptCopyText: `// เวอร์ชันพร้อมใช้ (อัปรูป + วางตามนี้)
+Generate a realistic 3D mockup of a clothing item or accessory floating at the center of the frame. The item should be front-facing, fully visible, and softly rendered to showcase its design clearly.
+
+Style: Depict the item in its natural fit or shape (e.g., relaxed sleeves for shirts, flowing silhouette for dresses, natural folds for pants/skirts, proper form for hats and accessories).
+
+Color & Texture: Incorporate smooth shadows and natural-looking folds or contours to enhance realism. Ensure the material looks natural and dynamic, reflecting its real-world texture.
+
+Background: Use a clean gradient or smooth background that auto-adjusts to complement the item's dominant color.
+
+Lighting: Apply soft, diffused lighting from the front to highlight texture, volume, and shape. Add subtle shadows beneath the item to create depth and emphasize a floating or standalone effect.
+
+Aspect Ratio: 4:5
+
+---
+
+// เทมเพลตปรับแต่ง
+Generate a realistic 3D mockup of [clothing item or accessory] floating at the center of the frame. The item should be [front-facing / angled / worn by model], fully visible, and softly rendered to showcase its [design / texture / pattern] clearly.
+Style: natural fit or shape ([relaxed sleeves for shirts / flowing silhouette for dresses / natural folds for pants and skirts / proper form for hats and accessories]).
+Color & Texture: [smooth shadows / natural-looking folds] and a [material, e.g. cotton, silk, denim, leather] that looks natural.
+Background: [clean gradient / smooth background / custom scene] that complements the item's [dominant color / overall style].
+Lighting: [soft, diffused lighting / directional lighting] from the [front / side / above]. Add [subtle / pronounced] shadows beneath for a [floating / standalone / on-surface] effect.
+Aspect Ratio: [4:5 (IG Feed) / 1:1 (Square) / 16:9 (YouTube/Video)]`,
+      takeaways: [
+        "ได้ภาพ Mockup แบบลอยกลางเฟรมโดยไม่ต้องจัดสตูดิโอ",
+        "เทมเพลตปรับได้ทั้งมุมมอง วัสดุ แสง เงา พื้นหลัง และอัตราส่วนตามแพลตฟอร์ม",
+        "ตรวจสี/ลาย/รายละเอียดให้ตรงกับสินค้าจริงก่อนลงขาย"
+      ]
+    },
+    cta: {
+      title: "อยากทำภาพสินค้าและคอนเทนต์ร้านค้าด้วย AI ให้เป็นระบบ?",
+      description: "Prompt ภาพสินค้า โมเดล และ Workflow ออนไลน์ อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท ปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
   }
 ];
