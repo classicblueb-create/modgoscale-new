@@ -2140,5 +2140,312 @@ Visual Elements, Packaging, Photography Direction, Tone of Voice, Signature Deta
       primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
       secondaryBtnText: "ดูคอร์ส 2,990.- ที่ mastervibecode"
     }
+  },
+  {
+    id: "songkran-realistic-sticker-pack-prompt",
+    title: "Prompt สร้างสติ๊กเกอร์สงกรานต์จากรูปตัวเอง — 12 ท่า คนเดียวกันทุกภาพ",
+    subtitle: "ชุด Prompt ที่ล็อกใบหน้าเดิม พื้นขาว มีขอบสติ๊กเกอร์ และข้อความไทยน่ารักๆ พร้อมตัดไปทำสติ๊กเกอร์ LINE",
+    category: "AI Visual",
+    categoryBadge: "STICKER PROMPT",
+    icon: "💦",
+    coverImage: "/resources/songkran-sticker-prompt.svg",
+    readTime: "5 นาที",
+    date: "2026-04",
+    tags: ["Sticker", "สงกรานต์", "Gemini", "ChatGPT Image", "LINE Sticker", "Prompt"],
+    summary: "Prompt สร้างสติ๊กเกอร์ภาพคนจริง 10–12 ภาพจากรูปอ้างอิงเดียว ล็อกใบหน้า ชุดไม่ซ้ำ ท่าทางมี movement พื้นขาวล้วน ข้อความภาษาไทยลายมือ และเส้นขอบสติ๊กเกอร์ชิ้นเดียวที่ตัดง่าย",
+    featured: false,
+    content: {
+      intro: "ปัญหาของสติ๊กเกอร์ AI คือหน้าไม่ตรงกัน ท่ายืนแข็ง และข้อความลอยแยกจากตัวแบบ Prompt นี้แก้ด้วยการกำหนดทีละข้อ: ใช้รูปอ้างอิงเดียว บังคับให้เป็นคนเดียวกันทุกภาพ สั่งสร้างทีละภาพ ล็อกพื้นขาวไม่มีเงา ท่าทางต้องไม่ซ้ำและดูเคลื่อนไหว และให้ตัวแบบ ข้อความ และของตกแต่งอยู่ในเส้นขอบสีขาวเส้นเดียวกัน ใช้เฉพาะรูปตัวเองหรือรูปที่เจ้าของยินยอม และเปลี่ยนข้อความให้เข้ากับเทศกาลหรือโอกาสอื่นได้",
+      workflowSteps: [
+        { step: "01. แนบรูปอ้างอิง 1 รูป", desc: "เลือกรูปที่หน้าชัด แสงสม่ำเสมอ แล้ววาง Prompt ด้านล่าง" },
+        { step: "02. สร้างทีละภาพ 1–12", desc: "สั่งให้สร้างทีละภาพตามลำดับ ตรวจใบหน้าและข้อความทุกภาพ ถ้าหน้าเพี้ยนให้สั่งแก้เฉพาะภาพนั้น" },
+        { step: "03. ตัดและส่งตรวจ", desc: "ตัดตามเส้นขอบสีขาว ปรับขนาดและตรวจเงื่อนไขของแพลตฟอร์มสติ๊กเกอร์ก่อนส่งขาย" }
+      ],
+      promptCopyText: `ให้สร้างสติ๊กเกอร์ภาพคนจริงจำนวน 12 ภาพ โดยใช้รูปอ้างอิงเดียวกัน และต้องเป็น "คนคนเดียวกันทุกภาพ" สร้างทีละภาพ 1-12
+ภาพครึ่งตัว (ตั้งแต่หน้าอกขึ้นไป) photorealistic แสงธรรมชาตินุ่ม ผิวเนียน ตาคม
+พื้นหลังสีขาวล้วนเท่านั้น (ไม่มีเงา ไม่มีฉากอื่น)
+
+ข้อกำหนดสำคัญ:
+- ใบหน้าเหมือนต้นฉบับ 100% (ห้ามเปลี่ยนโครงหน้า สีผิว ทรงผม)
+- ทุกภาพเป็นคนเดียวกัน มุมกล้องตรงหรือ 3/4 และจัดเฟรมใกล้เคียงกัน
+- แสงนุ่ม สะอาด ไม่แข็ง ไม่มืด
+
+ธีม + ชุด: ฟีลสดใส ขี้เล่น มี energy ทุกภาพใส่ชุดไม่ซ้ำกัน
+(เสื้อฮาวายลายดอก, ครอปพาสเทล + ยีนส์, เดรสหน้าร้อน, tie-dye, โทนสดใส)
+ผมดูธรรมชาติ เปียกเล็กน้อยได้ มีพร็อพได้ เช่น ปืนฉีดน้ำ ขันน้ำ น้ำกระเซ็น แต่ห้ามบังหน้า
+
+ท่าทาง: ทุกภาพ gesture ไม่ซ้ำ ต้องมี movement เช่น โบกมือทักทาย ยิงปืนฉีดน้ำใส่กล้อง เอียงตัวยิ้มขี้เล่น
+ทำท่าห้ามน่ารัก ไหว้ สาดน้ำ ชูนิ้วโป้ง/peace โบกมือลา ยกมือเหนือหัว ใช้มือพัดหน้า
+ห้ามยืนตรงแขนแนบตัวหรือโพสแข็ง
+
+ตัวหนังสือบนภาพ: ภาษาไทยเท่านั้น ฟอนต์ลายมือมนน่ารัก สีขาวหรือพาสเทล มีขอบให้อ่านชัด วางใกล้ตัวแบบ
+ข้อความ 12 ภาพ:
+1. สุขสันต์วันสงกรานต์ค่าา  2. เดินทางปลอดภัยนะคะ  3. เล่นน้ำกันนน!  4. เที่ยวให้สนุกน้า
+5. สวัสดีปีใหม่ไทยค่า  6. สาดความสุขค่าา  7. ไปแดนซ์ดีกว่าา  8. กลับดีๆ นะคะ
+9. ขอให้โชคดีทั้งปี  10. เปียกได้ แต่อย่าป่วยน้า  11. ร้อนม๊ากกก  12. อยากโดนสาดด..5555
+
+การจัดองค์ประกอบสติ๊กเกอร์:
+- ตัวแบบ + ข้อความ + ของตกแต่ง อยู่ในสติ๊กเกอร์ชิ้นเดียวกัน ห้ามแยกชิ้น
+- มีเส้นขอบสีขาวหนาพอประมาณ เรียบ สม่ำเสมอ ล้อมทั้งชิ้น ไม่แตกเป็นหลายส่วน
+- เว้นระยะขอบเล็กน้อยเพื่อให้ตัดออกมาสวย
+
+ห้ามมี: การ์ตูน/อนิเมะ/ภาพวาด, พื้นหลังอื่นนอกจากขาว, เงา, หน้าบิดเบี้ยว, ภาพนิ่งแข็ง, ลายน้ำ, ข้อความภาษาอื่น
+Keywords: realistic, identity consistency, same person, natural dynamic pose, cute Thai sticker typography, white outline border, ready-to-cut`,
+      takeaways: [
+        "ได้ Prompt ที่ล็อกหน้า ท่าทาง ข้อความ และเส้นขอบสติ๊กเกอร์ไว้ในที่เดียว",
+        "เปลี่ยนธีมและข้อความเป็นเทศกาลอื่นหรือเป็นแบรนด์ตัวเองได้ง่าย",
+        "ใช้เฉพาะรูปที่เรามีสิทธิ์ใช้ และตรวจตัวอักษรไทยทุกภาพก่อนส่ง"
+      ]
+    },
+    cta: {
+      title: "อยากทำภาพและสติ๊กเกอร์ด้วย AI ให้สม่ำเสมอทุกชุด?",
+      description: "ระบบ Visual Identity, Prompt ภาพ และ Workflow ครบ อยู่ใน Modty AI Insider Club อัปเดตทุกสัปดาห์ เดือนละ 99 บาท",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "pretty-app-to-fullstack-monetized-app",
+    title: "เปลี่ยน 'หน้าตาแอปสวยๆ' ให้เป็นแอปที่ใช้งานได้จริงและรับเงินได้ (Full-Stack ใน 4 สเต็ป)",
+    subtitle: "Supabase (ล็อกอิน + ฐานข้อมูล) → Stripe (รับชำระเงิน) → Resend (อีเมลอัตโนมัติ) → GitHub + Vercel (ขึ้นระบบจริง)",
+    category: "Vibe Coding",
+    categoryBadge: "FULL-STACK GUIDE",
+    icon: "💳",
+    coverImage: "/resources/fullstack-monetize-app.svg",
+    readTime: "8 นาที",
+    date: "2026-04",
+    tags: ["Supabase", "Stripe", "Resend", "Vercel", "Claude Code", "Full-Stack", "Authentication"],
+    summary: "ลำดับตั้งระบบหลังบ้านสำหรับแอปที่ออกแบบหน้าตาไว้แล้ว: เชื่อม Supabase Auth + RLS, ทำ Checkout แบบ Subscription ด้วย Stripe (ทดสอบใน Test Mode ก่อน), ส่งอีเมล Welcome ด้วย Resend และ Deploy บน Vercel พร้อม Prompt สำหรับสั่ง Claude Code",
+    featured: false,
+    content: {
+      intro: "แอปที่หน้าตาสวยยังไม่ใช่ผลิตภัณฑ์ ต้องมีบัญชีผู้ใช้ ฐานข้อมูล การจ่ายเงิน และอีเมลตอบกลับ ลำดับที่ลงตัวคือ Supabase → Stripe → Resend → GitHub/Vercel โดยให้ Claude Code ช่วยต่อให้ทีละสเต็ป สิ่งที่ต้องระวังที่สุดคือความลับ: Secret key ของ Stripe และคีย์ฝั่งเซิร์ฟเวอร์ ห้ามพิมพ์ลงในแชท ห้ามใส่ในโค้ดฝั่งหน้าเว็บ และห้าม commit ขึ้น GitHub ให้เก็บในไฟล์ .env (ที่อยู่ใน .gitignore) แล้วไปใส่ Environment Variables ใน Vercel (ในไทยจะลองใช้ Omise หรือ Beam แทน Stripe ได้ แต่บุคคลธรรมดาอาจสมัครยากกว่า)",
+      workflowSteps: [
+        { step: "01. Supabase", desc: "สร้างโปรเจกต์ ใช้ Project URL และ anon public key จาก Settings > API สั่ง Claude Code ให้ทำหน้า Login/Sign-up และตั้ง Row-Level Security (RLS) พื้นฐาน" },
+        { step: "02. Stripe + Resend", desc: "เปิด Test Mode สร้าง Product / Price ID แล้วสั่งทำ Checkout แบบ Subscription และหน้า Pricing จากนั้นต่อ Resend ให้ส่งอีเมล Welcome เมื่อมีผู้ใช้ใหม่ ทดสอบด้วยบัญชีทดลองก่อน" },
+        { step: "03. GitHub → Vercel", desc: "Push โค้ดขึ้น GitHub แล้ว Import เข้า Vercel ใส่ Environment Variables ทั้งหมดก่อนกด Deploy รอ 1–2 นาทีจะได้ URL ของแอปจริง" }
+      ],
+      promptCopyText: `// 1) Supabase: ล็อกอิน + ฐานข้อมูล
+ช่วยเชื่อมต่อระบบ Authentication ของ Supabase เข้ากับโปรเจกต์นี้
+สร้างหน้า Login/Sign-up และตั้งค่า Row-Level Security (RLS) พื้นฐานให้ปลอดภัย
+ค่าที่ต้องใช้ให้อ่านจากไฟล์ .env (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) ห้ามเขียนคีย์ลงในโค้ด
+
+// 2) Stripe: Subscription (ใช้ Test Mode เท่านั้นก่อน)
+ช่วยสร้างระบบ Checkout แบบ Subscription ด้วย Stripe
+ใช้ Price ID: [price_...] อ่าน Publishable key / Secret key จาก .env
+สร้างหน้า Pricing ที่มีปุ่มจ่ายเงิน เรียก Stripe ฝั่งเซิร์ฟเวอร์เท่านั้น (Secret key ห้ามไปอยู่ในโค้ดฝั่งหน้าเว็บ)
+เพิ่ม Webhook สำหรับยืนยันการชำระเงินและอัปเดตสถานะสมาชิก
+
+// 3) Resend: อีเมลอัตโนมัติ
+ช่วยเชื่อม Resend API กับระบบสมัครสมาชิก อ่าน RESEND_API_KEY จาก .env
+เมื่อมีผู้ใช้สมัครใหม่ ให้ส่งอีเมล Welcome ทันที
+
+// 4) ขึ้นระบบจริง
+ตรวจว่า .env อยู่ใน .gitignore แล้ว Push โค้ดทั้งหมดขึ้น GitHub repository
+แล้วสรุปรายการ Environment Variables ที่ต้องไปใส่ใน Vercel ให้ครบก่อน Deploy`,
+      takeaways: [
+        "รู้ลำดับสร้างระบบ: ล็อกอิน/ฐานข้อมูล → จ่ายเงิน → อีเมล → ขึ้นระบบจริง",
+        "ทดสอบการจ่ายเงินใน Test Mode ก่อนเปิดจริงทุกครั้ง",
+        "ห้ามส่ง Secret key ให้ใครหรือ AI ตรงๆ ในแชท ใช้ไฟล์ .env และ Environment Variables แทน",
+        "อย่าลืมเรื่อง PDPA ข้อกำหนดการใช้งาน และการออกใบเสร็จก่อนรับเงินจากลูกค้าจริง"
+      ]
+    },
+    cta: {
+      title: "อยากสร้างแอปที่มีสมาชิก ฐานข้อมูล และรับเงินอัตโนมัติจริงๆ?",
+      description: "คอร์ส Vibe Coding Master Route สอนตั้งแต่เริ่มจนถึง Deploy พร้อมอีบุ๊กเต็ม แหล่งเรียนอัปเดตทุกสัปดาห์ และปรึกษาต่ออีก 60 วัน ราคา 2,990 บาท",
+      primaryBtnText: "ดูคอร์ส Vibe Coding Master Route (2,990.-)",
+      secondaryBtnText: "ปรึกษา Modty 1:1"
+    }
+  },
+  {
+    id: "ai-sourcing-agent-accio-guide",
+    title: "AI Agent หาซัพพลายเออร์ทั่วโลก: รู้จัก Accio พร้อมแผน 3 ขั้นหาสินค้าขาย",
+    subtitle: "ค้นด้วยรูปหรือคีย์เวิร์ด ส่งออก Excel เปรียบเทียบราคา ออกแบบสินค้าให้ต่าง และหา Niche ก่อนสั่งตัวอย่าง",
+    category: "Automation",
+    categoryBadge: "SOURCING WORKFLOW",
+    icon: "🛒",
+    coverImage: "/resources/ai-supplier-sourcing-accio.svg",
+    readTime: "6 นาที",
+    date: "2026-03",
+    tags: ["AI Agent", "Sourcing", "Accio", "Dropshipping", "Niche", "E-commerce"],
+    summary: "Accio คือ AI Agent ด้านการหาสินค้าและซัพพลายเออร์ของ Alibaba (ตามที่ผู้พัฒนาระบุ) เนื้อหานี้สรุปฟีเจอร์ที่ใช้ได้ และ Roadmap 3 ขั้น: คัดซัพพลายเออร์ Top 3 จากข้อมูล, ใช้ AI ช่วยดีไซน์ให้สินค้าแตกต่าง, และเจาะตลาดนิชแทนการขายให้ทุกคน",
+    featured: false,
+    demoLink: "https://www.accio.com/login?sId=O6%2FyY%2FyjQ3As5io4l9zAUw%3D%3D&ic=IC330167260660",
+    demoLabel: "เปิด Accio (ลิงก์รับเครดิตทดลอง 3 เครดิต)",
+    content: {
+      intro: "ฟีเจอร์หลักตามที่ผู้พัฒนาระบุ: ค้นหาสินค้าจากรูปหรือคีย์เวิร์ด คัดกรองซัพพลายเออร์ ส่งออกข้อมูลเป็น Excel เปรียบเทียบราคา สร้างภาพ Mockup สินค้า ทักแชทพร้อมแปลภาษาอัตโนมัติ และวิเคราะห์เทรนด์เพื่อหา Niche ข้อควรระวัง: ข้อมูลและคะแนนความน่าเชื่อถือในระบบเป็นเพียงตัวช่วยคัดกรอง ควรตรวจซัพพลายเออร์เอง สั่งตัวอย่างก่อนเสมอ และเช็กต้นทุนรวม ภาษี และเงื่อนไขนำเข้าก่อนตัดสินใจ ลิงก์ในหน้านี้เป็นลิงก์แนะนำที่ให้เครดิตทดลอง",
+      workflowSteps: [
+        { step: "01. คัดตัวจริงจากข้อมูล", desc: "ส่งออกรายชื่อเป็น Excel เลือกเพียง Top 3 ดูคะแนนความน่าเชื่อถือและอัตราการตอบแชท แล้วถามเรื่อง ขอตัวอย่างสินค้า (Sample), ขั้นต่ำการผลิต (MOQ) และรับทำโลโก้แบรนด์เรา (OEM)" },
+        { step: "02. สร้างความต่างด้วย AI", desc: "ให้ AI ช่วยดีไซน์/เจน Mockup เช่น 'Minimalist matte ceramic, pastel tone, wood handle' แล้วส่งภาพให้ซัพพลายเออร์เช็กความเป็นไปได้ในการผลิต" },
+        { step: "03. เจาะตลาดนิช", desc: "หา Pain Point เช่น แก้วล้างคราบกาแฟง่าย สร้างเรื่องเล่า (แก้วแฮนด์เมดสำหรับทาสแมว) และเช็กเทรนด์ก่อนเลือกสไตล์" }
+      ],
+      promptCopyText: `ช่วยวางแผนหาสินค้าและซัพพลายเออร์ให้ฉัน
+
+สินค้าที่สนใจ: [เช่น แก้วเซรามิก]
+กลุ่มลูกค้าเป้าหมาย: [...]
+งบเริ่มต้น: [...]
+ช่องทางขาย: [...]
+
+ให้ทำ:
+1. เสนอ Niche ที่แข่งขันน้อยกว่า 5 แบบ พร้อมเหตุผลและ Pain Point ของลูกค้า
+2. ร่าง Prompt สำหรับเจน Mockup สินค้าแต่ละแบบ (วัสดุ สี รูปทรง)
+3. ร่างข้อความภาษาอังกฤษสำหรับทักซัพพลายเออร์: ขอตัวอย่าง, ถาม MOQ, ถามเรื่อง OEM, ระยะเวลาผลิต/ส่ง
+4. ตารางเปรียบเทียบซัพพลายเออร์: ราคา, MOQ, ระยะเวลา, คะแนน, ความเสี่ยง
+5. เช็กลิสต์ก่อนสั่งผลิตจริง (ตัวอย่าง คุณภาพ ต้นทุนรวม ภาษี การนำเข้า การคืนสินค้า)`,
+      takeaways: [
+        "มีลำดับขั้นหาสินค้า: ส่งออกข้อมูล → คัด Top 3 → ขอตัวอย่าง → สร้างความต่าง → เจาะ Niche",
+        "ใช้ AI ช่วยทำ Mockup เพื่อสื่อสารกับโรงงานให้ชัดและลดความผิดพลาด",
+        "AI ช่วยคัดกรอง แต่ต้องตรวจซัพพลายเออร์เอง ขอตัวอย่างก่อนสั่งผลิตเสมอ"
+      ]
+    },
+    cta: {
+      title: "อยากใช้ AI Agent หาโอกาสขายและทำงานแทนทีม?",
+      description: "เทคนิค AI Agent, Automation และ Workflow ที่ทดลองใช้จริง อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท ปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "five-website-builder-prompts-figma-make",
+    title: "5 Prompt สร้างเว็บไซต์ครบระบบด้วย AI: สถาปัตยกรรม ดีไซน์ Copy Interaction และ Figma Make",
+    subtitle: "ไล่ตั้งแต่วางโครงเว็บไปจนถึง Prompt พร้อมใช้ใน Figma Make หรือเครื่องมือสร้างเว็บที่คุณถนัด",
+    category: "Vibe Coding",
+    categoryBadge: "WEBSITE PROMPT KIT",
+    icon: "🏗️",
+    coverImage: "/resources/five-website-builder-prompts.svg",
+    readTime: "8 นาที",
+    date: "2026-03",
+    tags: ["Website", "Design System", "Copywriting", "Figma Make", "Claude", "Prompt Engineering"],
+    summary: "ชุด Prompt 5 บทบาท (Systems Architect, Visual System, Conversion Copy, Interaction Engineer, Prompt Translator) พร้อม Prompt รวมที่เติมแค่ 5 ช่องแล้วให้ AI วางกลยุทธ์ โครงสร้างเว็บ Wireframe Design System Copy เทคสแตก และ SEO ในครั้งเดียว",
+    featured: false,
+    content: {
+      intro: "ชื่อ 'เว็บมูลค่า 50,000 บาทใน 2 ชั่วโมง' ฟังเกินจริง แต่สิ่งที่ช่วยได้จริงคือการแบ่งงานเป็นบทบาท: ให้ AI คิดโครงสร้างก่อน ออกแบบระบบภาพ เขียน Copy วางพฤติกรรมโต้ตอบ แล้วค่อยแปลงเป็น Prompt สำหรับเครื่องมือสร้างเว็บ ผลลัพธ์ควรผ่านการตรวจโดยคนก่อนนำไปใช้ โดยเฉพาะเนื้อหาด้านกฎหมาย ราคา และคำอ้างสรรพคุณ",
+      workflowSteps: [
+        { step: "01. ใช้ Prompt รวมเติม 5 ช่อง", desc: "ใส่ Website type, Product name, Product description, Target audience, Brand personality แล้วให้ AI สร้างทั้ง Strategy, Sitemap, User Journey, Wireframe, Design System, Copy, Interaction, Tech Stack และ SEO" },
+        { step: "02. เจาะลึกทีละบทบาท", desc: "ถ้าต้องการละเอียดขึ้น ใช้ Prompt แยกบทบาท เช่น Visual System Architect สร้าง Design Tokens, Copy Architect เขียนข้อความทุกหน้า" },
+        { step: "03. แปลงเป็น Prompt สร้างเว็บ", desc: "ใช้ตัวแปล Prompt เปลี่ยน Specification เป็น Prompt 5 ชุดสำหรับ Figma Make หรือ AI Builder ที่ใช้อยู่ แล้วตรวจ Responsive และคำสะกด" }
+      ],
+      promptCopyText: `You are a world-class full-stack product team combined into one AI system.
+Act as: Product Manager, Systems Architect, UX Designer, Conversion Copywriter, Frontend Engineer, Backend Architect, SEO Specialist.
+Design and generate a complete production-ready website system.
+
+PROJECT
+- Website type: [SaaS / Portfolio / AI Tool / Agency / Marketplace / E-commerce]
+- Product / Brand name: [NAME]
+- Core product description (2-3 sentences): [...]
+- Primary goal: [Lead generation / Sales / User signup / Product demo]
+- Target audience: [Describe in detail]
+- Brand personality: [Minimal / Bold / Luxury / Playful / Technical / Futuristic]
+- Primary color: [Color]   Font style: [Modern / Tech / Elegant / Clean]
+
+STEP 1 — PRODUCT STRATEGY: unique value proposition, key benefits, differentiation, user problems, core conversion goal
+STEP 2 — WEBSITE STRUCTURE: sitemap (Home, Features, Pricing, Use Cases, About, Blog, Contact, Legal) with page objective, key sections, conversion goal
+STEP 3 — USER JOURNEY: Visitor → signup, Visitor → demo request, Visitor → purchase, with conversion triggers
+STEP 4 — PAGE WIREFRAMES: Hero, Features, Problem/Solution, Social proof, Testimonials, Pricing, FAQ, CTA blocks, Footer
+STEP 5 — DESIGN SYSTEM: color palette, type scale, 8px spacing, buttons, cards, navigation, dark mode
+STEP 6 — CONVERSION COPY: hero headline (max 6 words), subheadline, CTA, feature/benefit descriptions, pricing descriptions, FAQ
+  (use only claims I can substantiate; mark any placeholder testimonials or numbers clearly as placeholders)
+STEP 7 — INTERACTION DESIGN: navigation, hover states, scroll animations, form validation, loading/empty/error states
+STEP 8 — TECH STACK: Frontend (Next.js/React), Backend (Node/Supabase/Firebase), DB (PostgreSQL), Auth, Hosting (Vercel/Netlify), CMS if needed
+STEP 9 — SEO STRUCTURE: titles, meta descriptions, URL structure, schema markup, internal linking
+STEP 10 — BUILD OUTPUT: site structure, page-by-page content, component list, API structure, database schema
+Format so it can be directly implemented by developers or AI coding tools.
+
+---
+
+// ตัวแปล Specification → Prompt สำหรับ Figma Make (ใช้หลังได้ผลลัพธ์ข้างบน)
+แปลง specification ด้านล่างเป็น Figma Make Prompt แม่นยำสูง 5 ชุด
+[PASTE SPECIFICATION HERE]
+แต่ละ prompt ต้อง: เริ่มด้วยผลลัพธ์ภาพสุดท้าย, ใส่ brand identity (สี typography tone), ระบุ interaction (hover, click, scroll, transitions), ระบุ responsive ทุก breakpoint, ระบุโครงสร้าง section (hero, feature grid, CTA, footer)`,
+      takeaways: [
+        "ได้ Prompt รวมที่เติมแค่ 5 ช่องก็ได้ทั้งแผนและโครงสร้างเว็บ",
+        "แยกบทบาท Architect, Designer, Copywriter, Engineer ทำให้ผลลัพธ์ละเอียดและตรวจง่ายขึ้น",
+        "AI ช่วยร่างได้เร็ว แต่ต้องตรวจเนื้อหา ราคา และคำอ้างต่างๆ ก่อนเปิดเว็บจริง"
+      ]
+    },
+    cta: {
+      title: "อยากสร้างเว็บและระบบด้วย AI ให้ใช้งานจริง?",
+      description: "ดูตัวอย่างการสร้างเว็บ แอป และระบบตั้งแต่เริ่มจนถึง Deploy ในคอร์ส Vibe Coding Master Route หรือรับเทคนิคใหม่ทุกสัปดาห์ใน Insider Club เดือนละ 99 บาท",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ดูคอร์ส 2,990.- ที่ mastervibecode"
+    }
+  },
+  {
+    id: "free-claude-learning-resources-and-cowork",
+    title: "รวมแหล่งเรียนรู้ Claude ฟรี + เริ่มใช้ Cowork ภายใน 5 นาที",
+    subtitle: "คอร์สฟรีจากทีมผู้สร้าง Claude, หน้า Learn และ Plugin ทางการ พร้อมสูตร Prompt 3 ส่วนและ Workflow สำหรับ Cowork",
+    category: "Claude Skills",
+    categoryBadge: "LEARNING HUB",
+    icon: "📚",
+    coverImage: "/resources/claude-free-learning-cowork.svg",
+    readTime: "9 นาที",
+    date: "2026-03",
+    tags: ["Claude", "Cowork", "Free Course", "Skills", "Plugins", "Prompt", "Workflow"],
+    summary: "แหล่งเรียน Claude ฟรี (คอร์สพร้อมใบประกาศ, คู่มือ best practices, Knowledge Work Plugins) และคู่มือเริ่มต้น Claude Cowork: ติดตั้ง Desktop App รันงานแรก เขียน Prompt ด้วยสูตร Task / Context / Output ปรับแต่งด้วย Connectors, Skills, Plug-ins และ 3 Workflow ตัวอย่าง",
+    featured: false,
+    skillCategories: [
+      {
+        icon: "🎓",
+        name: "แหล่งเรียนรู้ฟรี",
+        skills: [
+          { name: "Anthropic Academy (Skilljar)", desc: "คอร์สจากทีมผู้สร้าง Claude อธิบายวิธีคิดของโมเดล การออกแบบคำสั่ง ขีดจำกัดและจุดแข็ง มีใบประกาศตอนจบ", link: "anthropic.skilljar.com", label: "เปิดเว็บ" },
+          { name: "Anthropic Learn", desc: "รวมคำแนะนำการใช้ Claude เทคนิคคำสั่ง และแนวทางทำงานกับโมเดลให้ได้ผลดี ใช้เป็น reference ออกแบบ workflow", link: "anthropic.com/learn", label: "เปิดเว็บ" },
+          { name: "Knowledge Work Plugins", desc: "Plugin ทางการสำหรับงานแบบ Knowledge Worker เช่น Marketing, Finance, Legal", link: "github.com/anthropics/knowledge-work-plugins" },
+          { name: "Using Cowork Safely", desc: "คู่มือทางการเรื่องความปลอดภัยในการใช้ Cowork อ่านก่อนเชื่อมโฟลเดอร์และเครื่องมือ", link: "support.claude.com/en/articles/13364135-using-cowork-safely", label: "เปิดเว็บ" }
+        ]
+      }
+    ],
+    content: {
+      intro: "Cowork ในมุมของคู่มือนี้คือผู้ช่วยที่ลงมือทำงานต่อเนื่องให้เสร็จ ไม่ใช่แค่แชตบอต เข้าถึงโฟลเดอร์ เชื่อมเครื่องมือ และตั้งเวลารันงานได้ วิธีเริ่ม: ติดตั้ง Claude Desktop App เปิดแท็บ Cowork เขียนงานแรกเป็นภาษาปกติ ดูขั้นตอนที่มันทำ แล้วค่อยปรับ ให้คิดว่า Cowork เป็นพนักงานใหม่ที่เก่งแต่ยังไม่รู้บริบท จึงต้องบอก Task, Context และ Output ที่ต้องการ ก่อนให้สิทธิ์เข้าถึงอีเมลหรือไฟล์สำคัญ ควรอ่านคู่มือความปลอดภัยและให้สิทธิ์เท่าที่จำเป็นเท่านั้น (ความสามารถและชื่อเมนูอาจเปลี่ยนตามเวอร์ชัน ให้ยึดเอกสารทางการล่าสุด)",
+      workflowSteps: [
+        { step: "01. เรียนพื้นฐานจากแหล่งทางการ", desc: "เริ่มจากคอร์สฟรีและหน้า Learn เพื่อเข้าใจวิธีคิดของโมเดลและการออกแบบคำสั่งอย่างเป็นระบบ" },
+        { step: "02. เริ่มงานแรกใน Cowork", desc: "ติดตั้ง Claude Desktop เปิดแท็บ Cowork ใส่งานง่ายๆ ที่มี Task + Context + Output แล้วตรวจผลลัพธ์ก่อนใช้จริง" },
+        { step: "03. ปรับแต่งทีละอย่าง", desc: "เชื่อม Connectors ที่จำเป็น เปลี่ยน Prompt ที่ใช้บ่อยเป็น Skill รวมหลาย Skill เป็น Plug-in ตามบทบาท และเริ่มจาก 1–2 Workflow ต่อสัปดาห์" }
+      ],
+      promptCopyText: `// สูตร Prompt 3 ส่วนสำหรับ Cowork
+TASK: [ต้องการให้ทำอะไร เช่น ร่างคำตอบอีเมลทุกฉบับที่ยังไม่ได้อ่านใน 24 ชั่วโมง]
+CONTEXT: [บริบทที่ต้องรู้ เช่น ฉันทำเอเจนซี่คอนเทนต์ โทนตรงไปตรงมาและเป็นมืออาชีพ ลูกค้าคาดหวังการตอบเร็ว]
+OUTPUT: [รูปแบบผลลัพธ์ เช่น ทุกฉบับให้แสดง Sender / Subject / Draft Response และติดธงสิ่งที่ต้องให้ฉันตัดสินใจก่อนส่ง]
+
+ถ้าต้องการให้ทำจนจบ ให้ต่อท้ายว่า:
+Complete this task autonomously.
+Only stop and ask me if you hit something you genuinely cannot resolve without my input.
+Otherwise deliver the finished result.
+(อย่าอนุญาตให้ส่งอีเมลหรือแก้ไขไฟล์จริงโดยไม่ขออนุมัติ)
+
+---
+
+// Workflow 1: AI Morning Brief
+You are my personal chief of staff. Every morning when I run this task:
+1. Pull today's meetings and events from my Google Calendar (time, attendees, location or link).
+2. Pull tasks in Notion marked high priority or due today.
+3. Cross-reference both and flag anything underprepared, overdue, or likely to conflict.
+Deliver in this format: TODAY IS / YOUR SCHEDULE / YOUR PRIORITIES TODAY (1-3) / WATCH OUT FOR / YOUR FOCUS FOR TODAY
+
+---
+
+// Workflow 2: Email Manager
+Pull every unread email from the last 24 hours. Sort into Urgent / Important / FYI / Junk.
+For Urgent and Important, draft responses. Format: FROM / SUBJECT / SUMMARY / DRAFT.
+Do not send anything; leave all drafts for my review.
+
+---
+
+// Workflow 3: Daily News Research
+Every day at [TIME], search the most important developments from the last 24 hours in [topics].
+For each topic find the top 3 stories and deliver: Headline / Source / Summary / Why it matters,
+then TODAY'S BIGGEST THEME and any BREAKING ALERTS.`,
+      takeaways: [
+        "มีแหล่งเรียน Claude ฟรีจากแหล่งทางการให้เริ่มต้นอย่างเป็นระบบ",
+        "สูตร Prompt 3 ส่วน (Task / Context / Output) ใช้ได้กับ AI ทุกตัว ไม่ใช่เฉพาะ Cowork",
+        "เปลี่ยน Prompt ที่ใช้บ่อยเป็น Skill และจัดกลุ่มเป็น Plug-in เพื่อใช้ซ้ำ",
+        "ให้สิทธิ์เฉพาะที่จำเป็น เริ่มจากงานเล็ก และตรวจร่างอีเมล/ไฟล์ก่อนส่งหรือบันทึกทุกครั้ง"
+      ]
+    },
+    cta: {
+      title: "อยากสร้าง AI Operating System ส่วนตัวหรือของทีม?",
+      description: "ChatGPT Work, Claude, Codex และ Workflow อัตโนมัติ อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท หรือจัด Workshop ตามโจทย์ของทีมคุณทาง LINE",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "สอบถาม Workshop ผ่าน LINE"
+    }
   }
 ];

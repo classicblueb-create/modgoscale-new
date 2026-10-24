@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="5 Prompt สร้างเว็บไซต์ครบระบบด้วย AI">
+  <rect width="1200" height="630" fill="#F9F8F4"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(80 80)"><g fill="#fff" stroke="#111" stroke-width="5"><rect width="200" height="130" rx="22"/><rect x="220" width="200" height="130" rx="22"/><rect x="440" width="200" height="130" rx="22"/><rect x="110" y="150" width="200" height="130" rx="22"/><rect x="330" y="150" width="200" height="130" rx="22"/></g><g fill="#FF6A2A"><circle cx="40" cy="40" r="14"/><circle cx="260" cy="40" r="14"/><circle cx="480" cy="40" r="14"/><circle cx="150" cy="190" r="14"/><circle cx="370" cy="190" r="14"/></g><g fill="#E6E4DD"><rect x="30" y="70" width="140" height="12" rx="6"/><rect x="250" y="70" width="140" height="12" rx="6"/><rect x="470" y="70" width="140" height="12" rx="6"/><rect x="140" y="220" width="140" height="12" rx="6"/><rect x="360" y="220" width="140" height="12" rx="6"/></g></g>
+    <text x="80" y="470" font-size="84" font-weight="800" fill="#111">WEBSITE PROMPTS</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">BLUEPRINT · DESIGN · COPY · LOGIC</text>
+  </g>
+</svg>
