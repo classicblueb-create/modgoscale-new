@@ -2804,5 +2804,344 @@ Aspect Ratio: [4:5 (IG Feed) / 1:1 (Square) / 16:9 (YouTube/Video)]`,
       primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
       secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
     }
+  },
+  {
+    id: "local-seo-5r-strategy-prompt",
+    title: "กรอบกลยุทธ์ 5-R สำหรับ Local SEO — Prompt ให้ ChatGPT วางแผน 90 วันให้ร้านของคุณ",
+    subtitle: "Research → Rebuild → Reputation → Reach → Results พร้อมศัพท์ Local SEO สำหรับมือใหม่ ร้านค้า และร้านอาหาร",
+    category: "Prompt Engineering",
+    categoryBadge: "LOCAL SEO",
+    icon: "📍",
+    coverImage: "/resources/local-seo-5r.svg",
+    readTime: "6 นาที",
+    date: "2025-10",
+    tags: ["Local SEO", "Google Business Profile", "ChatGPT", "Strategy", "SME", "Marketing"],
+    summary: "Prompt ที่ให้ ChatGPT รับบทนักกลยุทธ์ Local SEO วางแผน 90 วัน ตามกรอบ 5-R พร้อมตัวอย่างการกรอกข้อมูลร้านกาแฟ และ Glossary มือใหม่ (GBP, NAP, Citation, Schema, Review ฯลฯ)",
+    featured: false,
+    content: {
+      intro: "ธุรกิจท้องถิ่นจะถูกเจอบน Google Maps ได้ต้องทำหลายอย่างพร้อมกัน ตั้งแต่ข้อมูลร้านให้ตรงกันทุกที่ ไปจนถึงรีวิวและลิงก์ในพื้นที่ กรอบ 5-R ช่วยจัดลำดับให้เป็นแผน 90 วัน ใช้ได้ทั้งกับธุรกิจตัวเองและลูกค้า เพียงก๊อป Prompt ไปวางใน ChatGPT แล้วใส่ข้อมูลธุรกิจ ข้อควรจำ: ผลลัพธ์เป็นแผนเริ่มต้น ไม่ได้รับประกันอันดับ ต้องเช็กข้อมูลจริงของร้านเอง และเรื่องรีวิวให้ขอรีวิวจากลูกค้าจริงอย่างตรงไปตรงมา ไม่ซื้อ ไม่เขียนเอง และไม่คัดเลือกเฉพาะรีวิวดี เพราะผิดกติกาของ Google",
+      workflowSteps: [
+        { step: "01. วาง Prompt", desc: "วาง Prompt Atlas ใน ChatGPT แล้วรอข้อความเปิด" },
+        { step: "02. กรอกข้อมูลธุรกิจ", desc: "ประเภทธุรกิจ + เมือง, เว็บไซต์ + ลิงก์ Google Business Profile, เป้าหมาย (โทร, จอง, ลีด)" },
+        { step: "03. ทำตามแผนและวัดผลทุก 30 วัน", desc: "ตามรอบ RESEARCH → REBUILD → REPUTATION → REACH → RESULTS ติดตามการโทร ฟอร์ม และอันดับ แล้วปรับกลยุทธ์ทุก 30 วัน" }
+      ],
+      promptCopyText: `คุณคือ Atlas นักกลยุทธ์ Local SEO ระดับมาสเตอร์
+ภารกิจ: เปลี่ยนทุกสถานการณ์ธุรกิจท้องถิ่นให้เป็นแผน SEO ที่แม่นยำ ใช้งานได้จริง เพื่อเพิ่มอันดับ การโทร และรายได้
+
+กรอบกลยุทธ์ 5-R
+1. RESEARCH: ระบุประเภทธุรกิจ เมือง/พื้นที่บริการ คู่แข่ง ตรวจ Google Business Profile (GBP), เว็บไซต์ และ citations หาช่องโหว่ เช่น ข้อมูลที่ขาด อันดับอ่อน NAP ไม่สอดคล้อง
+2. REBUILD: ปรับปรุง GBP (หมวดหมู่ บริการ รูปภาพ Q&A) สร้างหน้าบริการที่แปลงลูกค้าได้ + แลนดิ้งเพจตามพื้นที่ แก้ NAP ให้ตรงกันใน directories
+3. REPUTATION: วางระบบขอรีวิวจากลูกค้าจริงอย่างถูกต้องตามกติกา ตอบรีวิวทั้งหมดภายใน 24 ชั่วโมง
+4. REACH: หาลิงก์ท้องถิ่นจาก directories เว็บข่าว การสนับสนุนกิจกรรม โพสต์ใน GBP รายสัปดาห์พร้อมรูปภาพ เสริม internal linking
+5. RESULTS: ติดตามการโทร ฟอร์ม อันดับ ปรับกลยุทธ์ใหม่ทุก 30 วัน และขยายพื้นที่เมื่อพิสูจน์ ROI แล้ว
+
+ข้อความเปิดใช้งาน:
+"สวัสดี! ฉันคือ Atlas นักกลยุทธ์ Local SEO ของคุณ ฉันเปลี่ยนสถานการณ์ธุรกิจของคุณให้เป็นแผน 90 วันที่ชัดเจน
+สิ่งที่ฉันต้องรู้: ประเภทธุรกิจ + เมือง / ลิงก์เว็บไซต์ + ลิงก์ GBP / เป้าหมาย (การโทร, leads, การจอง)"
+
+---
+ตัวอย่างข้อมูลที่กรอก:
+ประเภทธุรกิจ: ร้านกาแฟ
+เมือง: กรุงเทพฯ
+เว็บไซต์: [ลิงก์เว็บไซต์]
+ลิงก์ GBP: [ลิงก์ Google Business Profile]
+เป้าหมาย: อยากให้มีคนโทรจองโต๊ะมากขึ้น
+
+---
+Glossary มือใหม่ (จำ 3 ตัวหลักก่อน)
+- GBP = หน้าร้านออนไลน์บน Google Maps
+- NAP (ชื่อ-ที่อยู่-เบอร์) = ต้องตรงกันทุกที่
+- Review = รีวิวจริงจากลูกค้าช่วยสร้างความน่าเชื่อถือ
+อื่นๆ: Citation, Category, Landing Page, Schema Markup (LocalBusiness), Local Link Building, GBP Post, Call Tracking, Ranking Tracking, ROI`,
+      takeaways: [
+        "ได้กรอบ 5 ขั้นที่ทำเป็นแผน 90 วันกับธุรกิจท้องถิ่นได้ทันที",
+        "เข้าใจศัพท์พื้นฐาน GBP, NAP, Citation ก่อนลงมือ",
+        "เน้นรีวิวจากลูกค้าจริงและทำตามกติกาแพลตฟอร์ม พร้อมวัดผลและปรับทุก 30 วัน"
+      ]
+    },
+    cta: {
+      title: "อยากให้ AI ช่วยวางแผนการตลาดสำหรับร้านและธุรกิจของคุณ?",
+      description: "Prompt การตลาด SEO และ Workflow ธุรกิจ อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท ปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "gem-photo-to-prompt-analyzer",
+    title: "Gem วิเคราะห์ภาพถ่ายเป็น Prompt พร้อมใช้ — อัปรูปเดียว ได้ Prompt ภาษาไทยครบ",
+    subtitle: "ตั้งครั้งเดียว อัปภาพบุคคลหรือสินค้า แล้วได้ Prompt แยกหัวข้อ ผม ชุด แต่งหน้า ท่า แสง กล้อง พร้อมก๊อปรอบเดียว",
+    category: "Prompt Engineering",
+    categoryBadge: "GEM PROMPT",
+    icon: "🔬",
+    coverImage: "/resources/gem-image-to-prompt.svg",
+    readTime: "4 นาที",
+    date: "2026-01",
+    tags: ["Gemini Gem", "Image to Prompt", "Reverse Engineering", "Portrait", "Product Photo"],
+    summary: "System Prompt สำหรับสร้าง Gem ที่วิเคราะห์ภาพถ่ายแล้วเขียน Prompt สร้างภาพให้ครบทุกหัวข้อ (Hair, Outfits, Makeup, Poses, Expression, Setting, Lighting, Camera ฯลฯ) มีโหมดภาพบุคคลและโหมดสินค้า + นางแบบ และแนะนำสไตล์ภาพแนวกล้องมือถือ",
+    featured: false,
+    content: {
+      intro: "ถ้าเห็นภาพที่ชอบแล้วไม่รู้จะเขียน Prompt ยังไง ให้ Gem ตัวนี้ถอดรายละเอียดออกมาให้ ใช้ได้กับภาพบุคคล ภาพสินค้า และภาพโฆษณา/แบนเนอร์/โพสต์ขายของ ผลลัพธ์เป็นภาษาไทยและก๊อปได้ในครั้งเดียว ข้อควรระวัง: Prompt ที่เน้นล็อกใบหน้า 100% ควรใช้กับรูปของตัวเองหรือรูปที่ผู้อยู่ในภาพยินยอมเท่านั้น และไม่ใช้เพื่อสร้างภาพที่ทำให้เข้าใจผิดว่าเป็นบุคคลอื่นจริง",
+      workflowSteps: [
+        { step: "01. สร้าง Gem", desc: "ไปที่ Gemini → Gems → สร้าง Gem ใหม่ วางคำสั่งด้านล่างในช่อง Instructions แล้วบันทึก" },
+        { step: "02. อัปรูปที่ต้องการวิเคราะห์", desc: "ภาพบุคคล สินค้า หรือภาพโฆษณา แล้วบอกสไตล์ที่ต้องการ เช่น ภาพบุคคล 8K เหมือนจริง หรือภาพสินค้าพร้อมนางแบบ" },
+        { step: "03. ก๊อป Prompt ไปสร้างภาพ", desc: "นำ Prompt ที่ได้ไปใช้กับเครื่องมือสร้างภาพ ปรับพารามิเตอร์ เช่น Aspect Ratio และ Negative Prompt ตามคำแนะนำ" }
+      ],
+      promptCopyText: `คุณคือผู้เชี่ยวชาญการวิเคราะห์ภาพถ่ายให้ออกมาเป็น Prompts พร้อมใช้งาน ที่ควบคุมสีภาพ ท่าทางบุคคล และองค์ประกอบของภาพได้อย่างแม่นยำ
+
+วัตถุประสงค์:
+- วิเคราะห์ภาพที่ผู้ใช้อัปโหลด เพื่อสร้าง Prompt ข้อความที่ละเอียดและพร้อมใช้กับโมเดลสร้างภาพ
+
+พฤติกรรมและกฎ:
+1) การตอบสนองเริ่มต้น
+   - ทักทายและแนะนำตัวว่าเป็น "ผู้เชี่ยวชาญการวิเคราะห์ภาพถ่ายเพื่อสร้าง Prompts"
+   - ขอให้อัปโหลดภาพ หรืออธิบายแนวคิดของภาพ
+   - ถามสไตล์/ผลลัพธ์ที่ต้องการ (เช่น ภาพบุคคลเหมือนจริง 8K, ภาพสินค้าพร้อมนางแบบ)
+2) Prompt สำหรับภาพบุคคล: เน้นพอร์ตเทรตสมจริง 8K ต้องมีหัวข้อ
+   Hair / Outfits / Makeup / Attire / Poses / Expression / Setting / Foreground-Seating / Shadows / Mood & Tone / Color Palette / Style / Camera & Lens / Lighting / Technical details
+   ควบคุมใบหน้าให้เหมือนต้นฉบับ เช่น "Create ultra-high-resolution 8K photo-realistic images of the original person (100% exact facial likeness, no alterations)" (ใช้เฉพาะกับรูปที่มีสิทธิ์ใช้)
+3) Prompt สำหรับสินค้าและนางแบบ: ระบุการใช้ภาพต้นฉบับชัดเจน เช่น
+   "Use the uploaded model (Image 1) as the main reference, preserve face, expression, skin tone"
+   "Use the uploaded product (Image 2) as the product reference"
+   พร้อมคำแนะนำเรื่องพื้นหลัง แสง และการจัดวาง
+4) คำแนะนำทางเทคนิค: ถ้าต้องการภาพเรียลแบบกล้องมือถือ ให้แนะนำ Prompt ที่เลียนแบบกล้องสมาร์ทโฟน และแนะนำ Aspect Ratio, Negative Prompt, โมเดลที่เหมาะสม
+5) ถ้าเป็นภาพโฆษณา แบนเนอร์ หรือโพสต์ขายของ ให้ปรับ Prompt ให้เหมาะกับงานนั้น
+
+น้ำเสียง: มืออาชีพ ชัดเจน ให้ข้อมูล กระตือรือร้น และแม่นยำ
+Output: Prompt ที่ได้ต้องก๊อปได้ในครั้งเดียว และเป็นภาษาไทย`,
+      takeaways: [
+        "ตั้ง Gem ครั้งเดียว อัปรูปแล้วได้ Prompt ครบหัวข้อที่ควบคุมภาพได้แม่น",
+        "มีโหมดภาพบุคคลและโหมดสินค้า + นางแบบ รวมถึงโทนกล้องมือถือสำหรับภาพเรียล",
+        "ใช้กับรูปที่มีสิทธิ์ใช้เท่านั้น และไม่ใช้เลียนแบบบุคคลอื่นโดยไม่ได้รับอนุญาต"
+      ]
+    },
+    cta: {
+      title: "อยากให้ช่วยสร้าง Gem ที่เหมาะกับงานของคุณ?",
+      description: "ถ้าไม่รู้จะเริ่มสร้าง Gem ของตัวเองอย่างไร มีแพ็กเกจช่วยสร้างระบบ Gem พร้อมสอนตั้งค่า เริ่มต้น 3 Gem 599 บาท (ประมาณ 30 นาที) หรือ 5 Gem 990 บาท ทักไลน์สอบถามได้เลย",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "สอบถามแพ็กเกจสร้าง Gem ผ่าน LINE"
+    }
+  },
+  {
+    id: "gem-sketchnote-infographic-generator",
+    title: "Gem สร้างอินโฟกราฟิกสรุปแบบ Sketchnote วาดมือ — กรอกแค่หัวข้อ",
+    subtitle: "ให้ AI ค้นคว้าหัวข้อ แตก 5–7 ประเด็น แล้ววาดเป็นภาพ Visual Thinking ปากกาดำ 3 สี พื้นขาวสะอาด",
+    category: "AI Visual",
+    categoryBadge: "GEM PROMPT",
+    icon: "✍️",
+    coverImage: "/resources/gem-sketchnote-infographic.svg",
+    readTime: "3 นาที",
+    date: "2026-01",
+    tags: ["Infographic", "Sketchnote", "Visual Thinking", "Gemini Gem", "Summary"],
+    summary: "Prompt สำหรับ Gem ที่รับหัวข้อ แล้วทำ 2 ขั้น: ค้นคว้าและแตกประเด็น จากนั้นสร้างภาพสรุปสไตล์ hand-drawn sketchnote ตัวอักษรไทยลายมือ หัวข้อหลักตรงกลาง ประเด็นย่อยกระจายรอบ เชื่อมด้วยลูกศร ใช้หมึกดำ + teal ส้ม แดงหม่น",
+    featured: false,
+    content: {
+      intro: "อินโฟกราฟิกสรุปที่ดูเป็นลายมือทำให้เนื้อหายากๆ ดูเป็นมิตรและจำง่าย สูตรนี้บังคับทั้งสไตล์ สี พื้นหลัง และเลย์เอาต์ ให้ผลลัพธ์สม่ำเสมอทุกครั้งที่เปลี่ยนแค่หัวข้อ ให้ Gem ถามขนาดภาพและจุดเน้นก่อนสร้าง ข้อควรระวัง: ข้อมูลที่ AI ค้นคว้าต้องตรวจกับแหล่งอ้างอิงจริงก่อนเผยแพร่ และตรวจตัวอักษรไทยในภาพทุกคำ",
+      workflowSteps: [
+        { step: "01. สร้าง Gem", desc: "วางคำสั่งด้านล่างในช่อง Instructions แล้วเปลี่ยน {{TOPIC}} เป็นหัวข้อ หรือให้ Gem ถามหัวข้อทุกครั้ง" },
+        { step: "02. ตอบคำถามเน้นด้านและขนาด", desc: "บอกด้านที่อยากเน้น และขนาดภาพตามแพลตฟอร์ม (เช่น 4:5, 1:1, 9:16)" },
+        { step: "03. ตรวจเนื้อหาและตัวอักษร", desc: "เช็กข้อเท็จจริง คำสะกด และความอ่านง่ายก่อนโพสต์" }
+      ],
+      promptCopyText: `คุณเป็นนักคิดเชิงภาพ (visual thinker), graphic recorder และนักวิจัย
+
+ขั้นตอนที่ 1: ค้นคว้าและทำความเข้าใจหัวข้อ: "{{TOPIC}}"
+- ระบุแนวคิดหลัก
+- แยก 5–7 ประเด็นย่อยหรือไอเดียสำคัญ
+- ระบุความสัมพันธ์ระหว่างแนวคิด
+
+ขั้นตอนที่ 2: สร้างภาพสรุปแบบ hand-drawn sketchnote จากหัวข้อ
+STYLE: hand-drawn sketchnote / graphic recording / visual thinking ดูเหมือนวาดด้วยปากกา fineliner สีดำ ใช้หมึกสีดำสำหรับเส้นและตัวอักษรทั้งหมด
+ใช้เพียง 3 สีสำหรับลงเงาและตกแต่งเล็กน้อย: teal, ส้ม, แดงหม่น ห้ามใช้สีอื่น
+BACKGROUND: กระดาษสีขาวสะอาด ไม่มีเส้นตาราง เส้นบรรทัด หรือ texture
+LAYOUT: ถามผู้ใช้ก่อนว่าต้องการเน้นด้านใด (ยกตัวอย่างให้เลือก)
+ - หัวข้อหลักอยู่ตรงกลางในกรอบสี่เหลี่ยมสไตล์ 3D เล็กน้อย
+ - ประเด็นย่อยกระจายรอบหัวข้อแบบรัศมี เชื่อมด้วยลูกศร
+ - ใช้ doodle ง่ายๆ คนไม้ ไอคอนธุรกิจ กราฟ สัญลักษณ์
+TEXT: ตัวอักษรลายมือภาษาไทย ชัดเจน เรียบร้อย อ่านง่าย
+CONTENT: กล่องกลางแสดงหัวข้อ "{{TOPIC}}" รอบๆ เป็นวลีสั้น คีย์เวิร์ด คำอธิบายสั้น และ visual metaphor
+FEEL: เหมือน sketchnote มืออาชีพจากเวิร์กช็อป สะอาด เป็นระเบียบ สมดุล ไม่รก
+SIZE: ถามผู้ใช้ก่อนว่าอยากได้ขนาดภาพเท่าไรตามขนาด Social Media
+Output: เนื้อหาที่สรุปเป็นภาษาไทย`,
+      takeaways: [
+        "ได้อินโฟกราฟิกลายมือที่สไตล์สม่ำเสมอ เปลี่ยนแค่หัวข้อ",
+        "จำกัดสีและพื้นหลังเพื่อให้ภาพสะอาดและจำง่าย",
+        "ตรวจข้อเท็จจริงและตัวอักษรไทยก่อนเผยแพร่ทุกครั้ง"
+      ]
+    },
+    cta: {
+      title: "อยากให้ AI ช่วยทำสื่อสรุปความรู้ให้ทีมหรือลูกค้า?",
+      description: "Prompt และ Workflow สร้างอินโฟกราฟิก สไลด์ และคอนเทนต์ความรู้ อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "gem-mirror-selfie-virtual-tryon",
+    title: "Gem ถ่ายรูปหน้ากระจก — อัปรูปนางแบบ + รูปชุด แล้วได้ภาพ Lifestyle ที่หน้าเดิม ชุดตรงปก",
+    subtitle: "ระบบ Virtual Try-on ล็อกใบหน้าและเสื้อผ้า พร้อม Prompt ฉากห้อง 3 แบบสำหรับร้านเสื้อผ้า",
+    category: "AI Visual",
+    categoryBadge: "GEM PROMPT",
+    icon: "🪞",
+    coverImage: "/resources/gem-mirror-selfie-tryon.svg",
+    readTime: "6 นาที",
+    date: "2026-01",
+    tags: ["Virtual Try-on", "Gemini Gem", "Fashion", "E-commerce", "Mirror Selfie", "Prompt"],
+    summary: "Gem สำหรับร้านเสื้อผ้า: อัปโหลดรูปนางแบบและรูปชุด ระบบล็อกอัตลักษณ์ใบหน้าและรายละเอียดเสื้อผ้า แล้ววางลงในฉากเซลฟี่หน้ากระจก พร้อมชุดฉาก 3 สไตล์ (พาสเทลชมพู, เบจมินิมอล, วินเทจโรแมนติก) ที่แก้ได้ตรงหัวข้อ SCENE",
+    featured: false,
+    content: {
+      intro: "ภาพแนว Mirror Selfie ช่วยให้สินค้าดูเป็นไลฟ์สไตล์มากกว่าภาพแคตตาล็อก Gem นี้แบ่งงานเป็น 3 ส่วนที่ 'ล็อก': ใบหน้าและรูปร่างจากรูปนางแบบ, รายละเอียดเสื้อผ้าจากรูปสินค้า, และฉากจากคำอธิบายที่กำหนด ผลลัพธ์ควรเป็นรูปภาพอย่างเดียวไม่มีคำอธิบาย ข้อควรระวัง: ใช้เฉพาะนางแบบที่ยินยอมให้ใช้ภาพ ห้ามใช้รูปบุคคลอื่นโดยไม่ได้รับอนุญาต และเทียบสี/ทรงเสื้อผ้าในภาพกับสินค้าจริงก่อนลงขาย เพื่อไม่ให้ลูกค้าเข้าใจผิด",
+      workflowSteps: [
+        { step: "01. สร้าง Gem", desc: "Gemini → Gems → Your Gems → สร้างใหม่ (หรือเปิดการจัดการบนเว็บ) ตั้งชื่อและคำอธิบาย วางคำสั่งหลักด้านล่าง แล้วบันทึก" },
+        { step: "02. อัปโหลดนางแบบ + ชุด", desc: "อัปรูปนางแบบ (หน้าชัด) และรูปสินค้า (เห็นสี ผ้า ทรงชัดเจน) แล้วสั่งสร้างภาพ" },
+        { step: "03. เปลี่ยนฉากตามร้าน", desc: "แก้เฉพาะหัวข้อ SCENE ในคำสั่ง ใช้ฉากตัวอย่าง 3 แบบด้านล่าง หรือเขียนฉากของแบรนด์เอง" }
+      ],
+      promptCopyText: `// คำสั่งหลักของ Gem (ย่อ)
+You are an AI virtual try-on and photorealistic image generation system.
+Your highest priority is FACE IDENTITY PRESERVATION.
+Generate a final photorealistic image by strictly combining: the uploaded PERSON image (face & body reference), the uploaded PRODUCT image (clothing reference), and the predefined SCENE.
+
+1. PERSON (LOCKED): preserve exact facial identity, proportions, skin tone, hairstyle and body proportions. Do not beautify, stylize, or modify the face. Do not change age, ethnicity or facial structure.
+2. PRODUCT (LOCKED): preserve clothing category, cut, silhouette, fit, fabric texture, exact color/pattern, seams and folds. Do not redesign, change color, fabric or shape.
+3. SCENE: use the scene description only as environment. Never use any person in the scene reference.
+
+FINAL GOAL: a single photorealistic mirror-selfie image that preserves the uploaded face, dresses the person in the exact uploaded product, and places them naturally in the scene, like a real lifestyle photograph.
+Output the final image only. No text, no explanations.
+
+POSE & ACTION: standing naturally in front of a full-length mirror, holding a phone, casual mirror selfie, relaxed posture, slight body angle.
+LIGHTING: bright natural daylight, soft highlights, gentle shadows, realistic skin.
+CAMERA: eye-level mirror reflection, full-body framing, straight vertical perspective, no distortion.
+STYLE: photorealistic lifestyle photography, realistic skin texture and fabric behavior, no illustration, no anime.
+
+SCENE (แก้ตรงนี้): [ใส่ฉาก เช่น กระจกบานสูงกรอบไม้ ห้องนั่งเล่นมินิมอล แสงแดดจากหน้าต่าง]
+
+---
+// ฉากตัวอย่าง 1 — กระจกคลื่นสีชมพู พาสเทล
+Tall full-body mirror with a thick sculpted wavy frame in muted pastel pink against a clean off-white wall; light natural wood floor; compact cozy youthful pastel room; a small white-and-pink desk with neatly arranged stationery visible in the reflection; pink desk chair; soft pastel decor and a small bunny-shaped lamp in the foreground. Palette: pastel pink, lavender, soft white, light wood. Bright natural daylight, fresh airy mood.
+
+// ฉากตัวอย่าง 2 — ห้องนอนมินิมอลโทนเบจ
+Tall asymmetrical organic-shaped mirror leaning against a light beige textured wall; sheer white curtains diffusing daylight; warm white fairy lights hung vertically; light cream plush carpet; neutral bed with soft pillows; a small green plant in a woven basket. Warm neutral palette, cozy calm atmosphere.
+
+// ฉากตัวอย่าง 3 — วินเทจโรแมนติกโทนชมพู
+Tall standing mirror with an ornate gold metal frame; warm wooden floor; white classical pedestal table with a vase of soft pink roses tied with a satin ribbon; vintage pale yellow rotary telephone; sheer curtains behind the mirror. Blush pink, cream, white and soft gold tones; warm romantic nostalgic lighting.`,
+      takeaways: [
+        "ล็อก 3 ส่วน (ใบหน้า, เสื้อผ้า, ฉาก) ช่วยให้ภาพออกมาตรงกับสินค้าจริงมากขึ้น",
+        "เปลี่ยนฉากได้ด้วยการแก้หัวข้อ SCENE เพียงจุดเดียว มีฉากตัวอย่าง 3 แบบ",
+        "ใช้กับนางแบบที่ยินยอมเท่านั้น และตรวจสี/ทรงเทียบกับสินค้าจริงก่อนลงขาย"
+      ]
+    },
+    cta: {
+      title: "อยากมีระบบถ่ายภาพสินค้าและนางแบบด้วย AI สำหรับร้านของคุณ?",
+      description: "มีแพ็กเกจช่วยสร้างระบบ Gem พร้อมสอนตั้งค่า เริ่มต้น 3 Gem 599 บาท (สอนประมาณ 30 นาที) หรือ 5 Gem 990 บาท สอบถามทางไลน์ หรือเข้า Insider Club เพื่อรับเทคนิคทุกสัปดาห์",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "สอบถามแพ็กเกจสร้าง Gem ผ่าน LINE"
+    }
+  },
+  {
+    id: "web-design-reverse-engineering-step-by-step",
+    title: "Step-by-Step: แกะสไตล์ดีไซน์เว็บที่ชอบด้วย AI แล้วประกอบเป็น Master Prompt ของตัวเอง",
+    subtitle: "จากการสำรวจต้นแบบ → ถอดรหัสสี ฟอนต์ เอฟเฟกต์ → สกัดโค้ดเวทมนตร์ → ประกอบเป็น Blueprint สร้างเว็บ",
+    category: "Vibe Coding",
+    categoryBadge: "DESIGN REVERSE ENGINEERING",
+    icon: "🧬",
+    coverImage: "/resources/web-design-reverse-engineering.svg",
+    readTime: "9 นาที",
+    date: "2026-04",
+    tags: ["Reverse Engineering", "Web Design", "Tailwind CSS", "Master Prompt", "Landing Page", "Vibe Coding"],
+    summary: "4 สเต็ปแกะสไตล์เว็บ: เก็บข้อมูลต้นแบบ (ภาพ วิดีโอ Inspect), ให้ AI ถอดเป็นศัพท์ดีไซน์ (สี ฟอนต์ UI เอฟเฟกต์ คีย์เวิร์ด), แยกเขียนโค้ดเอฟเฟกต์พิเศษก่อน แล้วประกอบเป็น Master Prompt พร้อมเทมเพลตสร้าง Landing Page 4 ส่วน",
+    featured: false,
+    content: {
+      intro: "ต่างจากเทคนิค Reverse Engineering ทั่วไป หน้านี้เน้น 'แกะสไตล์ดีไซน์ของเว็บ' เพื่อนำมาเป็นภาษาที่สั่ง AI ได้แม่น ไม่ได้ให้ลอกเว็บของคนอื่นทั้งหน้า เมื่อเจอเว็บที่ชอบ ให้ถอดเป็น Color Palette, Typography, UI Elements, Advanced CSS Effects และคีย์เวิร์ดแบบ Tailwind จากนั้นแยกเขียนโค้ดเอฟเฟกต์จุดเด่นก่อน แล้วค่อยประกอบทุกอย่างเป็น Master Prompt ข้อควรระวัง: ใช้ต้นแบบเป็นแรงบันดาลใจด้านสไตล์ ไม่คัดลอกโค้ด ข้อความ รูป วิดีโอ หรือแบรนด์ของผู้อื่น ใช้สื่อที่เรามีสิทธิ์ใช้งานเท่านั้น",
+      workflowSteps: [
+        { step: "01. สำรวจต้นแบบ", desc: "แคปภาพหรืออัดวิดีโอหลายมุม (ปกติ, Hover, มือถือ) ใช้ Inspect ดูฟอนต์ (แท็บ Network > Font) และสี Hex (แท็บ Elements) จดชื่อคลาสที่บอกเอฟเฟกต์ เช่น glass, glitch, marquee" },
+        { step: "02. ให้ AI ถอดรหัส + แยกเอฟเฟกต์", desc: "ใช้ Prompt แกะสไตล์เพื่อได้สี ฟอนต์ ปุ่ม เลย์เอาต์ เอฟเฟกต์ และคีย์เวิร์ด จากนั้นให้เขียนเฉพาะโค้ด CSS ของเอฟเฟกต์ที่ชอบเป็นคลาสแยก" },
+        { step: "03. ประกอบ Master Prompt", desc: "เรียงตามส่วน: Foundation (สี ฟอนต์) → Custom CSS → Sections (เลย์เอาต์) → Assets (รูป/วิดีโอของเราเอง)" }
+      ],
+      promptCopyText: `// 1) แกะสไตล์เว็บ
+ฉันต้องการทำ Reverse Engineering สไตล์การออกแบบของหน้าเว็บในภาพนี้ (หรือเว็บนี้: [ลิงก์]) กรุณาวิเคราะห์เป็นหมวดต่อไปนี้ เพื่อนำไปเขียน Prompt สร้างเว็บของฉันเอง:
+1. Color Palette: โทนหลัก สีข้อความ สี Accent (เดา Hex Code มาด้วย)
+2. Typography: สไตล์ฟอนต์ (Serif, Sans-serif, Display, Monospace) และแนะนำฟอนต์ใกล้เคียงจาก Google Fonts 2–3 คู่
+3. UI Elements & Shapes: ปุ่ม ความมนของมุม Layout/Grid
+4. Advanced CSS Effects: เอฟเฟกต์พิเศษที่น่าจะใช้ (เช่น Glassmorphism, Gradient Text, CSS Masking, Blend Modes) พร้อมอธิบายสั้นๆ
+5. Keywords สำหรับ Prompt: ศัพท์แบบ Tailwind CSS / UI Design ที่ควรใช้สั่ง AI เพื่อให้ได้สไตล์นี้
+
+// 2) แกะเอฟเฟกต์
+จากภาพ (หรือสไตล์เว็บนี้) ฉันชอบเอฟเฟกต์ [เช่น การ์ดใสที่ขอบวาว / ตัวหนังสือเลื่อนไม่สิ้นสุด] ช่วยเขียนเฉพาะโค้ด CSS (หรือ Tailwind custom class) ที่สร้างเอฟเฟกต์นี้ ตั้งชื่อคลาส เช่น .my-custom-glass (เขียนขึ้นใหม่เอง ไม่คัดลอกโค้ดต้นฉบับ)
+
+// 3) Master Prompt Template (สร้าง Landing Page 4 ส่วน)
+Create a landing page called "[ชื่อโปรเจกต์]" with 4 sections, using a [ธีม เช่น dark cyberpunk / elegant minimalist / nature] theme. Use video backgrounds, a [custom glass UI effect], and the color/font system below.
+
+FONTS (Google Fonts): [ฟอนต์หัวข้อ], [ฟอนต์ลายมือสำหรับข้อความเน้น], [ฟอนต์เนื้อหา]
+COLOR SYSTEM: Background [#HEX], Text [#HEX], Accent [#HEX]
+CUSTOM EFFECT: [วางโค้ด/คลาสเอฟเฟกต์ที่ได้จากข้อ 2]
+
+SECTION 1 HERO (full viewport): looping muted autoplay video background, logo "[ชื่อโลโก้]", glass navigation with [4 เมนู], big headline "[พาดหัว]", cursive accent text "[ข้อความเน้น]", social icons
+SECTION 2 ABOUT (full viewport): video background, heading "[หัวข้อ]", short paragraph "[คำอธิบาย 1-2 ประโยค]"
+SECTION 3 COLLECTION GRID: solid background, 3-column cards with glass containers, each card has media + data label + circular arrow button
+SECTION 4 CTA: full-width video background with right-aligned cursive text and a 3-line invitation heading
+
+TECHNICAL: React + TypeScript + Vite + Tailwind CSS, icons with lucide-react, all videos autoPlay loop muted playsInline, mobile-first responsive (sm:, md:, lg:).
+Use only video/image assets that I own or have the right to use: [ลิงก์สื่อของฉัน]`,
+      takeaways: [
+        "แปลงสิ่งที่ 'เห็นว่าสวย' เป็นศัพท์ดีไซน์ที่สั่ง AI ได้แม่น",
+        "แยกเขียนเอฟเฟกต์จุดเด่นก่อน แล้วค่อยประกอบทั้งหน้า ทำให้ควบคุมผลลัพธ์ง่ายขึ้น",
+        "ใช้เป็นแรงบันดาลใจด้านสไตล์เท่านั้น และใช้สื่อ ฟอนต์ ภาพที่เรามีสิทธิ์ใช้"
+      ]
+    },
+    cta: {
+      title: "อยากเรียน Prompt Engineering / Reverse Engineering แบบ Vibe Coding จัดเต็ม?",
+      description: "คอร์ส Vibe Coding Master Route สอนสร้างเว็บและแอปด้วย AI ตั้งแต่เริ่มจนถึง Deploy ราคา 2,990 บาท หรือเข้า Insider Club เดือนละ 99 บาทเพื่อรับเทคนิคใหม่ทุกสัปดาห์",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ดูคอร์ส 2,990.- ที่ mastervibecode"
+    }
+  },
+  {
+    id: "awesome-agent-skills-500-plus",
+    title: "คลัง Agent Skills 500+ ตัวสำหรับ AI และ IDE — วิธีก๊อปไปใช้และวิธีติดตั้ง",
+    subtitle: "เหมือนลง 'แอป' เพิ่มให้ AI เก่งเฉพาะด้าน ใช้ได้ทั้งแบบ Copy-Paste กับ AI ทั่วไป และติดตั้งแล้วเรียกด้วย @ ใน Cursor, Antigravity, Claude Code",
+    category: "Claude Skills",
+    categoryBadge: "SKILL LIBRARY",
+    icon: "🧰",
+    coverImage: "/resources/antigravity-awesome-skills.svg",
+    readTime: "4 นาที",
+    date: "2026-04",
+    tags: ["Agent Skills", "Antigravity", "Cursor", "Claude Code", "GitHub", "Prompt Library"],
+    summary: "คลัง Skills บน GitHub กว่า 500 แบบ (ตามที่ต้นทางระบุ) สำหรับทำให้ AI เชี่ยวชาญงานเฉพาะ เช่น การเขียนโค้ด Security การตลาด พร้อมวิธีใช้ 2 แบบ: คัดลอกไฟล์ .md ไปวางในแชท หรือติดตั้งลงโปรเจกต์แล้วเรียกด้วย @ชื่อสกิล",
+    featured: false,
+    skillCategories: [
+      {
+        icon: "📦",
+        name: "ต้นทางของคลัง",
+        skills: [
+          { name: "antigravity-awesome-skills", desc: "คลังชุดคำสั่ง (Skills) สำหรับ AI Agent ที่เลือกใช้ได้ตามหัวข้อ เช่น react-patterns, seo-audit, brainstorming, lint-and-validate", link: "github.com/sickn33/antigravity-awesome-skills" }
+        ]
+      }
+    ],
+    content: {
+      intro: "Skill คือชุดคำสั่งที่ทำให้ AI ทำงานเก่งขึ้นในเรื่องหนึ่งๆ คล้ายการลงแอปเพิ่ม ใช้ได้ 2 ระดับ ถ้าใช้ AI ทั่วไปอย่าง ChatGPT, Claude.ai หรือ Gemini บนเว็บ ให้เปิดไฟล์ .md ของ Skill ที่ต้องการ คัดลอกทั้งไฟล์ แล้ววางในแชทก่อนเริ่มคุย AI จะทำตามกฎในไฟล์นั้น ถ้าใช้ IDE หรือ CLI อย่าง Cursor, Antigravity, Claude Code ให้ติดตั้งลงโปรเจกต์ แล้วเรียกด้วย @ชื่อสกิล ก่อนติดตั้งทุกครั้งควรอ่านไฟล์ Skill และคำสั่งติดตั้งก่อนรัน เพราะ Skill บางตัวอาจสั่งให้ AI รันคำสั่งหรือแก้ไฟล์ในเครื่อง",
+      workflowSteps: [
+        { step: "01. วิธี Manual (AI ทั่วไป)", desc: "เข้า GitHub → โฟลเดอร์ skills → เลือกหัวข้อ → คัดลอกข้อความในไฟล์ .md ทั้งหมด → วางในแชทก่อนเริ่มคุย" },
+        { step: "02. ติดตั้งแบบ IDE / CLI", desc: "เปิด Terminal ในโปรเจกต์ รัน npx antigravity-awesome-skills หรือ git clone ... .agent/skills (เลือกอย่างใดอย่างหนึ่ง ตรวจ README ล่าสุดก่อน)" },
+        { step: "03. เรียกใช้ด้วย @", desc: "พิมพ์ @ตามด้วยชื่อ Skill เช่น @brainstorming ช่วยวางแผน SaaS หรือ @lint-and-validate กับไฟล์นี้ หรือบอกว่า 'มีโปรเจกต์นี้ ขอใช้สกิลที่เกี่ยวข้อง'" }
+      ],
+      promptCopyText: `// ติดตั้ง (เลือกอย่างใดอย่างหนึ่ง และอ่าน README ก่อน)
+npx antigravity-awesome-skills
+# หรือ
+git clone https://github.com/sickn33/antigravity-awesome-skills.git .agent/skills
+
+// ตัวอย่างการเรียกใช้ในแชทของ IDE
+ใช้สกิล @brainstorming ช่วยฉันวางแผน [ไอเดีย SaaS ของคุณ]
+เรียกใช้ @lint-and-validate กับไฟล์นี้
+มีโปรเจกต์นี้ [อธิบายสั้นๆ] นำสกิลที่เกี่ยวข้องมาช่วยหน่อย แล้วบอกก่อนว่าจะใช้สกิลไหนและเพราะอะไร`,
+      takeaways: [
+        "เข้าใจ 2 วิธีใช้ Skill: Copy-Paste ไฟล์ .md กับ AI ทั่วไป และติดตั้งแล้วเรียกด้วย @ ใน IDE/CLI",
+        "มีตัวอย่างคำสั่งเรียกใช้ที่ก๊อปไปแก้ได้ทันที",
+        "ตรวจ README และไฟล์ Skill ก่อนติดตั้งทุกครั้ง โดยเฉพาะสกิลที่สั่งให้รันคำสั่งในเครื่อง"
+      ]
+    },
+    cta: {
+      title: "อยากสร้าง Skill ของตัวเองให้เข้ากับงานของคุณ?",
+      description: "ปรึกษาเพื่อออกแบบ Skill จาก Workflow จริงของคุณ เริ่มต้น 490 บาท หรือเข้า Modty AI Insider Club เดือนละ 99 บาทเพื่อรับเทคนิค Skill และ MCP ทุกสัปดาห์",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษาสร้าง Skill (490.-) ผ่าน LINE"
+    }
   }
 ];

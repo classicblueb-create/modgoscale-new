@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Gem สร้างอินโฟกราฟิกสรุปแบบ Sketchnote วาดมือ">
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(80 70)" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><rect x="210" y="120" width="220" height="110" rx="14"/><path d="M210 175H110M430 175h100M320 120V50M320 230v70"/><circle cx="80" cy="175" r="34" stroke="#FF6A2A"/><circle cx="560" cy="175" r="34" stroke="#3AA6A6"/><circle cx="320" cy="25" r="26" stroke="#B85C5C"/><circle cx="320" cy="325" r="26" stroke="#FF6A2A"/><path d="M520 140l12 -20 12 20" stroke="#3AA6A6"/><path d="M70 160l10 30 12-30" stroke="#FF6A2A"/></g><g transform="translate(300 170)" fill="#111"><rect width="150" height="12" rx="6"/><rect y="28" width="100" height="10" rx="5" opacity=".5"/></g>
+    <text x="80" y="470" font-size="104" font-weight="800" fill="#111">SKETCHNOTE</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">TOPIC IN · HAND-DRAWN INFOGRAPHIC OUT</text>
+  </g>
+</svg>
