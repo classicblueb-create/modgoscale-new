@@ -1119,5 +1119,372 @@ Scene 4 (12-15s): โลโก้ / ชื่อแอป พร้อม CTA "[
       primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
       secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
     }
+  },
+  {
+    id: "motion-reference-to-new-video",
+    title: "จาก Motion Reference สู่วิดีโอใหม่ด้วย AI — ชอบ Motion ไหน ก็ยืมจังหวะมาเล่าเรื่องของเรา",
+    subtitle: "เห็นวิดีโอ Motion สวยๆ แล้วอยากได้ฟีลนั้น แต่อธิบายให้ AI ฟังไม่ถูก? ให้ AI ถอดสูตรให้ก่อน แล้วค่อยเปลี่ยนเรื่อง",
+    category: "AI Visual",
+    categoryBadge: "MOTION WORKFLOW",
+    icon: "🎞️",
+    coverImage: "/resources/motion-reference-to-video.svg",
+    readTime: "8 นาที",
+    date: "2026-10",
+    tags: ["Motion Reference", "AI Video", "Prompt Engineering", "Google Flow", "Workflow", "Reverse Engineering"],
+    summary: "Workflow ง่ายๆ 3 ก้าว: หา Motion Reference ที่ชอบ → แนบให้ AI ถอดเป็น Motion Direction และ Generation Prompt → พิมพ์สั้นๆ ว่า 'เปลี่ยนเรื่องเป็น…' ในแชทเดิม แล้วเอา Reference + Prompt ใหม่ไปสร้างวิดีโอจริง พร้อมวิธีสะสมคลัง Reference ของตัวเอง",
+    featured: false,
+    content: {
+      intro: "คำสั่งอย่าง 'ทำให้เหมือนโฆษณา Product สวยๆ' กว้างเกินไป เพราะความสวยของวิดีโอมาจากหลายอย่างพร้อมกัน ทั้งจังหวะ การเคลื่อนกล้อง ตำแหน่งวัตถุ การขึ้นข้อความ แสง วัสดุ และ Transition ระหว่างฉาก วิธีที่ง่ายกว่าคือหา Reference ที่ชอบ แล้วให้ AI อธิบายออกมาก่อนว่า Motion Direction ของคลิปนั้นเป็นยังไง จากนั้นค่อยเปลี่ยน 'เรื่อง' ให้เป็นเรื่องของเรา ข้อสำคัญคือ หลังได้ผลวิเคราะห์แล้ว ให้คุยต่อในแชทเดิม อย่าเปิดแชทใหม่ เพราะ AI ยังจำ Reference, ผลวิเคราะห์ และ Prompt ทั้งหมดไว้ใน Context เดียวกัน",
+      workflowSteps: [
+        { step: "01. หา Reference", desc: "ค้นใน Pinterest ด้วยคำอย่าง SaaS Product Animation, Product Motion Design, 3D Motion Graphics, Kinetic Typography, Product Launch Animation แล้วเก็บคลิปที่ชอบไว้" },
+        { step: "02. แนบวิดีโอ ให้ AI ถอดสูตร", desc: "ใช้ Prompt ด้านล่าง ให้ AI ไล่ดูทีละฉาก ทั้งกล้อง องค์ประกอบ ตัวอักษร สี แสง Transition และเสียง ก่อนสรุปเป็น Generation Prompt" },
+        { step: "03. พิมพ์ 'เปลี่ยนเรื่องเป็น…'", desc: "ในแชทเดิม เช่น 'เปลี่ยนเรื่องเป็น AI ช่วยวางแผนการเงิน ใช้ Motion Direction เดิม ส่ง Final Prompt ใหม่มาอย่างเดียว' แล้วเอา Reference + Prompt ใหม่แนบเข้าเครื่องมือสร้างวิดีโอ (เช่น Google Flow) พร้อมกัน" }
+      ],
+      promptCopyText: `คุณคือ Motion Graphics Director และ Prompt Engineer
+ฉันแนบวิดีโอ Reference มาให้ (motion graphics / product demo / SaaS explainer)
+ให้ทำ 3 เฟสตามลำดับ ห้ามสรุปหลวมๆ ให้ละเอียดจนคนอื่นสร้างซ้ำได้โดยไม่ต้องเห็นต้นฉบับ
+
+PHASE 1 — วิเคราะห์ทีละฉากตลอดความยาวคลิป
+สรุปภาพรวมก่อน: ความยาว, สัดส่วนภาพ, สไตล์หลักในหนึ่งบรรทัด, จังหวะ, motif ที่วนซ้ำ
+แล้วแต่ละฉาก (ระบุช่วงเวลา) ให้บอก:
+1. Composition และกล้อง (การจัดเฟรม, การเคลื่อนกล้อง, ความชัดตื้น)
+2. สิ่งที่อยู่ในภาพ (วัตถุ ไอคอน UI รูปร่าง สไตล์ ตำแหน่ง ขนาด)
+3. ตัวอักษร (ข้อความ, สไตล์ฟอนต์, ลำดับขนาด, Animation ของข้อความ)
+4. สีและ Gradient (ประมาณ Hex ได้)
+5. แสง เงา พื้นผิว
+6. Motion และ Transition ไปฉากถัดไป
+7. เสียง (ดนตรี, SFX, เสียงพูด) ถ้าสังเกตได้
+
+PHASE 2 — เปลี่ยนผลวิเคราะห์เป็น Generation Prompt ชุดเดียว พร้อมคัดลอก
+ต้องมี: Style line, Technical specs (ความยาว สัดส่วน fps), Timeline ทีละช่วง,
+Typography spec, Sound design, Final frame spec
+เขียนเป็นคำสั่งตรงๆ ไม่ใช่คำถาม สร้างสไตล์และเทคนิคให้ใกล้เคียง ไม่ลอกเนื้อหาที่มีลิขสิทธิ์
+
+PHASE 3 — ปรับตามที่ฉันต้องการ (เว้นว่างหมายถึงคงตามต้นฉบับ)
+- แบรนด์/โลโก้: [...]
+- สี: [คงเดิม หรือระบุ Hex]
+- ข้อความบนจอ: [...]
+- ความยาว: [...]
+- โทน/สไตล์ที่อยากเปลี่ยน: [...]
+- สิ่งที่อยากเพิ่มหรือตัดออก: [...]`,
+      takeaways: [
+        "เปลี่ยน Reference ที่ชอบให้เป็น Motion Direction ที่ AI เข้าใจ แทนการอธิบายด้วยคำกว้างๆ",
+        "Reference ตัวเดียวใช้ได้กับหลายหัวข้อ แค่พิมพ์ 'เปลี่ยนเรื่องเป็น…' ในแชทเดิม ไม่ต้องวิเคราะห์ใหม่",
+        "เวลาสร้างจริงให้แนบทั้ง Reference ต้นฉบับ และ Prompt เรื่องใหม่เข้าไปด้วยกัน อย่าใช้ข้อความอย่างเดียว",
+        "ค่อยๆ สะสม Motion Reference Library แยกหมวด เช่น SaaS, Product, 3D, UI, Typography, Brand, Finance, Education",
+        "ถ้าต้องการ Motion คนละแบบ เช่นจากงาน SaaS เรียบๆ เป็น 3D Product Commercial ให้หา Reference ใหม่แล้วเริ่มวิเคราะห์ใหม่ และเลี่ยงการลอกเนื้อหาที่มีลิขสิทธิ์ของต้นฉบับ"
+      ]
+    },
+    cta: {
+      title: "อยากทำ Motion Video ด้วย AI แบบมีระบบ ไม่ต้องเดาทุกครั้ง?",
+      description: "Workflow เต็มรูปแบบ พร้อม Prompt ที่ผ่านการใช้งานจริง รวมอยู่ใน Modty AI Insider Club อัปเดตทุกสัปดาห์ ปรึกษาได้เดือนละครั้ง เดือนละ 99 บาท หรือจองเวิร์กช็อปส่วนตัวแบบ 1:1 ทาง LINE",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "สอบถาม Workshop 1:1 ผ่าน LINE"
+    }
+  },
+  {
+    id: "5-ai-agent-repos",
+    title: "รวม 5 AI Agent Repos ไว้ศึกษา ก่อนสร้างทีม AI ของตัวเอง",
+    subtitle: "ไม่ต้องเริ่มจากศูนย์ ดูของที่คนอื่นทำไว้เป็นต้นแบบ แล้วลองงานเล็กๆ ทีละอย่าง",
+    category: "Automation",
+    categoryBadge: "AI AGENT REPOS",
+    icon: "🤖",
+    coverImage: "/resources/ai-agent-repos.svg",
+    readTime: "5 นาที",
+    date: "2026-10",
+    tags: ["AI Agent", "Open Source", "GitHub", "Automation", "Multi-Agent", "Claude Code", "Codex"],
+    summary: "5 โปรเจกต์ Open Source ที่ใช้ศึกษาแนวทางสร้างผู้ช่วย AI และทีม AI ที่แบ่งงานกันทำ พร้อมไอเดียงานเล็กๆ ให้ลอง ขั้นตอนเริ่มใช้ 5 ข้อ และ Prompt ให้ Codex / Claude Code ช่วยอ่านโปรเจกต์ก่อนลงมือ",
+    featured: false,
+    skillCategories: [
+      {
+        icon: "🧪",
+        name: "5 Repos ที่ควรลอง",
+        skills: [
+          { name: "Open Dot", desc: "ศึกษาการสร้างทีม AI ส่วนตัวที่แยกหน้าที่ให้แต่ละ Agent ลองให้ตัวหนึ่งค้นข้อมูล อีกตัวเตรียมเนื้อหา แล้วเราตรวจก่อนใช้", link: "github.com/composio-community/open-dot" },
+          { name: "OpenMausBot", desc: "ทดลอง Personal Agent หลายตัวและการเลือกโมเดลให้เหมาะกับงาน เช่น Research Bot, Coding Bot, Content Bot", link: "github.com/milind-soni/OpenMausBot" },
+          { name: "OpenManus", desc: "Agent ที่วางแผนและใช้เครื่องมือหลายขั้นตอนจากเป้าหมายที่ให้ ลองให้ค้นข้อมูลคู่แข่ง 3 ราย แล้วสรุปเป็นตาราง", link: "github.com/FoundationAgents/OpenManus" },
+          { name: "Kortix", desc: "AI Worker ที่ทำงานผ่าน Browser และเครื่องมือต่างๆ (ชื่อ repo ในลิงก์ยังเป็น suna)", link: "github.com/kortix-ai/suna" },
+          { name: "OpenBot by CopilotKit", desc: "แนวทางสร้าง Workspace ให้ Bot หลายตัวทำงานร่วมกัน เช่นทีมคอนเทนต์ ทีมซัพพอร์ต กำหนดสิทธิ์ตามงาน", link: "github.com/CopilotKit/openbot" }
+        ]
+      }
+    ],
+    content: {
+      intro: "อยากมีผู้ช่วย AI หรือทีม AI ที่แบ่งงานกันทำ แต่ไม่รู้จะเริ่มตรงไหน ลองศึกษาโปรเจกต์ Open Source เหล่านี้เป็นต้นแบบก่อน แล้วค่อยปรับให้เข้ากับงานของเรา ข้อดีคือเราอ่านโค้ดได้ ปรับเองได้ ข้อควรรู้คือยังอาจมีค่า API ตามการใช้งานจริง ค่าเซิร์ฟเวอร์ และเวลาตั้งค่าดูแลระบบ ความสามารถและวิธีติดตั้งให้ยึด README ล่าสุดของแต่ละ Repo",
+      workflowSteps: [
+        { step: "01. เลือกตัวเดียว", desc: "เลือก Repo ที่ใกล้กับโจทย์ของเราที่สุดเพียงตัวเดียวก่อน อย่าลองทั้ง 5 พร้อมกัน" },
+        { step: "02. อ่านก่อนติดตั้ง", desc: "อ่าน README, วิธีติดตั้ง และ License แล้ว Clone ให้ Codex หรือ Claude Code ช่วยอธิบายโครงสร้างและขั้นตอนตั้งค่า" },
+        { step: "03. ทดลองด้วยข้อมูลจำลอง", desc: "ตั้งค่าโมเดลและ API Key ตามที่โปรเจกต์รองรับ ทดสอบกับข้อมูลจำลองก่อนปรับ Workflow หรือเชื่อมบัญชีจริง" }
+      ],
+      promptCopyText: `ช่วยอ่านโปรเจกต์นี้และอธิบาย:
+1. โครงสร้างโปรเจกต์
+2. วิธีติดตั้ง
+3. ค่าใช้จ่ายที่เกี่ยวข้อง (API, เซิร์ฟเวอร์, บริการอื่น)
+4. จุดที่ปรับแต่งได้
+
+จากนั้นเสนอวิธีทดลองงานเล็กๆ หนึ่งงานที่เหมาะกับฉัน
+โดยยังไม่แก้ไข Code และยังไม่ติดตั้งอะไรลงเครื่อง
+บอกความเสี่ยงที่ต้องระวังก่อนเชื่อมบัญชีหรือข้อมูลจริงด้วย`,
+      takeaways: [
+        "ได้รายชื่อโปรเจกต์ต้นแบบ 5 ตัวสำหรับศึกษาการสร้างทีม AI",
+        "มีไอเดียงานเล็กๆ ให้เริ่มทดลอง แทนที่จะเริ่มจากระบบใหญ่",
+        "รู้ว่าต้องเช็ก README, License, ค่า API และข้อมูลจริงก่อนใช้งานเสมอ",
+        "ทดสอบกับข้อมูลจำลองก่อนเชื่อมบัญชีหรือข้อมูลจริงทุกครั้ง"
+      ]
+    },
+    cta: {
+      title: "อยากสร้างทีม AI ที่ทำงานแทนคุณจริงๆ?",
+      description: "เราเตรียมนำไอเดียจาก 5 โปรเจกต์นี้ไปทดลองสร้างทีม AI ทำคอนเทนต์ ตั้งแต่หาเทรนด์ วางแผน เขียนสคริปต์ ไปจนถึงตรวจงาน แล้วเอาผลลัพธ์มาแชร์ใน Modty AI Insider Club เดือนละ 99 บาท",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "5-github-tools-save-claude-tokens",
+    title: "5 GitHub Tools ช่วยให้ Claude ใช้ Token คุ้มขึ้น",
+    subtitle: "ประหยัดจริงคือทำงานเสร็จถูกต้องด้วย Context และรอบแก้น้อยที่สุด ไม่ใช่แค่ให้ Claude พูดน้อยลง",
+    category: "Automation",
+    categoryBadge: "TOKEN OPTIMIZATION",
+    icon: "🪙",
+    coverImage: "/resources/token-saving-tools.svg",
+    readTime: "9 นาที",
+    date: "2026-10",
+    tags: ["Token", "Claude Code", "Skills", "Context", "Prompt Engineering", "Workflow"],
+    summary: "เครื่องมือ 5 ตัวสำหรับแก้ปัญหาต่างกัน: Context Optimizer, Prompt Master, Token Efficiency, Strategic Compact และ Caveman พร้อมวิธีติดตั้งแบบไม่ต้องใช้ Git สูตรเลือกใช้ตามงาน และตารางวัดผลก่อน-หลัง",
+    featured: false,
+    skillCategories: [
+      {
+        icon: "🧰",
+        name: "5 Tools และจุดที่ช่วย",
+        skills: [
+          { name: "Context Optimizer", desc: "ตรวจสิ่งที่โหลดเข้า Context ตอนเริ่ม เช่น CLAUDE.md, Plugins, MCP หาส่วนที่ไม่จำเป็น เหมาะกับโปรเจกต์ที่มี MCP เยอะ", link: "github.com/egorfedorov/claude-context-optimizer" },
+          { name: "Prompt Master", desc: "ทำให้ Prompt ชัดตั้งแต่ครั้งแรก ตรวจ Task, Context, Constraints, Output ลดการสั่งแก้หลายรอบ", link: "github.com/nidhinjs/prompt-master" },
+          { name: "Token Efficiency (denfry)", desc: "ลดการอธิบายซ้ำ อ่านไฟล์ซ้ำ และเรียก Tool เกินจำเป็น เหมาะกับ Coding, Debugging, Research", link: "github.com/denfry/claude-skills" },
+          { name: "Strategic Compact", desc: "เลือกจังหวะ /compact ให้เหมาะ แทนการย่อ Context แบบสุ่มระหว่างงานยาว", link: "github.com/affaan-m/ECC" },
+          { name: "Caveman", desc: "ลดความยืดเยื้อของคำตอบ เหมาะกับ Code Review สรุปสถานะ Commit message ติดตั้งตาม INSTALL.md ของ Repo", link: "github.com/ryailabs/caveman" }
+        ]
+      }
+    ],
+    content: {
+      intro: "ตัวเลขประหยัด Token ในแต่ละเครื่องมือเป็นตัวอย่างหรือผลทดสอบที่ผู้พัฒนารายงานเอง ไม่ใช่ผลรับประกัน และไม่ควรเอาเปอร์เซ็นต์ของแต่ละตัวมาบวกกัน เลือกให้ตรงปัญหาที่เจอจริง: Startup Context เยอะ → Context Optimizer, สั่งงานไม่ชัดต้องแก้หลายรอบ → Prompt Master, งาน Coding/Debug ที่ทำซ้ำ → Token Efficiency, งานยาวหลาย Milestone → Strategic Compact, คำตอบยาวเกินจำเป็น → Caveman ที่สำคัญคือวัดผลก่อนและหลังเอง ไม่ต้องติดตั้งทั้ง 5 พร้อมกัน",
+      workflowSteps: [
+        { step: "01. ติดตั้งแบบไม่ต้องใช้ Git", desc: "บน Claude.ai: ดาวน์โหลด ZIP จาก GitHub หาโฟลเดอร์ที่มี SKILL.md บีบเป็น ZIP/.skill แล้วอัปโหลดใน Settings → Skills บน Claude Code: คัดลอกโฟลเดอร์ไปที่ ~/.claude/skills/<skill-name>/ แล้วเปิดใหม่ (Skill ที่พึ่ง Hooks อาจใช้บน Claude.ai ไม่ครบ)" },
+        { step: "02. ลองกับงานเล็กที่วัดผลได้", desc: "ใช้งานเดียวกัน โมเดลเดียวกัน เปรียบเทียบแบบไม่ติดตั้งกับติดตั้งทีละเครื่องมือ ดู Token, Tool Calls, จำนวนรอบที่ต้องสั่งแก้ และความถูกต้อง" },
+        { step: "03. จัดเป็น Workflow ตามงาน", desc: "สร้างแอป: Context Optimizer → Prompt Master → Token Efficiency → Strategic Compact → Caveman / ทำคอนเทนต์: Prompt Master → Token Efficiency → Strategic Compact / Debug: Token Efficiency → Strategic Compact → Caveman" }
+      ],
+      promptCopyText: `// 1) Audit Context ตอนเริ่ม (Context Optimizer)
+Audit this Claude Code project's startup context.
+Inspect CLAUDE.md, project instructions, MCP configuration and enabled plugins.
+List redundant or rarely needed context.
+Propose a minimal optimization plan.
+Do not edit any files yet.
+Preserve security rules and critical instructions.
+
+// 2) เขียน Prompt ให้ชัด (Prompt Master)
+Use Prompt Master to rewrite this idea into a scoped prompt for Claude Code:
+[ไอเดียของคุณ]
+Ask at most 3 critical questions if required.
+Specify: Files, Constraints, Deliverables, Acceptance tests, Stop conditions.
+
+// 3) ลดงานซ้ำระหว่างทำงาน (Token Efficiency)
+Apply token-efficiency principles to this task.
+Read only relevant files.
+Avoid duplicate tool calls.
+Make the smallest correct change.
+Run necessary tests.
+Report concise results and unresolved risks.
+
+// 4) ก่อน /compact (Strategic Compact)
+Research complete. Before compacting, summarize:
+1. Confirmed requirements and architecture decisions
+2. Relevant files and paths
+3. Changes already made and tests passed
+4. Unresolved issues and exact next action
+Then suggest whether this is a safe point to run /compact.`,
+      takeaways: [
+        "เลือกเครื่องมือตามปัญหาที่เจอจริง ไม่ต้องติดตั้งทั้ง 5 ตัว",
+        "วัดผลด้วยงานเดียวกันก่อน-หลัง ทั้ง Startup Input Tokens, Total Tokens, Tool Calls, จำนวนรอบที่ต้องสั่งแก้ และต้นทุนต่อหนึ่งงานที่เสร็จจริง",
+        "การลด Output ไม่ได้แปลว่าลด Input และการ Compact อาจทำให้รายละเอียดบางส่วนหาย จึงควรบันทึกสถานะสำคัญลงไฟล์ก่อนเสมอ",
+        "อย่ารัน Hooks หรือ Installer จากแหล่งที่ไม่ไว้ใจโดยไม่อ่านก่อน"
+      ]
+    },
+    cta: {
+      title: "อยากใช้ Claude Code ให้คุ้มทั้งเวลาและค่าใช้จ่าย?",
+      description: "เทคนิค Claude Code, Skills, MCP และ Workflow ที่ทดลองใช้จริง มีอัปเดตทุกสัปดาห์ใน Modty AI Insider Club ปรึกษาได้เดือนละครั้ง เดือนละ 99 บาทเท่านั้น",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "ai-video-motion-resource-hub",
+    title: "AI Video & Motion Guide — สร้าง Motion Studio ของตัวเองด้วย Claude Code / Codex",
+    subtitle: "คุณภาพไม่ได้มาจาก Prompt อย่างเดียว แต่มาจาก Environment ที่ Agent ได้รับก่อนเริ่มสร้าง",
+    category: "AI Visual",
+    categoryBadge: "RESOURCE HUB",
+    icon: "🎥",
+    coverImage: "/resources/ai-video-motion-hub.svg",
+    readTime: "12 นาที",
+    date: "2026-10",
+    tags: ["Motion Studio", "Remotion", "HyperFrames", "Claude Code", "Codex", "Motion Recipe", "QA"],
+    summary: "ศูนย์รวมแหล่งอ้างอิงสำหรับทำวิดีโอด้วย Agent: แนวคิด Reference → Skill → Code → Render → Review, Repo ที่ควรเริ่มลอง, Motion Recipe, วิธีตั้งโฟลเดอร์ Motion Studio ของตัวเอง และ QA 4 ชั้นก่อนส่งออก",
+    featured: false,
+    skillCategories: [
+      {
+        icon: "🧱",
+        name: "Framework หลัก",
+        skills: [
+          { name: "HyperFrames", desc: "HTML/CSS → Video เหมาะกับ Motion Graphic และงานที่ให้ Agent สร้างจากเทคโนโลยีเว็บได้เร็ว", link: "github.com/heygen-com/hyperframes" },
+          { name: "Remotion AI Skills", desc: "React → Video คุม Shot, Transition, Timing ได้ละเอียดถึงระดับเฟรม", link: "remotion.dev/docs/ai/skills", label: "เปิดเว็บ" }
+        ]
+      },
+      {
+        icon: "🎬",
+        name: "Repo ที่ควรเริ่มลอง",
+        skills: [
+          { name: "video-shotcraft", desc: "Product Video ด้วย Remotion มี Shot Recipe Cards 152 แบบ", link: "github.com/search?q=video-shotcraft&type=repositories", label: "ค้นหา" },
+          { name: "video-talkcraft", desc: "Explainer จาก Voiceover พร้อม Motion Recipe Cards 109 แบบ", link: "github.com/search?q=video-talkcraft&type=repositories", label: "ค้นหา" },
+          { name: "huashu-art-motion", desc: "Skill เน้น Art Direction + Code-based Motion มี 35 Art Styles และ 9 Explainer Grammars", link: "github.com/alchaincyf/huashu-art-motion" },
+          { name: "lanshu-create-ai-presenter-video", desc: "Skill ทำ Explainer ตั้งแต่ Script ถึงไฟล์ส่งมอบ มีทั้ง Presenter Route และ Styled Explainer Route พร้อมระบบตรวจก่อนจบงาน", link: "github.com/cclank/lanshu-create-ai-presenter-video" }
+        ]
+      },
+      {
+        icon: "📚",
+        name: "แหล่งอ้างอิงและแรงบันดาลใจ",
+        skills: [
+          { name: "Prompt Motion", desc: "หา Reference และไอเดีย Motion / Animation", link: "prompt-motion.com", label: "เปิดเว็บ" },
+          { name: "Awesome Claude Video Skills", desc: "รวม Open-source Skill ด้าน Video, Editing และ Motion สำหรับ Claude Code / Codex", link: "github.com/zhuyansen/awesome-claude-video-skills" },
+          { name: "awesome-ai-motion", desc: "คลัง Pattern และไอเดีย Motion", link: "github.com/guanmo-ai/awesome-ai-motion" },
+          { name: "ClaudeAnimationBase", desc: "Starter สำหรับ Animation ด้วย p5.js พร้อมตัวอย่าง Character และ Emotion", link: "github.com/JohnHeibel/ClaudeAnimationBase" },
+          { name: "claude-animation-skill", desc: "Reference สำหรับสร้าง Animation ด้วยโค้ด", link: "github.com/buildwithhanif/claude-animation-skill" }
+        ]
+      }
+    ],
+    content: {
+      intro: "แนวเดิมคือ Prompt → AI Video → ได้คลิป แต่แนวแบบ Agent คือ Idea / Reference → Agent → Skill / Recipe → Code → Render → Review → Fix → Export ข้อดีคือแก้ข้อความ สี และจังหวะได้เป็นระบบ และนำ Workflow เดิมกลับมาใช้ซ้ำได้ เวลาเห็น Demo สวยๆ อย่าถามแค่ว่า 'Prompt อะไร' ให้ถามด้วยว่า มี Skill อะไร ใช้ Repo ไหนเป็น Reference มี Brand Context แบบไหน ใช้ Framework ใด และ QA แก้งานอย่างไร สองตัวหลักที่เจอบ่อยคือ HyperFrames (เหมาะกับ HTML Motion) และ Remotion (เหมาะกับงานที่ต้องคุมระดับเฟรม)",
+      workflowSteps: [
+        { step: "01. ตั้ง Motion Studio Folder", desc: "แยกโฟลเดอร์ brand, references, repos, skills, audio, assets, renders พร้อมไฟล์ CLAUDE.md ที่เก็บกฎซ้ำๆ ของแบรนด์ ให้ Agent ทำงานจาก Context เดียวกันทุกครั้ง" },
+        { step: "02. Brand Brief → Storyboard → First Cut", desc: "ใส่ Screenshot, Logo, สี, ฟอนต์ หรือ Reference ก่อน ให้ Agent สกัดเป็น Brand Motion Brief แล้ววาง Storyboard และ Shot list ก่อนเขียนโค้ดจริง" },
+        { step: "03. QA 4 ชั้น → Fix one thing → Save Recipe", desc: "ตรวจ Visual, Motion, Audio, Brand แก้ทีละอย่าง แล้วเก็บ Motion ที่ดีเป็น Recipe / Style Card ใช้ซ้ำในงานต่อไป" }
+      ],
+      promptCopyText: `// ตัวอย่างกฎใน CLAUDE.md ของ Motion Studio
+# Motion Studio Rules
+
+Read the brand files and reference library before designing.
+Do not invent brand colors or typography when references exist.
+
+Before coding:
+1. Create a storyboard.
+2. Define shot duration.
+3. Define motion purpose for every shot.
+4. Identify which reference or recipe supports the decision.
+
+Motion must support the message, not decorate it.
+Every frame must remain readable when paused.
+Keep typography inside safe areas.
+Use real data or clearly label demo data.
+
+Before final export:
+- check text overflow
+- check static frames
+- check abrupt jumps
+- check loop/end transition
+- check audio sync
+- check logo lockup
+
+---
+
+// Prompt สั่งงานแบบ Production (แทน "ทำวิดีโอเปิดตัวให้หน่อย")
+Read CLAUDE.md first.
+Study the files inside /brand and /references.
+Review the relevant examples inside /repos.
+Create a storyboard before writing production code.
+
+Goal: Create a [ความยาว] brand film for [สินค้า].
+Message: [สิ่งที่คนดูควรเข้าใจ]
+Use: [Remotion / HyperFrames / Skill ที่เลือก]
+Visual direction: [สไตล์/Reference]
+Audio: [เสียงพากย์/ดนตรี]
+
+Deliver: storyboard, shot list with timing, implementation, first render, QA report, final render.
+Do not change established brand rules without asking.
+
+---
+
+// เมื่องาน "เกือบถูก"
+Fix one thing only. Keep the motion, timing and loop exactly as they are. Tell me what you changed.`,
+      takeaways: [
+        "Repo คือ Reference (งานดีหน้าตาเป็นยังไง) ส่วน Skill คือ Working Rules (ต้องใช้ Framework ยังไง) ควรมีทั้งสองอย่าง",
+        "Motion Recipe = Shot + Composition + Camera + Timing + Transition + Easing + Typography + Parameters เก็บไว้ใช้ซ้ำได้",
+        "ใช้แนวคิด Evidence-gated: งานไม่ถือว่าเสร็จเพราะ Agent บอกว่าเสร็จ ต้องมีไฟล์และการตรวจรองรับ และอย่าเริ่ม Paid Generation เต็มงานทันที ให้ทำ Pilot ราคาถูกก่อน",
+        "ก่อนรันคำสั่งติดตั้งทุกครั้ง ให้เช็ก README ล่าสุดและให้ Agent บอกก่อนว่าจะติดตั้งหรือเปลี่ยนอะไร ส่วน Presenter Route ใช้ได้เฉพาะรูปและเสียงที่เรามีสิทธิ์ใช้"
+      ]
+    },
+    cta: {
+      title: "อยากมี Motion Studio ของตัวเองแต่ไม่อยากไล่ตั้งค่าทีละอย่าง?",
+      description: "Workflow, Skill, Recipe และ QA ที่ใช้จริง อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท หรือจองเวิร์กช็อปส่วนตัวให้ปรับระบบตรงกับงานของคุณทาง LINE",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "สอบถาม Workshop ส่วนตัวผ่าน LINE"
+    }
+  },
+  {
+    id: "5-claude-code-skills-pro-website",
+    title: "5 Claude Code Skills ที่ช่วยให้เว็บดูโปรขึ้น",
+    subtitle: "เว็บใช้งานได้แล้ว แต่ยังดูเหมือน 'เว็บที่ AI สร้าง' ลองเติมความสามารถด้าน Design, 3D, Animation และ Motion",
+    category: "Vibe Coding",
+    categoryBadge: "WEB DESIGN SKILLS",
+    icon: "✨",
+    coverImage: "/resources/claude-code-web-skills.svg",
+    readTime: "5 นาที",
+    date: "2026-08",
+    tags: ["Claude Code", "Skills", "Three.js", "GSAP", "Design", "Motion", "Vibe Coding"],
+    summary: "Skills ฟรีจาก GitHub 5 ตัว: Three.js Skills, GSAP Skills, Design DNA, Motion Design Skill และ Genjutsu พร้อมลำดับใช้งาน 4 ขั้นตั้งแต่แกะ Reference ถึงเก็บงานรอบสุดท้าย",
+    featured: false,
+    skillCategories: [
+      {
+        icon: "🧩",
+        name: "5 Skills",
+        skills: [
+          { name: "Three.js Skills", desc: "ช่วยทำเว็บ 3D และ Interactive: 3D Scene, Lighting & Shadow, Camera Controls, GLTF/GLB, Particle & Shader", link: "github.com/CloudAI-X/threejs-skills" },
+          { name: "GSAP Skills", desc: "Official AI Skills จาก GSAP: Text Reveal, Timeline, ScrollTrigger, React Animation, Plugins", link: "github.com/greensock/gsap-skills" },
+          { name: "Design DNA", desc: "วิเคราะห์ Layout, Typography, สี, Spacing และ Mood จาก Reference ให้ AI เข้าใจ โดยไม่ต้องคัดลอกเว็บต้นฉบับ", link: "github.com/zanwei/design-dna" },
+          { name: "Motion Design Skill", desc: "ให้ Claude คิดเรื่อง Timing, Easing, Choreography, Micro-interaction แบบ Motion Designer", link: "github.com/LottieFiles/motion-design-skill" },
+          { name: "Genjutsu", desc: "ขั้นเก็บงานรอบสุดท้าย ปรับ Creative Direction, Layout, Animation, 3D และ Design System ให้ไปทางเดียวกัน", link: "github.com/AThevon/genjutsu" }
+        ]
+      }
+    ],
+    content: {
+      intro: "ไม่จำเป็นต้องใช้ทั้ง 5 ตัวพร้อมกัน เลือกใช้ตามงานที่กำลังทำ ถ้าเว็บทำเสร็จและใช้งานได้แล้วแต่ยังรู้สึกว่า 'ทำไมมันยังดูเหมือนเว็บที่ AI สร้าง' ปัญหามักอยู่ที่ทิศทางดีไซน์ จังหวะของ Animation และรายละเอียดภาพรวม ซึ่ง Skills เหล่านี้ช่วยเติมได้ ติดตั้งตาม README ของแต่ละ Repo แล้วเรียกใช้ตอนที่ต้องการสร้างหรือแก้ส่วนนั้นๆ",
+      workflowSteps: [
+        { step: "01. Design DNA", desc: "นำ Screenshot หรือ Reference ที่ชอบให้ AI สกัดเป็น Design Direction ก่อนสร้าง UI ใหม่ ใช้เป็นแนวทาง ไม่ใช่ลอกเว็บเดิมตรงๆ" },
+        { step: "02. Three.js / GSAP", desc: "เพิ่ม 3D, Interaction และ Scroll Animation ตามที่โปรเจกต์ต้องการ" },
+        { step: "03. Motion Design → Genjutsu", desc: "ปรับ Timing, Easing และจังหวะ แล้วปิดท้ายด้วยการเก็บ Layout, Design System และ Visual รอบสุดท้าย" }
+      ],
+      promptCopyText: `// ตัวอย่างสั่ง Claude Code หลังติดตั้ง Skills
+
+// 1) แกะ Reference (Design DNA)
+วิเคราะห์ภาพ Reference นี้เป็น Design DNA:
+Layout, Typography, Color Palette, Spacing, Visual Effects, Mood & Style
+ใช้เป็น Design Direction เท่านั้น ห้ามคัดลอกเนื้อหาหรือภาพของต้นฉบับ
+
+// 2) ปรับ Motion (Motion Design Skill)
+Animation ในหน้านี้ใช้งานได้แล้ว แต่ยังรู้สึกแข็ง
+ช่วยวาง Motion Direction ก่อนแก้โค้ด: Timing, Easing, Choreography ของแต่ละ Element
+และเสนอว่าจะเปลี่ยนอะไร ก่อนลงมือ
+
+// 3) เก็บงานรอบสุดท้าย (Genjutsu)
+เว็บนี้โครงสร้างและ Function เสร็จแล้ว
+ตรวจ Visual Direction, Layout, Motion และ Design System ให้ไปในทิศทางเดียวกัน
+เสนอรายการปรับแก้ก่อนแก้จริง`,
+      takeaways: [
+        "รู้จัก Skills 5 ตัวที่ช่วยเรื่อง 3D, Animation, Design Reference, Motion และการเก็บงาน",
+        "มีลำดับใช้งาน 4 ขั้นที่ต่อกันได้ แต่เลือกใช้เฉพาะตัวที่แก้ปัญหาของโปรเจกต์ตัวเองก็พอ",
+        "เว็บที่ใช้งานได้แล้วจะดูมี Direction มากขึ้น เมื่อมีทั้งแนวดีไซน์และจังหวะ Animation ที่ชัด"
+      ]
+    },
+    cta: {
+      title: "อยากได้เทคนิคทำเว็บด้วย AI แบบเจาะลึกเฉพาะงานของคุณ?",
+      description: "เข้า Modty AI Insider Club เดือนละ 99 บาท เพื่อรับเทคนิค Claude Code, Skills, MCP และ Vibe Coding ที่ทดลองใช้จริงทุกสัปดาห์ หรือขอ Private Workshop ที่ปรับตามโจทย์ของคุณทาง LINE",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "สอบถาม Private Workshop ผ่าน LINE"
+    }
   }
 ];

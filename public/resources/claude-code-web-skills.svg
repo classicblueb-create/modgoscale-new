@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="5 Claude Code Skills ช่วยเว็บดูโปร">
+  <rect width="1200" height="630" fill="#FFF1E6"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(80 80)"><rect width="720" height="330" rx="28" fill="#fff" stroke="#111" stroke-width="6"/><path d="M0 62h720" stroke="#111" stroke-width="6"/><g fill="#FF6A2A"><circle cx="40" cy="32" r="9"/></g><g fill="#999"><circle cx="70" cy="32" r="9"/><circle cx="100" cy="32" r="9"/></g>
+    <rect x="50" y="110" width="300" height="26" rx="13" fill="#111"/><rect x="50" y="154" width="240" height="16" rx="8" fill="#E6E4DD"/><rect x="50" y="186" width="280" height="16" rx="8" fill="#E6E4DD"/><rect x="50" y="240" width="150" height="48" rx="24" fill="#FF6A2A"/>
+    <path d="M540 150l80 -40 80 40v90l-80 40-80-40z" fill="#FFB68E" stroke="#111" stroke-width="5" stroke-linejoin="round"/><path d="M540 150l80 40 80-40M620 190v90" fill="none" stroke="#111" stroke-width="5" stroke-linejoin="round"/></g>
+    <text x="80" y="470" font-size="104" font-weight="800" fill="#111">5 WEB SKILLS</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">DESIGN · 3D · MOTION · POLISH</text>
+  </g>
+</svg>

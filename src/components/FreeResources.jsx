@@ -9,7 +9,7 @@ export default function FreeResources({ lineLink, en, onBackToHome }) {
   const [copiedId, setCopiedId] = useState(null);
   const [activeTag, setActiveTag] = useState(null);
 
-  const categories = ['All', 'Vibe Coding', 'Prompt Engineering', 'Automation', 'AI Visual'];
+  const categories = ['All', 'Vibe Coding', 'Prompt Engineering', 'Automation', 'AI Visual', 'Claude Skills'];
 
   const filteredResources = FREE_RESOURCES.filter((item) => {
     const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory;

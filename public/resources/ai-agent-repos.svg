@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="5 AI Agent Repos">
+  <rect width="1200" height="630" fill="#FFF1E6"/>
+  <circle cx="1060" cy="70" r="230" fill="#FF6A2A" opacity="0.14"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g stroke="#FF6A2A" stroke-width="5"><path d="M280 180L600 120M600 120L920 180M280 180L440 330M920 180L760 330M440 330L760 330M600 120L600 250"/></g>
+    <g fill="#111"><circle cx="280" cy="180" r="42"/><circle cx="920" cy="180" r="42"/><circle cx="440" cy="330" r="42"/><circle cx="760" cy="330" r="42"/></g>
+    <circle cx="600" cy="120" r="52" fill="#FF6A2A"/><circle cx="600" cy="250" r="34" fill="#fff" stroke="#111" stroke-width="5"/>
+    <text x="80" y="470" font-size="104" font-weight="800" fill="#111">5 AGENT REPOS</text>
+    <text x="84" y="530" font-size="28" font-weight="500" fill="#FF6A2A" letter-spacing="6">STUDY · TRY SMALL · ADAPT</text>
+  </g>
+</svg>
