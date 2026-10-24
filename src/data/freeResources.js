@@ -885,5 +885,239 @@ Available skill categories:
       primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
       secondaryBtnText: "ปรึกษาสร้าง Skill (490.-) ผ่าน LINE"
     }
+  },
+  {
+    id: "before-ai-video-editing-checklist",
+    title: "ก่อนให้ Claude ตัดวิดีโอ ต้องเตรียมอะไรบ้าง? เช็กลิสต์ 5 อย่างกันงานพัง",
+    subtitle: "AI ตัดไม่เหมือนที่คิด ส่วนใหญ่ไม่ใช่เพราะ AI ไม่เก่ง แต่เพราะเรายังไม่ได้บอกว่า 'สวย' ของเราคืออะไร",
+    category: "AI Visual",
+    categoryBadge: "VIDEO WORKFLOW",
+    icon: "✅",
+    coverImage: "/resources/video-prep-checklist.svg",
+    readTime: "8 นาที",
+    date: "2026-10",
+    tags: ["AI Video Editing", "Claude Code", "Style Guide", "Workflow", "Checklist", "Subtitle ภาษาไทย"],
+    summary: "เช็กลิสต์ 5 อย่างที่ต้องเตรียมก่อนส่งงานให้ Claude / Claude Code ช่วยตัดต่อ ตั้งแต่ไฟล์ดิบ Reference สคริปต์ Style Guide ไปจนถึงสเปกไฟล์ส่งออก พร้อม Prompt 5 เฟส (วิเคราะห์ → วางแผน → ทำ → ตรวจ → ส่งออก) ที่คัดลอกไปใช้ได้เลย",
+    featured: false,
+    content: {
+      intro: "ลองนึกดูว่าเคยสั่ง AI แค่ว่า 'ตัดคลิปนี้ให้สวยๆ หน่อย' แล้วได้งานที่จังหวะเนิบเกินไป ตัวหนังสือเล็กจนอ่านไม่ออก หรือซับไทยมีคำผิดไหม ปัญหาไม่ได้อยู่ที่ AI อย่างเดียว แต่อยู่ที่เรายังไม่ได้ให้ข้อมูลพอ ก่อนสั่งตัด ให้เตรียม 5 อย่างนี้ก่อน: ไฟล์ดิบ, Reference, สคริปต์, Style Guide และสเปกไฟล์ส่งออก แล้วให้ AI 'วิเคราะห์และเสนอแผน' ก่อนลงมือจริงทุกครั้ง การแก้ที่แผนง่ายกว่า Render ใหม่ทั้งคลิปเยอะ",
+      workflowSteps: [
+        { step: "01. เตรียม 5 อย่าง", desc: "ไฟล์ดิบจัดโฟลเดอร์เป็นระเบียบ, คลิป Reference, สคริปต์หรือ Transcript, Style Guide ของช่อง (เป็นไฟล์ .md) และสเปกไฟล์ที่อยากได้ เช่น 9:16, 1080×1920, MP4" },
+        { step: "02. ให้ AI วิเคราะห์ก่อนตัด", desc: "สั่งให้ตรวจไฟล์ อ่าน Style Guide ถอดกฎจาก Reference และบอกว่าขาดอะไร แล้วเสนอ Edit Plan แบ่งตามเวลา ห้าม Render จริงก่อนเรากด OK" },
+        { step: "03. ตรวจ Draft แล้วสั่งแก้ให้ตรงจุด", desc: "ดู Draft MP4 ทั้งคลิป แล้วสั่งแก้ด้วยเวลา + ปัญหา + ผลที่ต้องการ เช่น '00:03–00:06 ซับยาวไป ลดคำต่อบรรทัด' แทนคำว่า 'ยังไม่สวย'" }
+      ],
+      promptCopyText: `คุณคือ AI Video Editor และ Motion Designer
+ทำงานร่วมกับฉันเพื่อสร้างวิดีโอที่พร้อมเผยแพร่จริง
+
+ไฟล์ที่ต้องตรวจ:
+- Raw footage: [ระบุชื่อไฟล์]
+- Reference video: [ระบุชื่อไฟล์]
+- Script / Transcript: [ระบุชื่อไฟล์]
+- Style Guide: [เช่น MY_VIDEO_STYLE.md]
+- Output spec: [เช่น TikTok/Reels, 9:16, 1080x1920, 30fps, MP4, ซับไทยฝังในวิดีโอ]
+
+PHASE 1: ANALYZE
+1. ตรวจว่าไฟล์มีจริงและเปิดได้ แจ้งไฟล์ที่ขาดก่อนเริ่ม
+2. อ่าน Style Guide
+3. วิเคราะห์ Reference: จังหวะตัด, ซับ, ตัวอักษร, Motion, Transition, เสียง
+4. ตรวจ Transcript เทียบกับเสียงต้นฉบับ
+
+PHASE 2: PLAN
+1. ทำ Edit Plan แบ่งตาม Timestamp
+2. ระบุภาพ, ซับ, B-roll, Motion และเสียงประกอบของแต่ละช่วง
+3. บอกจุดที่ต้องการข้อมูลเพิ่ม
+ห้าม Render Final จนกว่าฉันจะอนุมัติ Edit Plan
+
+PHASE 3: EXECUTE (หลังอนุมัติ)
+ทำตามแผนที่อนุมัติ รักษาเนื้อหาและเสียงต้นฉบับ
+
+PHASE 4: QA
+ตรวจภาพ เสียง ซับไทย จังหวะตัด ความละเอียด และสัดส่วนภาพ
+
+PHASE 5: EXPORT
+ส่ง Draft ให้ตรวจ แก้ตาม Feedback แล้วส่ง Final พร้อมรายงานผลตรวจ
+
+กฎสำคัญ:
+- ห้ามแต่งคำพูดใหม่ที่ผู้พูดไม่ได้พูด
+- ห้ามเปลี่ยนส่วนที่อนุมัติแล้วโดยไม่มีเหตุผล
+- ถ้ายังไม่ได้ตรวจผลลัพธ์จริง ห้ามบอกว่าทดสอบหรือ Render สำเร็จ
+- มีข้อจำกัดอะไรให้บอกตรงๆ`,
+      takeaways: [
+        "รู้ว่าต้องเตรียมอะไรก่อนสั่ง AI ตัดต่อ ลดการแก้งานซ้ำหลายรอบ",
+        "ได้โครง Style Guide และ Prompt 5 เฟสที่เอาไปใช้กับคลิปถัดไปได้ ไม่ต้องเริ่มใหม่ทุกครั้ง",
+        "คลิปภาษาไทยปลอดภัยขึ้น เพราะมีกฎกันการแต่งคำพูดและเช็กคำผิดก่อนส่งออก",
+        "จำไว้ว่า Claude Code ช่วยวิเคราะห์และประสานงานในโปรเจกต์ แต่การตัดและ Render จริงต้องมีเครื่องมือรองรับ เช่น FFmpeg, Remotion และเครื่องมือถอดเสียงอย่าง Whisper ที่ติดตั้งไว้ก่อน"
+      ]
+    },
+    cta: {
+      title: "อยากได้ระบบตัดต่อด้วย AI ที่ใช้ซ้ำได้ทุกคลิป?",
+      description: "เทคนิค AI Video Workflow เต็มรูปแบบ ทั้ง Style Guide, Skill Library และ Prompt ที่ผ่านการใช้งานจริง รวมอยู่ใน Modty AI Insider Club อัปเดตทุกสัปดาห์ ปรึกษาได้เดือนละครั้ง เดือนละ 99 บาทเท่านั้น",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "motion-graphics-28-tools-for-claude",
+    title: "28 เครื่องมือทำ Motion Graphics ด้วย Claude — ไม่ต้องลงครบ เริ่มแค่ 5 ตัวก็พอ",
+    subtitle: "แยกให้ชัดว่าอะไรคือ Engine, Render, UI, เสียง และ Skills/MCP พร้อมเส้นทางทำคลิปแรกเป็น MP4",
+    category: "AI Visual",
+    categoryBadge: "TOOL DIRECTORY",
+    icon: "🎬",
+    coverImage: "/resources/motion-tools-28.svg",
+    directoryLabel: "Tools",
+    readTime: "10 นาที",
+    date: "2026-10",
+    tags: ["Motion Graphics", "Remotion", "GSAP", "FFmpeg", "Claude Code", "Skills", "MCP"],
+    summary: "รวม 28 เครื่องมือสำหรับทำ Motion Graphics ร่วมกับ Claude จัดเป็น 5 กลุ่ม พร้อมสรุปว่ามือใหม่ควรเริ่มที่ตัวไหน เลือกตามโจทย์ยังไง ทำคลิป 15 วินาทีแนวตั้งเป็น MP4 ทีละขั้น และ Prompt พร้อมคัดลอก",
+    featured: false,
+    skillCategories: [
+      {
+        icon: "🧩",
+        name: "Engines — สร้างภาพเคลื่อนไหว",
+        skills: [
+          { name: "Three.js", desc: "ฉาก 3D กล้อง แสง วัตถุ เหมาะกับสินค้าหมุน 3D (ระดับกลาง)", link: "threejs.org", label: "เปิดเว็บ" },
+          { name: "Anime.js", desc: "ขยับตัวหนังสือ SVG และรูปทรง เหมาะกับ Kinetic Typography (ง่าย-กลาง)", link: "animejs.com", label: "เปิดเว็บ" },
+          { name: "Motion", desc: "Animation บนเว็บและ React เหมาะกับหน้า SaaS (ง่าย-กลาง)", link: "motion.dev", label: "เปิดเว็บ" },
+          { name: "React Three Fiber", desc: "เขียน Three.js ผ่าน React ทำเว็บ 3D โต้ตอบได้ (กลาง-สูง)", link: "r3f.docs.pmnd.rs", label: "เปิดเว็บ" },
+          { name: "Lottie-web", desc: "เล่นไฟล์ Lottie บนเว็บ เหมาะกับโลโก้และไอคอนเคลื่อนไหว (ง่าย-กลาง)", link: "github.com/airbnb/lottie-web" },
+          { name: "GSAP", desc: "คุม Timeline และจังหวะละเอียด เหมาะกับโมชั่นหลายฉาก (กลาง)", link: "gsap.com", label: "เปิดเว็บ" }
+        ]
+      },
+      {
+        icon: "🎞️",
+        name: "Render — เปลี่ยนงานเป็นวิดีโอ",
+        skills: [
+          { name: "FFmpeg", desc: "แปลง ตัด ต่อ รวมเสียง ใช้ได้กับทุกงานที่ต้องส่ง MP4 (กลาง)", link: "ffmpeg.org", label: "เปิดเว็บ" },
+          { name: "Remotion", desc: "สร้างวิดีโอจาก React แล้ว Render เป็น MP4 เหมาะกับ Reels และ Product Launch (ง่าย-กลาง)", link: "remotion.dev", label: "เปิดเว็บ" },
+          { name: "HyperFrames", desc: "เรนเดอร์โมชั่นจาก HTML/CSS/JS เป็นวิดีโอ ตรวจวิธีติดตั้งจาก repo รุ่นล่าสุดก่อนใช้ (กลาง)", link: "github.com/hyperframes" },
+          { name: "Manim", desc: "ทำแอนิเมชันด้วย Python เหมาะกับกราฟ สูตร และภาพอธิบายแนวคิด (กลาง)", link: "manim.community", label: "เปิดเว็บ" },
+          { name: "Motion Canvas", desc: "Motion Graphic ผ่าน TypeScript เหมาะกับวิดีโออธิบายโค้ดและไดอะแกรม (กลาง)", link: "motioncanvas.io", label: "เปิดเว็บ" },
+          { name: "Revideo", desc: "สร้างและเรนเดอร์วิดีโอด้วยโค้ด เหมาะกับงานอัตโนมัติบนเซิร์ฟเวอร์ (กลาง)", link: "revideo.dev", label: "เปิดเว็บ" }
+        ]
+      },
+      {
+        icon: "🧱",
+        name: "UI Parts — งาน UI เคลื่อนไหว",
+        skills: [
+          { name: "shadcn/ui", desc: "ชุดพื้นฐาน UI สำหรับ React เพิ่มคอมโพเนนต์ผ่าน CLI (ง่าย-กลาง)", link: "ui.shadcn.com", label: "เปิดเว็บ" },
+          { name: "React Bits", desc: "คลัง Text, Background และ UI Animation หยิบไปปรับได้เร็ว (ง่าย)", link: "reactbits.dev", label: "เปิดเว็บ" },
+          { name: "Magic UI", desc: "คอมโพเนนต์ UI มีเอฟเฟกต์ เหมาะกับ Landing Page และคลิปโปรโมตแอป (ง่าย)", link: "magicui.design", label: "เปิดเว็บ" },
+          { name: "Motion Primitives", desc: "องค์ประกอบ Animation สำหรับ React ปรับให้เข้ากับ Design System ได้ (ง่าย-กลาง)", link: "motion-primitives.com", label: "เปิดเว็บ" },
+          { name: "Magic MCP", desc: "ให้ AI Agent ค้นและนำ UI มาใช้ในโปรเจกต์ผ่าน MCP (กลาง)", link: "21st.dev/mcp", label: "เปิดเว็บ" }
+        ]
+      },
+      {
+        icon: "🔊",
+        name: "Sound — เสียงและซับไตเติล",
+        skills: [
+          { name: "Whisper", desc: "ถอดเสียงพูดเป็นข้อความพร้อมเวลา แล้วให้ Claude แปลงเป็น SRT ได้ (กลาง)", link: "github.com/openai/whisper" },
+          { name: "Tone.js", desc: "สร้างเสียงและเพลงด้วย JavaScript เหมาะกับเสียงแจ้งเตือนตามจังหวะ (กลาง)", link: "tonejs.github.io", label: "เปิดเว็บ" },
+          { name: "Wavesurfer.js", desc: "แสดงคลื่นเสียงเป็นกราฟิก เหมาะกับ Podcast และ Waveform Overlay (ง่าย-กลาง)", link: "wavesurfer.xyz", label: "เปิดเว็บ" },
+          { name: "ElevenLabs Skills", desc: "เชื่อมงานเสียง AI เช่น Voiceover และ SFX ตรวจค่าบริการและสิทธิ์ก่อนใช้ (กลาง)", link: "github.com/elevenlabs/skills" }
+        ]
+      },
+      {
+        icon: "🔌",
+        name: "Skills & MCP — เพิ่มความรู้และการเชื่อมต่อ",
+        skills: [
+          { name: "Anthropic Skills", desc: "ชุด Skills ทางการสำหรับงาน Art, Canvas, GIF ติดตั้งตาม README (ง่าย-กลาง)", link: "github.com/anthropics/skills" },
+          { name: "MCP for Blender", desc: "ให้ Claude คุยกับ Blender เพื่อทำงาน 3D ต้องติดตั้ง Blender แยก (สูง)", link: "github.com/ahujasid/blender-mcp" },
+          { name: "GSAP Skills", desc: "คู่มือ Agent สำหรับเขียน GSAP ค้นหา repo ที่ยังดูแลอยู่ แล้วเช็ก SKILL.md ก่อนเพิ่ม (กลาง)", link: "github.com/search?q=gsap+skills&type=repositories", label: "ค้นหา" },
+          { name: "Remotion Skills", desc: "แนวทางใช้ Remotion ให้ถูกวิธี รัน npx skills add remotion-dev/skills ในโปรเจกต์ (ง่าย-กลาง)", link: "github.com/remotion-dev/skills" },
+          { name: "Three.js Skills", desc: "ความรู้ฉาก 3D สำหรับ Coding Agent อ่านคู่มือของ repo ก่อนเพิ่ม (กลาง-สูง)", link: "github.com/search?q=threejs+skills&type=repositories", label: "ค้นหา" },
+          { name: "After Effects MCP", desc: "สำหรับคนใช้ After Effects อยู่แล้ว เลือกตัวที่รองรับเวอร์ชันของคุณและทดสอบกับไฟล์สำเนา (สูง)", link: "github.com/search?q=after+effects+mcp&type=repositories", label: "ค้นหา" },
+          { name: "Motion Graphics Skills", desc: "ชุด 13 Skills ทำ Motion ด้วยโค้ด เริ่มจาก brand-intake (ง่าย-กลาง)", link: "github.com/charlie947/motion-graphics-skills" }
+        ]
+      }
+    ],
+    content: {
+      intro: "ลิสต์นี้ยาว 28 ตัวก็จริง แต่ไม่ต้องลงครบ และไม่ได้ติดตั้งเข้า Claude แบบเดียวกันทั้งหมดด้วย เพราะมีทั้ง Library, เครื่องมือ Render, โปรแกรม, Skills และ MCP ปนกันอยู่ มือใหม่เริ่มแค่ 5 ตัวก่อน: Motion Graphics Skills (ตั้งกติกาแบรนด์), Remotion (สร้างและ Render MP4), GSAP (คุมจังหวะ), React Bits (หยิบองค์ประกอบสำเร็จรูป) และ FFmpeg (งานท้าย รวมเสียง ส่งออก) ที่เหลือค่อยเพิ่มตามโจทย์",
+      workflowSteps: [
+        { step: "01. เตรียมเครื่อง + ติดตั้ง Skills", desc: "ติดตั้ง Node.js, VS Code, Claude Code และ FFmpeg ตามเอกสารทางการ แล้วรัน npx skills add charlie947/motion-graphics-skills จากนั้นเริ่มด้วยคำว่า 'Set up my brand for motion'" },
+        { step: "02. สร้างโปรเจกต์ Remotion", desc: "รัน npx create-video@latest my-first-motion แล้ว npx skills add remotion-dev/skills จากนั้นสั่ง Claude ทำคลิป 15 วินาที 1080×1920 แบ่ง 3 ฉาก: Hook, สาธิต, CTA" },
+        { step: "03. พรีวิว → Render → QA", desc: "พรีวิวด้วย npx remotion studio เช็กชื่อ Composition ให้ถูกก่อน แล้ว npx remotion render <CompositionId> out/clip.mp4 ตรวจว่าตัวหนังสือไม่หลุดจอ ภาษาไทยไม่เพี้ยน และสิทธิ์ใช้เพลง/ฟอนต์/โลโก้" }
+      ],
+      promptCopyText: `Create a 15-second vertical (1080x1920, 30fps) motion graphics MP4 for a Thai beginner audience.
+Topic: [หัวข้อคลิปของคุณ]
+
+Scenes:
+1. 0-3s Hook: "[ข้อความเปิด]"
+2. 3-12s Show [ประเด็นหลัก] in clear editorial cards with gentle transitions.
+3. 12-15s CTA: "[ข้อความปิด]"
+
+Visual direction: [สไตล์ที่ต้องการ เช่น clean editorial, cream background, orange accent, bold Kanit Thai typography]
+Use real screenshots or user-supplied logo assets. Do not fabricate logos.
+Build with Remotion. Use GSAP only where technically appropriate and compatible.
+
+First create a shot plan and list all assets required.
+Then implement, preview, export MP4, and inspect frames for clipping and incorrect Thai text.
+Do not guess the composition ID: read it from the project before rendering.`,
+      takeaways: [
+        "รู้ว่าเครื่องมือแต่ละตัวอยู่กลุ่มไหน ทำหน้าที่อะไร ไม่ต้องลงครบ 28 ตัว",
+        "เลือกชุดเครื่องมือตามโจทย์ได้ เช่น คลิปโปรโมตแอป, งาน 3D, อินโฟกราฟิก, ซับจากคลิปพูด",
+        "ระวังไว้ว่า 'ใช้ฟรี' ไม่ได้แปลว่าไม่มีต้นทุน: Claude, API, เสียง AI และบริการ Render บางตัวมีค่าใช้จ่ายหรือเงื่อนไขไลเซนส์ และ MCP ควรเช็ก repo กับสิทธิ์เข้าถึงไฟล์ก่อนเชื่อม",
+        "มีเส้นทางทำคลิปแรกเป็น MP4 ที่ทำตามได้ทีละขั้น"
+      ]
+    },
+    cta: {
+      title: "อยากได้คู่มือฉบับเต็มและอัปเดตเครื่องมือใหม่ทุกสัปดาห์?",
+      description: "เครื่องมือ Motion และ AI Video เปลี่ยนเร็วมาก ใน Modty AI Insider Club เราอัปเดตเทคนิคล่าสุดให้ทุกสัปดาห์ และปรึกษาได้เดือนละครั้ง เดือนละ 99 บาทเท่านั้น",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "snapcn-motion-video-guide",
+    title: "SnapCN คืออะไร? ประกอบวิดีโอ Motion ด้วยชิ้นส่วนสำเร็จรูป สำหรับมือใหม่",
+    subtitle: "ไม่ใช่เว็บที่พิมพ์แล้วได้ภาพยนตร์ แต่เป็นตัวต่อ LEGO สำหรับคลิปแนะนำแอป เว็บ AI Tools และ SaaS",
+    category: "AI Visual",
+    categoryBadge: "MOTION VIDEO GUIDE",
+    icon: "🧱",
+    coverImage: "/resources/snapcn-motion-video.svg",
+    readTime: "9 นาที",
+    date: "2026-10",
+    tags: ["SnapCN", "Remotion", "Motion Video", "Claude Code", "Codex", "MCP", "Product Demo"],
+    summary: "รู้จัก SnapCN คลังชิ้นส่วนโมชั่นสำหรับ React + Remotion (ข้อความขยับ, จำลองแชต AI, กรอบมือถือ/แล็ปท็อป, Terminal, โลโก้) มี 2 ทางเริ่มต้น: ลองใน Browser Editor แบบไม่ต้องโค้ด หรือให้ Claude Code / Codex ประกอบให้ พร้อม Prompt สร้างคลิป 15–20 วินาที",
+    featured: false,
+    content: {
+      intro: "SnapCN คือคลังชิ้นส่วนโมชั่นสำเร็จรูปสำหรับทำวิดีโอด้วย React และ Remotion เช่น ข้อความที่ปรากฏทีละคำ การพิมพ์คำสั่งใน Terminal แชต AI ที่ค่อยๆ ตอบ กรอบโทรศัพท์/แล็ปท็อป และแอนิเมชันโลโก้ เหมือนตัวต่อที่หยิบมาประกอบเป็นฉากได้ สิ่งที่ต้องรู้ก่อน: นี่ไม่ใช่เว็บ AI ที่พิมพ์ข้อความแล้วได้หนังสมจริง แต่เหมาะมากกับ Product Demo, คลิปแนะนำเว็บและแอป ถ้าอยากลองเร็วโดยไม่ติดตั้งอะไร ให้เริ่มที่ Browser Editor แต่ถ้าอยากคุมทุกจุดให้ใช้ Remotion + SnapCN + Coding Agent",
+      workflowSteps: [
+        { step: "ทางที่ 1: Browser Editor", desc: "เปิด SnapCN Video Editor เลือกชิ้นส่วน เช่น Text Reveal, Laptop Frame แก้ข้อความ สี ระยะเวลา เรียงบน Timeline แล้วลอง Export MP4 (ปุ่มและตัวเลือกอาจเปลี่ยนตามรุ่น Editor)" },
+        { step: "ทางที่ 2: Claude Code / Codex", desc: "สร้างโปรเจกต์ด้วย npx create-video@latest เพิ่ม Component อย่าง npx shadcn@latest add @snapcn/text-reveal และติดตั้ง Agent Skill ด้วย npx skills add snapcndev/snapcn --skill snapcn --yes ให้ AI ประกอบฉาก" },
+        { step: "ทางที่ 3: Preview + Render", desc: "เปิด Remotion Studio ตรวจภาพ แล้วเช็กชื่อ Composition จริงก่อน Render เช่น npx remotion render ProductDemo out/product-demo.mp4 --codec h264 (เปลี่ยนชื่อให้ตรงกับของคุณ)" }
+      ],
+      promptCopyText: `ช่วยสร้างวิดีโอ Product Demo แนวตั้ง 9:16 ความยาว 15 วินาที
+ด้วย Remotion และ SnapCN Components ในโปรเจกต์นี้ (1080x1920, 30 fps)
+
+สินค้า: [ชื่อแอปหรือเว็บของคุณ]
+กลุ่มเป้าหมาย: [ใครคือคนดู]
+สไตล์: [เช่น สะอาด ทันสมัย สีครีม ดำ ส้ม] ข้อความภาษาไทย ฟอนต์ Kanit
+
+Scene 1 (0-3s): Text Reveal ข้อความ "[ประโยคเปิด]"
+Scene 2 (3-7s): โชว์ภาพหน้าแอปใน Laptop Frame
+Scene 3 (7-12s): จำลองการพิมพ์ Prompt "[ตัวอย่างคำสั่ง]" และ AI ตอบกลับ
+Scene 4 (12-15s): โลโก้ / ชื่อแอป พร้อม CTA "[ข้อความชวนทำ]"
+
+เงื่อนไข:
+- ตรวจว่า Components และ Props มีอยู่จริงใน SnapCN ก่อนเรียกใช้
+- ติดตั้งเฉพาะชิ้นส่วนที่จำเป็น
+- ตั้งจำนวนเฟรมให้ตรง 15 วินาที ฉากต้องไม่ทับกัน
+- ใช้ภาพใน public/app.png ถ้ามี ถ้าไม่มีให้ใช้ Placeholder และบอกว่าอะไรต้องเปลี่ยน
+- ตรวจว่าข้อความไทยไม่ล้นจอ ก่อน Preview และ Render เป็น MP4
+- รายงานพาธไฟล์ที่ได้ และคำสั่งสำหรับ Render ซ้ำ`,
+      takeaways: [
+        "เข้าใจว่า SnapCN เหมาะกับงานแบบไหน (Product Demo, คลิปแนะนำเว็บ/แอป) และไม่ใช่เครื่องมือสร้างภาพยนตร์จากข้อความ",
+        "เลือกเส้นทางได้ตามความถนัด: ไม่เขียนโค้ดก็เริ่มได้ที่ Browser Editor",
+        "ใช้ภาพหน้าจอของสินค้าจริงเท่านั้น หรือบอกชัดว่าเป็นตัวอย่าง อย่าใช้ภาพจำลองอ้างเป็นฟีเจอร์ที่มีจริง",
+        "SnapCN MCP เป็นฟีเจอร์แพ็กเกจ Pro ใช้ API Key (อย่าโพสต์คีย์ลงคลิป GitHub หรือแชร์ให้ใคร) ถ้าไม่อยากสมัคร ใช้ Agent Skill ตัวฟรีแทนได้",
+        "ใน Claude แชตปกติจะไม่ได้ MP4 ออกมาเอง ต้องมีสภาพแวดล้อมที่รันโค้ดและ Render จริง"
+      ]
+    },
+    cta: {
+      title: "อยากทำวิดีโอ Motion ด้วย AI ให้ใช้งานจริงในธุรกิจ?",
+      description: "ใน Modty AI Insider Club เรารวมเทคนิค AI Video, Motion และ Claude Code ที่ลองใช้จริงแล้ว อัปเดตทุกสัปดาห์ ปรึกษาได้เดือนละครั้ง เดือนละ 99 บาทเท่านั้น",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
   }
 ];
