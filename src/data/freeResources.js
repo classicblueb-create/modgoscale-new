@@ -1776,5 +1776,369 @@ Scene 5 (transition): Match cut through doorway, seamless room-to-room movement,
       primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
       secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
     }
+  },
+  {
+    id: "3d-carousel-hero-slide-prompt",
+    title: "Prompt ทำสไลด์และหน้าเว็บ Hero แบบ 3D Carousel (มีเสียงพากย์ไทยในตัว)",
+    subtitle: "วาง 2 Prompt ใน Canvas mode ได้สไลด์เลื่อนเอง พร้อมตัวอักษรยักษ์ 3D ด้านหลังที่เปลี่ยนตามหัวข้อ",
+    category: "Vibe Coding",
+    categoryBadge: "WEB & SLIDE PROMPT",
+    icon: "🎠",
+    coverImage: "/resources/3d-carousel-hero-prompt.svg",
+    readTime: "6 นาที",
+    date: "2026-07",
+    tags: ["Hero Section", "Carousel", "3D", "React", "Tailwind CSS", "Slide", "Gemini TTS"],
+    summary: "สูตรสั่ง AI ให้สร้างสไลด์หรือหน้า Hero แบบ Carousel ฟิกเกอร์ 3D: Prompt แรกบอกเรื่องที่จะทำสไลด์ ใส่เสียงพากย์ไทย ปุ่มเล่นอัตโนมัติ และข้อความยักษ์เบื้องหลัง ส่วน Prompt ที่สองเป็นต้นแบบ React + Tailwind และมี Prompt ให้ AI ช่วยเกลาข้อความแล้วจัดเป็น CONFIG ที่แปะลงโค้ดได้ทันที",
+    featured: false,
+    content: {
+      intro: "ใช้ได้ทั้งทำสไลด์นำเสนอและทำ Hero Section ของเว็บ วิธีคือวาง Prompt แรกก่อน ตามด้วยเนื้อหาที่ต้องการ แล้วตามด้วย Prompt ที่สองซึ่งเป็นต้นแบบหน้าตา จากนั้นกดสร้าง (เลือก Canvas mode และโมเดล Pro) ถ้าอยากแก้ก็พิมพ์สั่งต่อได้เรื่อยๆ หัวใจของต้นแบบคือ ตัวละคร/ฟิกเกอร์ 4 ตัววนบทบาทซ้าย-กลาง-ขวา-หลังเมื่อกดลูกศร พื้นหลังเปลี่ยนสีเนียนๆ และมีตัวอักษรยักษ์อยู่ด้านหลัง รูปที่ใช้ให้เป็นรูปของเราเอง (หรือรูปที่เรามีสิทธิ์ใช้) ไม่ใช้ลิงก์รูปตัวอย่างของคนอื่น",
+      workflowSteps: [
+        { step: "01. Prompt แรก + เนื้อหา", desc: "บอกหัวข้อสไลด์ เพิ่มเสียงพากย์ไทย ปุ่มเล่นอัตโนมัติ สีสันตามเนื้อหา กรอบข้อความไม่กลืนกับพื้นขาว และข้อความยักษ์ด้านหลังที่เปลี่ยนตามชื่อหัวข้อ (ไม่เกิน 2 คำ)" },
+        { step: "02. Prompt ต้นแบบ Hero", desc: "วางสเปก React + TypeScript + Vite + Tailwind ที่กำหนดฟอนต์ ตำแหน่ง ขนาด และ Transition 650ms ของ Carousel ทั้ง 4 ตำแหน่ง" },
+        { step: "03. ให้ AI เกลาคำ + ทำ CONFIG", desc: "กรอกข้อมูลดิบ (ชื่อแบรนด์ ข้อความลายน้ำ หัวข้อ คำอธิบาย ปุ่ม รูป 4 รูป + สีพื้นหลัง) แล้วให้ AI เกลาและส่งกลับเป็นตัวแปร CONFIG กับ IMAGES ไปแปะในโค้ด" }
+      ],
+      promptCopyText: `// PROMPT 1 — วางก่อน แล้วตามด้วยเนื้อหาของคุณ
+จาก prompt ถัดไปนี้ ต้องการสร้างเนื้อหาใหม่เป็นสไลด์เรื่อง [หัวข้อ]
+เพิ่มเสียงพากย์ภาษาไทย น้ำเสียงสดใสเป็นธรรมชาติ ด้วย Gemini TTS API
+มีปุ่มกดเล่นอัตโนมัติ แล้วสไลด์เลื่อนเองได้
+ปรับสีสันให้เข้ากับเนื้อหา กรอบข้อความให้ไม่กลืนกับสีขาวเกินไป
+มี Dynamic Background Text (Giant Text): ข้อความ 3D SHAPE ด้านหลังตัวละครเปลี่ยนตาม activeSlide.title
+เป็นชื่อเรื่องไม่เกิน 2 คำที่เกี่ยวข้องกับเรื่องนั้นๆ
+
+---
+
+// PROMPT 2 (ย่อ) — ต้นแบบ Hero Carousel สร้างด้วย React + TypeScript + Vite + Tailwind CSS + lucide-react
+Build a single full-viewport hero section called "[ชื่อแบรนด์]" as a character-figurine carousel.
+- Fonts: Anton (display), Inter (body)
+- 4 images with their own background colors; preload on mount
+- State: activeIndex (0-3), isAnimating lock, isMobile (<640px)
+- Roles: center = activeIndex, left = (i+3)%4, right = (i+1)%4, back = (i+2)%4
+- center: large (scale ~1.68 desktop / 1.25 mobile), no blur; left/right: small, blur 2px, opacity .85; back: smaller, blur 4px
+- Giant ghost text behind the figures: clamp(90px, 28vw, 380px), Anton, white
+- Bottom-left: title, short description, prev/next circular arrow buttons
+- Bottom-right: large link text with arrow
+- Background color and all positions/scales/blur/opacity transition together over 650ms cubic-bezier(0.4,0,0.2,1)
+- Add a subtle grain overlay (SVG fractalNoise)
+- Ignore navigation clicks while animating
+
+---
+
+// PROMPT 3 — ให้ AI เกลาคำและจัดฟอร์แมตให้แปะลงโค้ด
+ฉันมีเนื้อหาร่างสำหรับ Hero Section สไตล์ Carousel
+ช่วยเกลาคำให้น่าสนใจ ดูเป็นมืออาชีพ และจัดกลับมาเป็นตัวแปร CONFIG และ IMAGES เพื่อแปะใน React ได้ทันที
+
+ข้อมูลดิบ:
+- ชื่อแบรนด์: [...]
+- ข้อความลายน้ำพื้นหลัง (อังกฤษ 1-2 คำ): [...]
+- หัวข้อหลัก (ซ้ายล่าง): [...]
+- คำอธิบาย (ซ้ายล่าง): [...]
+- ข้อความปุ่ม (ขวาล่าง): [...]
+- รูป 4 รูป (ลิงก์รูปของฉัน + โทนสีพื้นหลัง): [...]
+
+รูปแบบผลลัพธ์:
+const CONFIG = { brandName: '...', ghostText: '...', bottomTitle: '...', bottomDesc: '...', linkText: '...', linkUrl: '#' };
+const IMAGES = [ { src: '...', bg: '...', panel: '...' } ]; // ให้ครบ 4 รูป`,
+      takeaways: [
+        "ได้สูตรทำสไลด์หรือ Hero Carousel แบบ 3D ที่มีเสียงพากย์ไทยและเลื่อนเองได้",
+        "แยกส่วนที่ต้องแก้ (CONFIG, IMAGES) ออกจากโค้ด ทำให้เปลี่ยนแบรนด์และเนื้อหาได้ง่าย",
+        "ใช้รูปที่เรามีสิทธิ์ใช้เท่านั้น และตรวจ Responsive บนมือถือก่อนเผยแพร่"
+      ]
+    },
+    cta: {
+      title: "อยากทำเว็บและสไลด์สวยๆ ด้วย AI เป็นระบบ?",
+      description: "เทคนิค Vibe Coding และ Prompt สำหรับเว็บ สไลด์ และ Motion อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท ปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "claude-skills-beginner-guide",
+    title: "คู่มือสร้าง Claude Skills สำหรับมือใหม่ — เขียน SOP ให้ Claude ครั้งเดียว ใช้ได้ตลอด",
+    subtitle: "7 เทคนิคเขียน SKILL.md ให้ Claude เรียกใช้ถูกจังหวะ ได้ผลลัพธ์รูปแบบเดิมทุกครั้ง พร้อมเทมเพลตพร้อมใช้",
+    category: "Claude Skills",
+    categoryBadge: "SKILL BUILDING GUIDE",
+    icon: "🧠",
+    coverImage: "/resources/claude-skills-beginner-guide.svg",
+    readTime: "8 นาที",
+    date: "2026-05",
+    tags: ["Claude Skills", "SKILL.md", "Prompt Engineering", "Workflow", "Template"],
+    summary: "Skill คือคู่มือที่สอน Claude ว่าต้องทำงานแบบไหนในแต่ละสถานการณ์ เหมือน SOP ของพนักงาน บทความนี้สรุปโครงสร้างโฟลเดอร์ รูปแบบ SKILL.md เทคนิค 7 ข้อ เทมเพลต วิธีติดตั้ง และเช็กลิสต์ก่อนใช้งานจริง",
+    featured: false,
+    content: {
+      intro: "ทำไมต้องสร้าง Skill แทนการพิมพ์ Prompt ทุกครั้ง: ไม่ต้องสั่งซ้ำ ได้รูปแบบผลลัพธ์เดิมทุกครั้ง Claude รู้บริบทงานของเรา และแชร์ให้คนอื่นใช้ได้ สำหรับมือใหม่ ใช้แค่ไฟล์ SKILL.md ไฟล์เดียวก็พอ (โฟลเดอร์เสริมอย่าง references/, scripts/, assets/ ใส่เมื่อจำเป็น) ไฟล์ประกอบด้วย 2 ส่วนหลัก: ส่วนหัวที่มี name กับ description และส่วนเนื้อหาที่บอกวิธีทำงานและรูปแบบผลลัพธ์ เทคนิคสำคัญคือ description เพราะเป็นตัวที่ Claude ใช้ตัดสินใจว่าจะเรียก Skill ไหม",
+      workflowSteps: [
+        { step: "01. เขียน description ให้ครอบคลุม", desc: "ใส่คีย์เวิร์ดไทย/อังกฤษที่ผู้ใช้จะพิมพ์จริง และบอกเงื่อนไข 'ใช้เมื่อ…' ให้ชัด เพราะ description สั้นเกินไปมักทำให้ Claude ไม่เรียก Skill" },
+        { step: "02. กำหนด Output + Context + Input", desc: "ใส่ Output Format ที่ชัด (ถ้าเพิ่มตัวอย่าง Input → Output จะเข้าใจเร็วขึ้น) บริบทที่ Claude ควรรู้ และแยกว่าข้อมูลไหนต้องถามผู้ใช้ ข้อมูลไหนทำเองได้ ถ้าไม่ครบให้ถามทีละ 1 คำถาม" },
+        { step: "03. ติดตั้ง + ทดสอบ", desc: "สร้างโฟลเดอร์ชื่อ skill-name/ มี SKILL.md แพ็กเป็น .skill แล้วอัปโหลดที่ Claude Settings → Skills ทดลองกับงานจริงแล้วปรับ" }
+      ],
+      promptCopyText: `---
+name: ชื่อ-skill-ของคุณ
+description: [อธิบายว่าทำอะไร] ใช้ skill นี้ทุกครั้งที่ผู้ใช้พูดถึง "[keyword1]", "[keyword2]", "[keyword3]" หรือต้องการ [สถานการณ์] แม้จะไม่ได้ระบุชัดเจน ให้ trigger เสมอ
+---
+
+# ชื่อ Skill
+[ประโยคเปิด: skill นี้ทำอะไร]
+
+## Context
+[บริบทสำคัญที่ Claude ควรรู้ เช่น แบรนด์ โทนเสียง แพลตฟอร์ม กลุ่มเป้าหมาย]
+
+## Input ที่ต้องการจากผู้ใช้
+- [ข้อมูลบังคับ]
+- [ข้อมูลที่ไม่บังคับ + ถ้าไม่บอกให้ทำอย่างไร]
+ถ้า input ไม่ครบ ให้ถามก่อน 1 คำถาม แล้วค่อยเริ่มทำ ไม่ถามหลายคำถามพร้อมกัน
+
+## Output ที่สร้าง
+### 1. [ส่วนแรก]
+### 2. [ส่วนที่สอง]
+
+## Output Format
+[template หรือตัวอย่าง format]
+
+## Tips
+[เทคนิคพิเศษ และสิ่งที่ควรระวัง พร้อมเหตุผล เช่น 'ใช้ bullet เพราะจะนำไป copy ลง LINE ถ้าเป็นย่อหน้ายาวจะอ่านยากบนมือถือ']`,
+      takeaways: [
+        "เข้าใจโครงสร้าง Skill และทำไมไฟล์ SKILL.md ไฟล์เดียวก็เริ่มได้",
+        "เทคนิค 7 ข้อ: description ที่ครอบคลุม, Output Format ชัด, ใส่ Context, โหลดข้อมูล 3 ระดับ, อธิบายเหตุผลแทนสั่งห้าม, แยกสิ่งที่ต้องถามกับทำเองได้, ตั้งชื่อ lowercase-hyphen",
+        "เก็บ SKILL.md ไว้ไม่เกิน 500 บรรทัด ถ้าเนื้อหาเยอะให้แยกไป references/",
+        "เช็กลิสต์ก่อนใช้: มีคีย์เวิร์ดจริง, บอกเงื่อนไข trigger, มี template, มี context, ขนาดไม่เกินกำหนด, ชื่อถูกรูปแบบ"
+      ]
+    },
+    cta: {
+      title: "อยากให้ช่วยสร้าง Skill ที่เหมาะกับงานคุณโดยเฉพาะ?",
+      description: "ถ้าไม่อยากลองผิดลองถูกเอง ปรึกษาเพื่อออกแบบ Skill ตามขั้นตอนงานจริงของคุณ เริ่มต้น 490 บาท หรือเข้า Modty AI Insider Club เดือนละ 99 บาทเพื่อรับเทคนิค Skill Engineering ทุกสัปดาห์",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษาสร้าง Skill (490.-) ผ่าน LINE"
+    }
+  },
+  {
+    id: "ugc-doodle-image-analysis-prompt",
+    title: "เทคนิควิเคราะห์ภาพสินค้า แล้วเติมดูเดิลกับข้อความไทยสไตล์ UGC รีวิวจริง",
+    subtitle: "ภาพสินค้าธรรมดากลายเป็นภาพพร้อมโพสต์ที่ดูเหมือนเพื่อนป้ายยา โดยไม่แตะตัวสินค้า",
+    category: "AI Visual",
+    categoryBadge: "IMAGE PROMPT",
+    icon: "✏️",
+    coverImage: "/resources/ugc-doodle-image-prompt.svg",
+    readTime: "4 นาที",
+    date: "2026-05",
+    tags: ["ChatGPT Image", "UGC", "Doodle", "สกินแคร์", "Prompt", "Social Media"],
+    summary: "2 ขั้นตอน: ให้ AI วิเคราะห์สไตล์ แสง มุมกล้อง องค์ประกอบของภาพก่อน แล้วค่อยสั่งเติมดูเดิลลายเส้นและข้อความไทยแบบภาษาพูด พร้อมเปลี่ยนพื้นหลังให้ดูเป็น User-Generated Content",
+    featured: false,
+    content: {
+      intro: "ภาพโฆษณาที่เรียบเกินไปมักดูเหมือนโฆษณา ภาพแนว UGC (เหมือนคนทั่วไปถ่ายรีวิวเอง) จึงน่าเชื่อถือกว่า เทคนิคนี้คือให้ AI วิเคราะห์ภาพก่อนเพื่อไม่ให้พลาดรายละเอียด แล้วสั่งเติมดูเดิลที่ 'ตอบสนอง' กับวัตถุในภาพ เช่น เส้นตามขอบขวด ประกายไฟ หัวใจ ดาว พร้อมข้อความภาษาไทยแบบพูดจริง กฎเหล็กคือห้ามเปลี่ยนตัวสินค้า โครงสร้าง หรือฉลาก และอย่าใส่คำโฆษณาเกินจริงหรือรับรองสรรพคุณที่สินค้าไม่มี",
+      workflowSteps: [
+        { step: "01. วิเคราะห์ภาพก่อน", desc: "แนบภาพแล้วสั่งให้อธิบายสไตล์ แสง มุมกล้อง และองค์ประกอบอย่างละเอียด" },
+        { step: "02. เติมดูเดิล + ข้อความไทย", desc: "ใช้ Prompt ด้านล่าง ให้ดูเดิลเป็นลายเส้นมือแบบร่างที่ตอบสนองกับวัตถุ และใส่ข้อความภาษาพูดในกรอบวงกลมสลับเส้นทึบ/เส้นประ" },
+        { step: "03. ปรับพื้นหลังให้เป็น UGC", desc: "เปลี่ยนฉากเป็นห้องเรียบง่ายธรรมชาติ หรือมีมือถือสินค้าแบบสุ่ม ให้ดูเป็นภาพรีวิวจริง แล้วตรวจฉลากและข้อความไทยทุกคำก่อนโพสต์" }
+      ],
+      promptCopyText: `// ขั้นที่ 1 — วิเคราะห์ภาพ
+Analyze this image attached and describe its style, lighting, camera angle, and composition in detail.
+
+// ขั้นที่ 2 — เติมดูเดิล + ข้อความไทย
+โปรดวิเคราะห์ภาพผลิตภัณฑ์ที่อัปโหลดอย่างละเอียด โดยรักษาวัตถุหลัก องค์ประกอบ และการจัดแสงตามต้นฉบับอย่างเคร่งครัด
+อย่าเปลี่ยนแปลงเอกลักษณ์ โครงสร้าง หรือฉลากของวัตถุหลักโดยเด็ดขาด
+
+ส่วนที่ 1: ดูเดิล
+เพิ่มลายเส้นดูเดิลแบบวาดด้วยมือที่สนุกสนานและมีปฏิสัมพันธ์กับวัตถุในภาพ เช่น ลากเส้นตามขอบขวด เส้นบอกความเคลื่อนไหว ประกายไฟ หัวใจ ดาว หรือการ์ตูนที่เหมาะกับสินค้า
+ให้กลมกลืนเหมือนวาดลงบนรูปถ่ายด้วยความตั้งใจ ใช้สไตล์ sketchy เส้นออร์แกนิก จังหวะเส้นไม่สม่ำเสมอเล็กน้อย
+
+ส่วนที่ 2: ข้อความ
+ใส่ข้อความลายมือแบบ whimsical รอบภาพ ใช้ภาษาไทยเท่านั้น เป็นภาษาพูดธรรมชาติ ไม่ใช้สำนวนแบบ AI ไม่เป็นทางการเกินไป
+ตัวอย่างแนวคำ: "ลูกรักคนใหม่!", "ดีงามมม!", "ป้ายยาเพื่อนด่วน!"
+มีกรอบวงกลมสีขาวล้อมข้อความ สลับเส้นเรียบกับเส้นประ บางคำไม่ต้องมีกรอบ
+(หลีกเลี่ยงคำอ้างสรรพคุณที่สินค้าไม่ได้รับรอง)
+
+ส่วนที่ 3: คุณภาพ
+องค์ประกอบสมดุล ดูเดิลไม่บังวัตถุหลัก ความละเอียดสูง สีสดใสแต่เป็นธรรมชาติ พร้อมโพสต์โซเชียล
+เปลี่ยนพื้นหลังให้เป็นแนว UGC รีวิวจริง เรียบง่ายเป็นธรรมชาติ อาจมีมือคนถือสินค้า`,
+      takeaways: [
+        "วิเคราะห์ภาพก่อนสั่งแก้ ช่วยให้รักษาสินค้าและแสงเดิมได้ดีขึ้น",
+        "ดูเดิลและข้อความภาษาพูดทำให้ภาพดูเป็นมิตรและน่าเชื่อกว่าภาพโฆษณาเรียบๆ",
+        "ตรวจฉลากสินค้าและตัวอักษรไทยทุกคำหลัง Gen เพราะ AI อาจสะกดผิดได้"
+      ]
+    },
+    cta: {
+      title: "อยากสร้างระบบผลิตภาพสินค้าและคอนเทนต์ด้วย AI?",
+      description: "Prompt และ Workflow ภาพ/วิดีโอ AI ที่ใช้ได้จริงกับธุรกิจ อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท ปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "humanizer-gem-tone-of-voice",
+    title: "สร้าง Gem 'Humanizer' ให้งานเขียนไม่มีภาษา AI — และดึงโทนเสียงของตัวเองมาใช้",
+    subtitle: "ตัดคำหุ่นยนต์ ลดความเว่อร์ ให้ข้อความอ่านเหมือนคนเขียน พร้อมสูตรโทนเสียงที่เลือกใช้ได้ทันที",
+    category: "Prompt Engineering",
+    categoryBadge: "WRITING SYSTEM",
+    icon: "🗣️",
+    coverImage: "/resources/humanizer-gem-prompt.svg",
+    readTime: "6 นาที",
+    date: "2026-05",
+    tags: ["Humanizer", "Gemini Gem", "Tone of Voice", "Copywriting", "Prompt Engineering"],
+    summary: "Prompt สร้าง Gem บรรณาธิการที่แก้ข้อความจาก AI ให้เป็นธรรมชาติ ตัดคำคลีเช่ ลดความเว่อร์ พร้อม 3 วิธีให้ AI รู้จักโทนเสียงของคุณ: ดึงจากประวัติแชท (Personal Intelligence), แนบงานเขียนเก่าเป็น Reference และเลือกสูตรโทนเสียงสำเร็จรูป",
+    featured: false,
+    content: {
+      intro: "ข้อความจาก AI มักมีลายเซ็นเดียวกัน เช่น ประโยคเปิดแบบสูตรสำเร็จ คำฮิตอย่าง 'ปฏิวัติวงการ' 'เจาะลึก' หรือโทนขายของเกินจริง วิธีแก้คือสร้าง Gem (หรือ GPT) ตัวหนึ่งไว้เป็นบรรณาธิการ ให้รับข้อความแล้วปรับให้กระชับ จริงใจ คงใจความเดิม และตอบกลับเฉพาะข้อความที่แก้แล้ว จากนั้นเติมโทนเสียงของเราเข้าไป เพื่อให้งานเขียนไม่ใช่แค่ 'ไม่เหมือน AI' แต่ 'เหมือนเรา'",
+      workflowSteps: [
+        { step: "01. สร้าง Gem Humanizer", desc: "ก๊อป Prompt ด้านล่างไปสร้าง Gem ครั้งเดียว ใช้ได้ตลอด แล้วต่อท้ายด้วยโทนเสียงที่ต้องการ (Specific Persona & Tone)" },
+        { step: "02. ให้ AI อ่านโทนเสียงเรา", desc: "ถ้าเปิดการเชื่อมต่อ Google Workspace ใน Gemini ไว้ ให้สั่งวิเคราะห์ Persona และ Tone of Voice จากประวัติแชท/อีเมล แล้วเก็บผลลัพธ์ไว้ต่อท้าย Prompt (ตรวจสิทธิ์ข้อมูลที่ยอมให้เข้าถึงก่อน)" },
+        { step: "03. แนบงานเขียนเก่า", desc: "วางแคปชั่นหรือบทความที่เคยเขียนและชอบที่สุดลงท้าย Prompt ให้ AI เลียนแบบการเว้นวรรคและคำติดปาก" }
+      ],
+      promptCopyText: `Role:
+คุณคือ "Humanizer" ผู้เชี่ยวชาญด้านการเขียนและบรรณาธิการ หน้าที่คือรับข้อความที่สร้างโดย AI มาปรับให้เป็นธรรมชาติเหมือนมนุษย์เขียน และกำจัดแพทเทิร์นภาษาแบบหุ่นยนต์
+
+Core Rules:
+1. Anti-AI Clichés
+   - อังกฤษ: ห้ามใช้ revolutionary, game-changing, introducing, delve into, a testament to, unlock, seamless, dynamic landscape, crucial, cutting-edge
+   - ไทย: ห้ามใช้ ปฏิวัติวงการ, พลิกโฉม, ขอแนะนำ, เจาะลึก, กุญแจสำคัญ, สัมผัสประสบการณ์, อย่างไรก็ตาม, ท้ายที่สุดนี้, สรุปได้ว่า
+2. Natural Flow
+   - เลิกโครงสร้างสูตรสำเร็จ (เช่น ขึ้นต้นทุกย่อหน้าด้วย นอกจากนี้ / ยิ่งไปกว่านั้น)
+   - ประโยคสั้น กระชับ อ่านลื่นเหมือนคนคุยกัน
+3. Tone Down the Drama
+   - ลดน้ำเสียงตื่นเต้นเกินจริงและคำคุณศัพท์ที่พยายามขายของ ให้จริงใจ ตรงไปตรงมา เป็นมืออาชีพ
+4. Preserve Meaning
+   - คงใจความสำคัญของต้นฉบับครบ เปลี่ยนแค่วิธีเล่า
+
+Specific Persona & Tone:
+[พิมพ์สไตล์ของคุณ เช่น เพื่อนสนิทที่ป้ายยาของ / รุ่นพี่ที่ทำงานมา 10 ปีมาแชร์ประสบการณ์ / สายฮาที่ชอบแซะตัวเอง]
+
+Tone Reference:
+จดจำและเลียนแบบสไตล์การเขียน การเว้นวรรค และคำติดปาก จากตัวอย่างงานเขียนของฉันด้านล่าง
+[วางข้อความ แคปชั่น หรือบทความเก่าที่ชอบที่สุด]
+
+Output Condition:
+เมื่อฉันส่งข้อความให้ ให้ตอบกลับเฉพาะข้อความที่ปรับแก้แล้วเท่านั้น ห้ามมีคำเกริ่นนำหรือคำอธิบายต่อท้าย
+
+---
+
+// Prompt ให้ Gemini วิเคราะห์โทนเสียงของคุณ
+ช่วยวิเคราะห์ Specific Persona และ Tone of Voice ของฉัน จากประวัติการแชทหรืออีเมลที่ผ่านมา
+สกัดออกมาเป็นโครงสร้างที่ฉันนำไปใช้สั่งงาน AI ต่อได้ทันที`,
+      takeaways: [
+        "สร้างบรรณาธิการ AI ไว้ครั้งเดียว ใช้ปรับทุกข้อความให้เป็นธรรมชาติ",
+        "มีรายการคำต้องห้ามไทย/อังกฤษที่ทำให้ข้อความดูเป็น AI ทันที",
+        "โทนเสียงมาได้ 3 ทาง: ดึงจากประวัติแชท, แนบงานเขียนเก่า หรือเลือกสูตรสำเร็จ (เพื่อนสาวป้ายยา, กูรูมินิมอล, พลังบวก, จิกกัดขำขัน)",
+        "ต้องอ่านตรวจสุดท้ายเอง Humanizer ช่วยปรับสำนวน แต่ไม่รับรองความถูกต้องของข้อเท็จจริง"
+      ]
+    },
+    cta: {
+      title: "อยากให้ AI เขียนงานด้วยเสียงของคุณจริงๆ?",
+      description: "เทคนิค Prompt, Gem และโทนเสียงแบรนด์ อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท พร้อมปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "chatgpt-image-prompts-personal-analysis",
+    title: "รวม Prompt ทำภาพด้วย ChatGPT: วิเคราะห์สีผิว แต่งหน้า สไตล์ แว่น และบอร์ดแบรนด์",
+    subtitle: "7 โจทย์ภาพที่เปลี่ยนรูปพอร์ตเทรตและไอเดียแบรนด์ให้เป็นบอร์ดวิเคราะห์ระดับนิตยสาร",
+    category: "AI Visual",
+    categoryBadge: "IMAGE PROMPT PACK",
+    icon: "🖼️",
+    coverImage: "/resources/chatgpt-image-prompts-personal.svg",
+    readTime: "8 นาที",
+    date: "2026-04",
+    tags: ["ChatGPT Image", "Personal Color", "Makeup", "Style", "Brand Board", "Prompt Pack"],
+    summary: "ชุด Prompt 7 แบบ ได้แก่ ลองทรงผม วิเคราะห์สีผิวกับสีเสื้อผ้า ภาพฟิล์มเที่ยวทะเล บอร์ดแต่งหน้า บอร์ดสไตล์เสื้อผ้า คู่มือทรงแว่น และเทมเพลตบอร์ดแบรนด์ (Brand Guideline) ที่แก้เป็นแบรนด์ของเราได้",
+    featured: false,
+    content: {
+      intro: "ชุด Prompt นี้ใช้ได้ดีกับ ChatGPT สร้างภาพ โดยแนบรูปพอร์ตเทรตของตัวเอง (หรือรูปที่เรามีสิทธิ์ใช้และผู้อยู่ในภาพยินยอม) แล้วสั่งให้สร้างบอร์ดภาพแบบ Editorial เช่น วิเคราะห์สีที่เหมาะ ทรงแว่น หรือแนวแต่งหน้า ส่วนบอร์ดแบรนด์ให้ใช้เป็นเทมเพลต แล้วบอกว่า 'แก้เป็นแบรนด์ของเราแทน' พร้อมสไตล์ที่ต้องการ ข้อควรจำ: ผลวิเคราะห์สีผิว/สไตล์เป็นแนวทางความสวยงามเท่านั้น ไม่ใช่คำแนะนำทางการแพทย์ และควรตรวจคำภาษาไทยในภาพก่อนใช้เสมอ",
+      workflowSteps: [
+        { step: "01. แนบรูป + เลือกโจทย์", desc: "เลือกจากโจทย์ในกล่อง Prompt ด้านล่าง แนบพอร์ตเทรตที่หน้าชัด แสงสม่ำเสมอ" },
+        { step: "02. สั่งสร้างครั้งละ 1 บอร์ด", desc: "ระบุว่าต้องรักษาใบหน้าเดิม ลดข้อความให้น้อย และเน้นภาพมากกว่าตัวอักษร" },
+        { step: "03. ปรับแต่งต่อในแชทเดิม", desc: "สั่งแก้ทีละจุด เช่น เปลี่ยนโทนสี เพิ่ม/ลดตัวเลือก หรือเปลี่ยนเป็นแบรนด์ของเรา" }
+      ],
+      promptCopyText: `// 1) ลองทรงผม
+สร้างภาพทรงผมแนวต่างๆ ว่าแบบไหนเหมาะกับฉัน เปรียบเทียบ 6 ภาพ พร้อมป้ายชื่อทรงเป็นภาษาไทย ขนาด 4:5
+
+// 2) วิเคราะห์สีผิว กับสีเสื้อผ้า
+Using this portrait, create a diagram-first personal color analysis.
+Show which clothing colors suit the subject through visual comparison. Keep text minimal and avoid paragraphs.
+(Preserve the exact face. Clean luxury creative board style, tiny palette chips, short labels only.)
+
+// 3) ภาพฟิล์มเที่ยวทะเล ให้ AI เลือกชุดเอง
+An emotional photo casually snapped on a smartphone by the woman in the attached image during a trip to [สถานที่]. 6 images in a collage.
+Faded cinematic texture, like a snapshot from cherished memories, shaky handheld feel, casual offhand composition.
+Change the outfit to a new outfit suitable for the mood and location.
+
+// 4) บอร์ดแต่งหน้า (Makeup Analysis Board)
+Create a high-end editorial "Makeup Analysis Board" from this portrait in a luxury beauty magazine style.
+Beige/ivory background, soft diffused lighting, grid-based layout, minimal typography.
+Center: enhanced natural portrait (same identity). Left: skin analysis (tone, undertone, contrast).
+Include: eye shade variations, eyeliner styles, mascara effects, cheek/contour placement, 6 flattering lip shades,
+3 final looks (Natural Glow, Soft Glam, Evening Glam), product icons, short 1–2 line tips.
+
+// 5) บอร์ดสไตล์เสื้อผ้า (Style Analysis Board)
+Create a high-end editorial "Style Analysis Board" using this portrait. Luxury fashion magazine aesthetic, warm ivory background, grid layout.
+Show side-by-side outfit transformations in styles such as Old Money, Quiet Luxury, Minimalist, Classic Elegant, Street Style, Casual Effortless, Soft Girl.
+Mark the 3–5 most flattering styles, show styles that clash, best/avoid colors, silhouette guide, key pieces, accessories, a capsule wardrobe and an overall style identity.
+
+// 6) ทรงแว่นที่เหมาะกับหน้า
+Spectacles Guide: create a clean modern infographic poster using the uploaded portrait (keep the face 100% the same).
+Minimal, rounded cards, thin lines, editorial look. Title: "Spectacles Guide".
+Analyze face shape and proportions, then show suitable and unsuitable eyewear with side-by-side try-on variations on the same face.
+
+// 7) Template บอร์ดแบรนด์ (Brand Guideline & Concept Board) — สร้าง 3 ภาพ
+แก้ข้อมูลเป็นแบรนด์ของเรา: Brand Name, Tagline, Brand Essence, Personality, Target Audience,
+Concept Direction, Color Palette (primary/secondary/accent + การใช้งาน), Typography, Logo System,
+Visual Elements, Packaging, Photography Direction, Tone of Voice, Signature Details, Layout Style
+สไตล์ที่ต้องการ: [ระบุ]`,
+      takeaways: [
+        "ได้ Prompt 7 แบบที่ใช้ซ้ำได้กับรูปของตัวเองหรือไอเดียแบรนด์",
+        "สั่งให้เน้นภาพ ลดตัวอักษร และรักษาใบหน้าเดิมเพื่อให้ผลลัพธ์ดูเป็นมืออาชีพ",
+        "เทมเพลต Brand Board ช่วยให้ได้ทั้งโลโก้ แพ็กเกจ โทนสี และโทนการเขียนพร้อมกัน",
+        "ใช้เฉพาะรูปที่มีสิทธิ์ใช้ และตรวจข้อความไทยในภาพก่อนเผยแพร่"
+      ]
+    },
+    cta: {
+      title: "อยากสร้างภาพสินค้าและแบรนด์ด้วย AI ให้เป็นระบบ?",
+      description: "ชุด Prompt ภาพและ Workflow ครบวงจร อัปเดตทุกสัปดาห์ใน Modty AI Insider Club เดือนละ 99 บาท ปรึกษาได้เดือนละครั้ง",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ปรึกษา Modty ผ่าน LINE"
+    }
+  },
+  {
+    id: "notion-dashboard-to-web-app-workflow",
+    title: "Workflow สร้าง Web App จากแดชบอร์ดบน Notion — จากไอเดียสู่การ Deploy",
+    subtitle: "ใช้ข้อมูลที่มีใน Notion เป็นแหล่งอ้างอิง ให้ Claude ร่างแอป แล้วต่อด้วย Google AI Studio, GitHub และ Cursor / Antigravity",
+    category: "Vibe Coding",
+    categoryBadge: "WEB APP WORKFLOW",
+    icon: "🧩",
+    coverImage: "/resources/notion-to-web-app-workflow.svg",
+    readTime: "5 นาที",
+    date: "2026-04",
+    tags: ["Notion", "Claude", "Google AI Studio", "GitHub", "Cursor", "Antigravity", "Deploy"],
+    summary: "4 ขั้นตอนเปลี่ยนเนื้อหาใน Notion ให้เป็น Web App ที่ใช้งานจริง: ร่างด้วย Claude + Notion Connector, ปรับแต่ง, สเกลระบบ (Login + Database) ใน Google AI Studio แล้วขึ้น GitHub และ Deploy ผ่าน Cursor / Antigravity",
+    featured: false,
+    content: {
+      intro: "ถ้ามีข้อมูลหรือแดชบอร์ดอยู่ใน Notion แล้ว ไม่ต้องเริ่มจากหน้าว่าง ให้ Claude อ่านเนื้อหาจาก Notion แล้วเขียนโค้ดตั้งต้นให้ จากนั้นค่อยปรับแต่งทีละรอบ ถ้าโควต้า Claude เต็มก็ย้ายไปทำต่อบน Google AI Studio ได้ เมื่อระบบพร้อมให้เก็บโค้ดบน GitHub และใช้ AI Code Editor อย่าง Cursor หรือ Antigravity จัดการ Environment ตรวจโค้ดรอบสุดท้าย และ Deploy",
+      workflowSteps: [
+        { step: "01. ร่างด้วย Claude + Notion Connector", desc: "เชื่อม Claude กับ Notion แล้วระบุหน้าเพจที่ต้องการให้อ่านเนื้อหาและโครงสร้างเพื่อสร้างโค้ดตั้งต้น" },
+        { step: "02. ปรับแต่งแล้วย้ายไป AI Studio เมื่อจำเป็น", desc: "รันดูผลลัพธ์และสั่งแก้ UI กับฟังก์ชันจนพอใจ ถ้าติด Limit ให้ไปทำต่อใน Google AI Studio เช่น ปรับ UI เพิ่มระบบ Login และเชื่อมฐานข้อมูล" },
+        { step: "03. GitHub → Cursor / Antigravity → Deploy", desc: "อัปโหลดโค้ดขึ้น GitHub ดึงไปทำต่อใน Cursor หรือ Antigravity เพื่อตรวจ ปรับ และ Deploy ขึ้นโฮสต์ให้คนทั่วไปใช้งาน" }
+      ],
+      promptCopyText: `ทำหน้าที่เป็น Expert Full-stack Developer
+ฉันต้องการสร้าง Web App เกี่ยวกับ [ระบุหัวข้อ/เรื่องที่ต้องการทำ]
+โดยอ้างอิงเนื้อหาและโครงสร้างจาก Notion หน้านี้: [วางลิงก์ Notion]
+
+โปรดอ่านข้อมูลทั้งหมด แล้วเขียนโค้ด (HTML, CSS, JS หรือ Framework ที่เหมาะสม)
+เพื่อสร้างเป็น Web App ที่ใช้งานได้จริง
+
+ข้อกำหนด:
+- สรุป Feature และโครงสร้างหน้าก่อนเขียนโค้ด
+- ใช้เฉพาะข้อมูลจากหน้า Notion ที่ฉันอนุญาต
+- ถ้าต้องมี Login หรือฐานข้อมูล ให้เสนอทางเลือกก่อนลงมือ
+- ไม่ใส่ API Key หรือข้อมูลลับลงในโค้ด`,
+      takeaways: [
+        "แปลงข้อมูลที่มีใน Notion ให้เป็นแอปได้โดยไม่ต้องเริ่มจากศูนย์",
+        "รู้ลำดับเครื่องมือ: Claude → Google AI Studio → GitHub → Cursor / Antigravity → Deploy",
+        "ก่อน Deploy ควรตรวจข้อมูลที่เปิดเผยในแอป อย่าให้ข้อมูลส่วนตัวหรือความลับของ Notion หลุดสู่สาธารณะ"
+      ]
+    },
+    cta: {
+      title: "พร้อมเปลี่ยนไอเดียเป็น Web App ที่ใช้งานได้จริงหรือยัง?",
+      description: "เรียนสร้าง Web App ที่มีระบบสมาชิก ฐานข้อมูล และการชำระเงิน ได้ในคอร์ส Vibe Coding Master Route หรือรับเทคนิคใหม่ทุกสัปดาห์ใน Insider Club เดือนละ 99 บาท",
+      primaryBtnText: "เข้าร่วม Insider Club (99.-/เดือน) →",
+      secondaryBtnText: "ดูคอร์ส 2,990.- ที่ mastervibecode"
+    }
   }
 ];
