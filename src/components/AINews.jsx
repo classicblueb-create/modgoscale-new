@@ -28,16 +28,23 @@ function parseCSV(text) {
   return rows;
 }
 
-function rowsToArticles(rows) {
-  if (rows.length < 2) return [];
-  const head = rows[0].map((h) => h.trim().toLowerCase());
-  const idx = (name) => head.indexOf(name);
-  return rows.slice(1).map((r) => {
-    const get = (name) => (idx(name) >= 0 ? (r[idx(name)] || '').trim() : '');
+// Accepts: 2D rows (CSV or JSON array-of-arrays) or an array of objects keyed by column name
+function toArticles(rows) {
+  if (!Array.isArray(rows) || rows.length === 0) return [];
+  let records;
+  if (Array.isArray(rows[0])) {
+    const head = rows[0].map((h) => String(h).trim().toLowerCase());
+    records = rows.slice(1).map((r) => Object.fromEntries(head.map((h, i) => [h, r[i]])));
+  } else {
+    records = rows.map((o) => Object.fromEntries(Object.entries(o || {}).map(([k, v]) => [String(k).trim().toLowerCase(), v])));
+  }
+  const approved = APPROVED_STATUS.map((x) => x.toLowerCase());
+  return records.map((r) => {
+    const get = (name) => String(r[name] ?? '').trim();
     return {
       id: get('id') || get('title'),
       status: get('status').toLowerCase(),
-      date: get('date'),
+      date: get('date').slice(0, 10),
       title: get('title'),
       category: get('category') || 'AI News',
       summary: get('summary'),
@@ -45,7 +52,17 @@ function rowsToArticles(rows) {
       sources: get('sources'),
       tags: get('tags').split(',').map((t) => t.trim()).filter(Boolean),
     };
-  }).filter((a) => a.title && APPROVED_STATUS.map((s) => s.toLowerCase()).includes(a.status));
+  }).filter((a) => a.title && approved.includes(a.status));
+}
+
+function parseResponse(text) {
+  const t = text.trim();
+  if (t.startsWith('[') || t.startsWith('{')) {
+    const j = JSON.parse(t);
+    const rows = Array.isArray(j) ? j : (j.articles || j.data || j.rows || j.values || []);
+    return toArticles(rows);
+  }
+  return toArticles(parseCSV(text));
 }
 
 // body format: blank line = new paragraph, "## " = subheading, "- " = bullet
@@ -91,11 +108,11 @@ export default function AINews({ lineLink, en, onBackToHome }) {
       .then((r) => { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then((t) => {
         if (cancelled) return;
-        const list = rowsToArticles(parseCSV(t)).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        const list = parseResponse(t).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
         setArticles(list);
         setState('ready');
       })
-      .catch(() => { if (!cancelled) setState('error'); });
+      .catch((e) => { console.warn('AI News load failed', e); if (!cancelled) setState('error'); });
     return () => { cancelled = true; };
   }, []);
 
@@ -146,7 +163,7 @@ export default function AINews({ lineLink, en, onBackToHome }) {
           <div className="bg-white border border-dashed border-[#E6E4DD] rounded-3xl p-10 text-center space-y-3">
             <Newspaper className="mx-auto text-[#FF6A2A]" size={32} />
             <p className="font-display font-bold text-lg">
-              {state === 'error' ? 'โหลดข่าวไม่สำเร็จ ลองรีเฟรชอีกครั้ง' : 'ข่าวชุดแรกกำลังจะมาเร็วๆ นี้'}
+              ข่าวชุดแรกกำลังจะมาเร็วๆ นี้
             </p>
             <p className="text-sm font-light text-[#666]">ติดตามอัปเดตข่าว AI ได้ที่ LINE ของเรา</p>
           </div>
