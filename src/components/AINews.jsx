@@ -28,6 +28,14 @@ function parseCSV(text) {
   return rows;
 }
 
+// Only allow https images or inline SVG data URIs (no javascript:, no http:)
+function safeImage(url) {
+  if (!url) return '';
+  if (/^https:\/\//i.test(url)) return url;
+  if (/^data:image\/svg\+xml;base64,[A-Za-z0-9+/=]+$/.test(url)) return url;
+  return '';
+}
+
 // Accepts: 2D rows (CSV or JSON array-of-arrays) or an array of objects keyed by column name
 function toArticles(rows) {
   if (!Array.isArray(rows) || rows.length === 0) return [];
@@ -51,6 +59,8 @@ function toArticles(rows) {
       body: get('body'),
       sources: get('sources'),
       tags: get('tags').split(',').map((t) => t.trim()).filter(Boolean),
+      image: safeImage(get('image')),
+      imageCredit: get('image_credit'),
     };
   }).filter((a) => a.title && approved.includes(a.status));
 }
@@ -174,6 +184,9 @@ export default function AINews({ lineLink, en, onBackToHome }) {
             {filtered.map((a) => (
               <div key={a.id} onClick={() => setActive(a)} className="bg-white border border-[#E6E4DD] rounded-3xl p-8 flex flex-col justify-between hover:border-[#FF6A2A] hover:-translate-y-1.5 transition-all shadow-sm group cursor-pointer">
                 <div>
+                  {a.image && (
+                    <img src={a.image} alt={a.title} loading="lazy" referrerPolicy="no-referrer" className="w-full aspect-[1200/630] object-cover rounded-2xl border border-[#E6E4DD] mb-4" />
+                  )}
                   <div className="flex justify-between items-start mb-4">
                     <span className="bg-[#FFF1E6] text-[#FF6A2A] border border-[#FFE3D2] px-3 py-1 text-[10px] uppercase font-bold tracking-wider rounded-full">{a.category}</span>
                     <span className="text-[11px] text-[#888] font-light flex items-center gap-1"><Clock size={12} className="text-[#FF6A2A]" /> {a.date}</span>
@@ -208,6 +221,12 @@ export default function AINews({ lineLink, en, onBackToHome }) {
               </div>
               <div className="p-6 md:p-10 space-y-6">
                 <div className="space-y-3 border-b border-[#E6E4DD] pb-6">
+                  {active.image && (
+                    <figure className="mb-2">
+                      <img src={active.image} alt={active.title} referrerPolicy="no-referrer" className="w-full aspect-[1200/630] object-cover rounded-2xl border border-[#E6E4DD]" />
+                      {active.imageCredit && <figcaption className="text-[11px] text-[#888] font-light mt-2">{active.imageCredit}</figcaption>}
+                    </figure>
+                  )}
                   <p className="text-xs text-[#888] font-light">{active.date}</p>
                   <h2 className="text-2xl md:text-4xl font-display font-bold">{active.title}</h2>
                   <p className="text-base font-kanit font-light text-[#555]">{active.summary}</p>

@@ -19,7 +19,7 @@
 const DRAFTS_URL =
   'https://raw.githubusercontent.com/classicblueb-create/modgoscale-new/ai-news-drafts/ai-news-drafts.json';
 const SHEET_NAME = 'news';
-const HEADERS = ['id', 'status', 'date', 'title', 'category', 'summary', 'body', 'sources', 'tags', 'note'];
+const HEADERS = ['id', 'status', 'date', 'title', 'category', 'summary', 'body', 'sources', 'tags', 'note', 'image', 'image_credit'];
 const STATUS_VALUES = ['รอตรวจ', 'อนุมัติ', 'ไม่ผ่าน'];
 
 function getSheet_() {
@@ -31,7 +31,7 @@ function setup() {
   const sh = getSheet_();
   sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold');
   sh.setFrozenRows(1);
-  sh.getRange('A:J').setNumberFormat('@'); // plain text: never interpret cells as formulas
+  sh.getRange('A:L').setNumberFormat('@'); // plain text: never interpret cells as formulas
   const rule = SpreadsheetApp.newDataValidation().requireValueInList(STATUS_VALUES, true).build();
   sh.getRange(2, 2, 1000, 1).setDataValidation(rule);
   ScriptApp.getProjectTriggers().forEach((t) => {
@@ -63,6 +63,8 @@ function importDrafts() {
       (d.sources || []).map((s) => s.name + ' | ' + s.url).join('\n'),
       (d.tags || []).join(', '),
       '',
+      d.image || '',
+      d.imageCredit || '',
     ]);
   if (rows.length === 0) return;
   const start = Math.max(sh.getLastRow(), 1) + 1;
