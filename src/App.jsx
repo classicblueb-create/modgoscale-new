@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import FreeResources from './components/FreeResources';
+import AINews from './components/AINews';
 import {
   Code, Database, Zap, Users, MessageCircle, CheckCircle, ArrowRight, Menu, X,
   Layout, Server, Bot, Clapperboard, Sparkles, Sheet, Clock, Video, BookOpen, User, Palette, Monitor, Globe
@@ -42,7 +43,9 @@ const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [lang, setLang] = useState('th');
   const [currentPage, setCurrentPage] = useState(() => {
-    return window.location.hash.startsWith('#resources') ? 'resources' : 'home';
+    if (window.location.hash.startsWith('#resources')) return 'resources';
+    if (window.location.hash.startsWith('#news')) return 'news';
+    return 'home';
   });
   const en = lang === 'en';
 
@@ -55,8 +58,8 @@ const App = () => {
   const navigateTo = (page, sectionId = null) => {
     setIsMenuOpen(false);
     setCurrentPage(page);
-    if (page === 'resources') {
-      window.location.hash = 'resources';
+    if (page === 'resources' || page === 'news') {
+      window.location.hash = page;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       if (sectionId) {
@@ -143,7 +146,7 @@ const App = () => {
   }, []);
 
   // If on Resources subpage, render it full-screen (still with navbar on top)
-  if (currentPage === 'resources') {
+  if (currentPage === 'resources' || currentPage === 'news') {
     return (
       <div className="antialiased selection:bg-[#111111] selection:text-[#F9F8F4] overflow-x-hidden w-full relative">
         {/* Custom Cursor */}
@@ -160,7 +163,8 @@ const App = () => {
             <button onClick={() => navigateTo('home', 'services')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Expertise</button>
             <button onClick={() => navigateTo('home', 'portfolio')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Portfolio</button>
             <button onClick={() => navigateTo('home', 'speaker')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Speaker</button>
-            <button onClick={() => navigateTo('resources')} className="text-[#FF6A2A] font-bold transition-colors duration-300">Free Resources</button>
+            <button onClick={() => navigateTo('resources')} className={`transition-colors duration-300 ${currentPage === 'resources' ? 'text-[#FF6A2A] font-bold' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Free Resources</button>
+            <button onClick={() => navigateTo('news')} className={`transition-colors duration-300 ${currentPage === 'news' ? 'text-[#FF6A2A] font-bold' : 'text-[#666] hover:text-[#FF6A2A]'}`}>AI News</button>
             <button onClick={() => navigateTo('home', 'contact')} className="text-[#666] hover:text-[#FF6A2A] transition-colors duration-300">Initiate</button>
           </div>
           <div className="flex items-center gap-4">
@@ -184,7 +188,8 @@ const App = () => {
             <button onClick={() => navigateTo('home', 'services')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Expertise</button>
             <button onClick={() => navigateTo('home', 'portfolio')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Portfolio</button>
             <button onClick={() => navigateTo('home', 'speaker')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Speaker</button>
-            <button onClick={() => navigateTo('resources')} className="text-2xl font-display font-bold text-left uppercase text-[#FF6A2A]">Free Resources</button>
+            <button onClick={() => navigateTo('resources')} className={`text-2xl font-display font-bold text-left uppercase ${currentPage === 'resources' ? 'text-[#FF6A2A]' : 'text-[#111] hover:text-[#FF6A2A]'}`}>Free Resources</button>
+            <button onClick={() => navigateTo('news')} className={`text-2xl font-display font-bold text-left uppercase ${currentPage === 'news' ? 'text-[#FF6A2A]' : 'text-[#111] hover:text-[#FF6A2A]'}`}>AI News</button>
             <button onClick={() => navigateTo('home', 'contact')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Initiate</button>
             <a href={lineLink} className="mt-8 bg-[#FF6A2A] text-white rounded-full text-center w-full py-4 uppercase tracking-widest text-base font-medium hover:bg-[#e0591f] transition-colors shadow-lg shadow-[#FF6A2A]/20">Contact via LINE</a>
           </div>
@@ -196,7 +201,9 @@ const App = () => {
         </a>
 
         {/* FreeResources Full Subpage */}
-        <FreeResources lineLink={lineLink} en={en} onBackToHome={() => navigateTo('home')} />
+        {currentPage === 'news'
+          ? <AINews lineLink={lineLink} en={en} onBackToHome={() => navigateTo('home')} />
+          : <FreeResources lineLink={lineLink} en={en} onBackToHome={() => navigateTo('home')} />}
       </div>
     );
   }
@@ -218,6 +225,7 @@ const App = () => {
           <button onClick={() => navigateTo('home', 'portfolio')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Portfolio</button>
           <button onClick={() => navigateTo('home', 'speaker')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Speaker</button>
           <button onClick={() => navigateTo('resources')} className={`transition-colors duration-300 ${currentPage === 'resources' ? 'text-[#FF6A2A] font-bold' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Free Resources</button>
+          <button onClick={() => navigateTo('news')} className="transition-colors duration-300 text-[#666] hover:text-[#FF6A2A]">AI News</button>
           <button onClick={() => navigateTo('home', 'contact')} className={`transition-colors duration-300 ${currentPage === 'home' ? 'text-[#666] hover:text-[#FF6A2A]' : 'text-[#666] hover:text-[#FF6A2A]'}`}>Initiate</button>
         </div>
         <div className="flex items-center gap-4">
@@ -242,6 +250,7 @@ const App = () => {
           <button onClick={() => navigateTo('home', 'portfolio')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Portfolio</button>
           <button onClick={() => navigateTo('home', 'speaker')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Speaker</button>
           <button onClick={() => navigateTo('resources')} className={`text-2xl font-display font-bold text-left uppercase ${currentPage === 'resources' ? 'text-[#FF6A2A]' : 'text-[#111] hover:text-[#FF6A2A]'}`}>Free Resources</button>
+          <button onClick={() => navigateTo('news')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">AI News</button>
           <button onClick={() => navigateTo('home', 'contact')} className="text-2xl font-display font-bold text-left uppercase text-[#111] hover:text-[#FF6A2A]">Initiate</button>
           <a href={lineLink} className="mt-8 bg-[#FF6A2A] text-white rounded-full text-center w-full py-4 uppercase tracking-widest text-base font-medium hover:bg-[#e0591f] transition-colors shadow-lg shadow-[#FF6A2A]/20">Contact via LINE</a>
         </div>
